@@ -35,6 +35,9 @@
   --faded-bg: #F4F2EC;
   --faded-fg: #B0A89C;
   --faded-border: #DDD8CC;
+  --access-bg: #FFF1B8;
+  --access-border: #C4920C;
+  --access-fg: #6B4500;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -115,6 +118,21 @@ a:hover { border-bottom-color: var(--indigo); }
   box-shadow: none;
 }
 .key.faded .km { font-weight: 400; color: var(--faded-fg); }
+.key.access {
+  background: var(--access-bg);
+  border: 2px solid var(--access-border);
+  color: var(--access-fg);
+  box-shadow: 0 1px 0 var(--access-border);
+}
+.key.access .km { color: var(--access-fg); font-weight: 700; }
+.key.access .ks {
+  font-size: 7.5px;
+  color: var(--access-fg);
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
 .key.empty {
   background: var(--faded-bg);
   border: 1px dashed var(--faded-border);
@@ -364,7 +382,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <div class="kb">
   <div class="half left">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key access"><div class="km">W</div><div class="ks">hold</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
       <div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key faded"><div class="km">S</div></div><div class="key normal"><div class="km">Caps</div></div><div class="key faded"><div class="km">G</div></div></div>
       <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
@@ -375,7 +393,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="kb-gap"></div>
   <div class="half right">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key access"><div class="km">Y</div><div class="ks">hold</div></div><div class="key faded"><div class="km">'</div></div></div>
       <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Prev</div></div><div class="key normal"><div class="km">Vol−</div></div><div class="key normal"><div class="km">Vol+</div></div><div class="key normal"><div class="km">Next</div></div></div>
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key normal"><div class="km">Bri−</div></div><div class="key normal"><div class="km">Bri+</div></div><div class="key faded"><div class="km">/</div></div></div>
     </div>
@@ -406,7 +424,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
       <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key normal"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key normal"><div class="km">Ins</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
+      <div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
     </div>
   </div>
   <div class="kb-gap"></div>
@@ -443,7 +461,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
       <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key normal"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
+      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key access tk"><div class="km">Tab</div><div class="ks">hold</div></div></div>
     </div>
   </div>
   <div class="kb-gap"></div>
@@ -487,11 +505,11 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half right">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">$</div></div><div class="key normal"><div class="km">@</div></div><div class="key normal"><div class="km">%</div></div><div class="key normal"><div class="km">&</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">$</div></div><div class="key normal"><div class="km">@</div></div><div class="key normal"><div class="km">%</div></div><div class="key normal"><div class="km">&amp;</div></div></div>
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">*</div></div><div class="key normal"><div class="km">^</div></div><div class="key normal"><div class="km">;</div></div><div class="key normal"><div class="km">/</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Bsp</div><div class="ks">hold</div></div></div>
     </div>
   </div>
 </div>
@@ -530,7 +548,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">=</div></div><div class="key normal"><div class="km">,</div></div><div class="key normal"><div class="km">.</div></div><div class="key normal"><div class="km">/</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+      <div class="thumbs right-thumbs"><div class="key access tk"><div class="km">Ent</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
     </div>
   </div>
 </div>
@@ -556,7 +574,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
       <div class="row"><div class="key normal"><div class="km">F10</div></div><div class="key normal"><div class="km">F1</div></div><div class="key normal"><div class="km">F2</div></div><div class="key normal"><div class="km">F3</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
+      <div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
     </div>
   </div>
   <div class="kb-gap"></div>
@@ -567,7 +585,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
     </div>
     <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key normal tk"><div class="km">Del</div></div></div>
+      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Bsp</div><div class="ks">hold</div></div></div>
     </div>
   </div>
 </div>
@@ -587,7 +605,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
     <div class="rows">
       <div class="row"><div class="key normal"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
       <div class="row"><div class="key normal"><div class="km">⌘</div></div><div class="key normal"><div class="km">⌥</div></div><div class="key normal"><div class="km">⌃</div></div><div class="key normal"><div class="km">⇧</div></div><div class="key normal"><div class="km">App</div></div></div>
-      <div class="row"><div class="key normal"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
+      <div class="row"><div class="key access"><div class="km">Z</div><div class="ks">hold</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">Btn1</div></div><div class="key normal tk"><div class="km">Btn2</div></div></div>
@@ -598,7 +616,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
     <div class="rows">
       <div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Undo</div></div></div>
       <div class="row"><div class="key normal"><div class="km">App</div></div><div class="key normal"><div class="km">⇧</div></div><div class="key normal"><div class="km">⌃</div></div><div class="key normal"><div class="km">AltGr</div></div><div class="key normal"><div class="km">⌘</div></div></div>
-      <div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Undo</div></div></div>
+      <div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key access"><div class="km">/</div><div class="ks">hold</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
@@ -620,8 +638,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half left">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
-      <div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km"><</div><div class="ks">></div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key faded"><div class="km">G</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
+      <div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key faded"><div class="km">G</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key access"><div class="km">C</div><div class="ks">hold</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
@@ -631,8 +649,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half right">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km"><</div><div class="ks">></div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key normal"><div class="km">\</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key access"><div class="km">,</div><div class="ks">hold</div></div><div class="key faded"><div class="km">.</div></div><div class="key normal"><div class="km">\</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
@@ -655,8 +673,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half left">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
-      <div class="row"><div class="key macro"><div class="marker m-mark">M</div><div class="km">M11</div><div class="ks">||</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">M7</div><div class="ks">2>&1</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">M10</div><div class="ks">&&</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">|</div><div class="ks">M5</div></div><div class="key faded"><div class="km">G</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">\</div></div><div class="key faded"><div class="km">V</div></div></div>
+      <div class="row"><div class="key macro"><div class="marker m-mark">M</div><div class="km">||</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">2&gt;&amp;1</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">&amp;&amp;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">|</div><div class="ks"> | </div></div><div class="key faded"><div class="km">G</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key access"><div class="km">X</div><div class="ks">hold</div></div><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">\</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
@@ -666,8 +684,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half right">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">M1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">M8</div><div class="ks">M9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">M12</div><div class="ks">M13</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">M14</div><div class="ks">M15</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">M0</div><div class="ks">$?</div></div><div class="key normal"><div class="km">~</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">~/</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">$()←</div><div class="ks">${}←</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">!=</div><div class="ks">==</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">=&gt;</div><div class="ks">-&gt;</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">$?</div></div><div class="key normal"><div class="km">~</div></div><div class="key access"><div class="km">.</div><div class="ks">hold</div></div><div class="key faded"><div class="km">/</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
@@ -689,8 +707,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half left">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">A</div></div><div class="key intl"><div class="km">€</div></div><div class="key intl"><div class="km">ß</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">M4</div></div><div class="key faded"><div class="km">G</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">A</div></div><div class="key intl"><div class="km">€</div></div><div class="key intl"><div class="km">ß</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key faded"><div class="km">G</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key access"><div class="km">D</div><div class="ks">hold</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
@@ -700,8 +718,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="half right">
     <div class="rows">
       <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">M4</div></div><div class="key normal"><div class="km">'</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">M2</div><div class="ks">M3</div></div><div class="key faded"><div class="km">O</div></div></div>
-      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key normal"><div class="km">'</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">'␣</div><div class="ks">'␣'␣'␣</div></div><div class="key faded"><div class="km">O</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key access"><div class="km">H</div><div class="ks">hold</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
     </div>
     <div class="thumb-row">
       <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
@@ -725,7 +743,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <div class="kb">
   <div class="half left">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘7</div><div class="ks">⌘⇧7</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘8</div><div class="ks">⌘⇧8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘9</div><div class="ks">⌘⇧9</div></div><div class="key faded"><div class="km">B</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘7</div><div class="ks">⌘⇧7</div></div><div class="key access"><div class="km">F</div><div class="ks">hold</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘9</div><div class="ks">⌘⇧9</div></div><div class="key faded"><div class="km">B</div></div></div>
       <div class="row"><div class="key faded"><div class="km">A</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘4</div><div class="ks">⌘⇧4</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘5</div><div class="ks">⌘⇧5</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘6</div><div class="ks">⌘⇧6</div></div><div class="key faded"><div class="km">G</div></div></div>
       <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘1</div><div class="ks">⌘⇧1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘2</div><div class="ks">⌘⇧2</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘3</div><div class="ks">⌘⇧3</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
@@ -736,7 +754,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="kb-gap"></div>
   <div class="half right">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key access"><div class="km">U</div><div class="ks">hold</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
       <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⌘←</div></div><div class="key mod"><div class="km">⌘↓</div></div><div class="key mod"><div class="km">⌘↑</div></div><div class="key mod"><div class="km">⌘→</div></div></div>
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key mod"><div class="km">⌘⇧←</div></div><div class="key mod"><div class="km">⌘⇧↓</div></div><div class="key mod"><div class="km">⌘⇧↑</div></div><div class="key mod"><div class="km">⌘⇧→</div></div></div>
     </div>
@@ -760,7 +778,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <div class="kb">
   <div class="half left">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
+      <div class="row"><div class="key access"><div class="km">Q</div><div class="ks">hold</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div>
       <div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key faded"><div class="km">G</div></div></div>
       <div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
     </div>
@@ -771,7 +789,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
   <div class="kb-gap"></div>
   <div class="half right">
     <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div>
+      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key access"><div class="km">'</div><div class="ks">hold</div></div></div>
       <div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key faded"><div class="km">I</div></div><div class="key faded"><div class="km">O</div></div></div>
       <div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
     </div>
@@ -783,6 +801,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 </div>
 <h3 style="margin-top:30px;margin-bottom:14px">Legend</h3>
 <div class="legend">
+  <div class="li-row"><div class="li-swatch" style="background:var(--access-bg);border-color:var(--access-border);border-width:2px"></div>Layer-Aktivierungs-Taste</div>
   <div class="li-row"><div class="li-swatch" style="background:var(--card);border-color:var(--rule2)"></div>Alpha / normal</div>
   <div class="li-row"><div class="li-swatch" style="background:var(--paper2);border-color:var(--rule2)"></div>Modifier</div>
   <div class="li-row"><div class="li-swatch" style="background:var(--sagebg);border-color:var(--sagedim);border-width:2px"></div>Layer / LT</div>
@@ -830,19 +849,19 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Brackets (L8)</td></tr>
 <tr><td class="ref-id">TD(25)</td><td><span class="ref-tap">(</span></td><td><span class="ref-hold">)</span></td><td><span class="ref-dbl">)</span></td><td>200 ms</td><td>L8</td></tr>
 <tr><td class="ref-id">TD(26)</td><td><span class="ref-tap">[</span></td><td><span class="ref-hold">]</span></td><td><span class="ref-dbl">]</span></td><td>200 ms</td><td>L8</td></tr>
-<tr><td class="ref-id">TD(27)</td><td><span class="ref-tap"><</span></td><td><span class="ref-hold">></span></td><td><span class="ref-dbl">></span></td><td>200 ms</td><td>L8</td></tr>
+<tr><td class="ref-id">TD(27)</td><td><span class="ref-tap">&lt;</span></td><td><span class="ref-hold">&gt;</span></td><td><span class="ref-dbl">&gt;</span></td><td>200 ms</td><td>L8</td></tr>
 <tr><td class="ref-id">TD(28)</td><td><span class="ref-tap">{</span></td><td><span class="ref-hold">}</span></td><td><span class="ref-dbl">}</span></td><td>200 ms</td><td>L8</td></tr>
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Code &amp; CLI (L9)</td></tr>
-<tr><td class="ref-id">TD(29)</td><td><span class="ref-tap">/</span></td><td><span class="ref-hold">M1</span></td><td><span class="ref-dbl">M6</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(30)</td><td><span class="ref-tap">M8</span></td><td><span class="ref-hold">M9</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(31)</td><td><span class="ref-tap">M12</span></td><td><span class="ref-hold">M13</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(32)</td><td><span class="ref-tap">M14</span></td><td><span class="ref-hold">M15</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(45)</td><td><span class="ref-tap">|</span></td><td><span class="ref-hold">M5</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
+<tr><td class="ref-id">TD(29)</td><td><span class="ref-tap">/</span></td><td><span class="ref-hold">~/</span></td><td><span class="ref-dbl">../</span></td><td>200 ms</td><td>L9</td></tr>
+<tr><td class="ref-id">TD(30)</td><td><span class="ref-tap">$()←</span></td><td><span class="ref-hold">${}←</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
+<tr><td class="ref-id">TD(31)</td><td><span class="ref-tap">!=</span></td><td><span class="ref-hold">==</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
+<tr><td class="ref-id">TD(32)</td><td><span class="ref-tap">=&gt;</span></td><td><span class="ref-hold">-&gt;</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
+<tr><td class="ref-id">TD(45)</td><td><span class="ref-tap">|</span></td><td><span class="ref-hold"> | </span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Media (L1)</td></tr>
 <tr><td class="ref-id">TD(24)</td><td><span class="ref-tap">Play</span></td><td><span class="ref-hold">Stop</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L1</td></tr>
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — International (L10)</td></tr>
-<tr><td class="ref-id">TD(33)</td><td><span class="ref-tap">"</span></td><td><span class="ref-hold">M4</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr><td class="ref-id">TD(34)</td><td><span class="ref-tap">M2</span></td><td><span class="ref-hold">M3</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
+<tr><td class="ref-id">TD(33)</td><td><span class="ref-tap">"</span></td><td><span class="ref-hold">"␣</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
+<tr><td class="ref-id">TD(34)</td><td><span class="ref-tap">'␣</span></td><td><span class="ref-hold">'␣'␣'␣</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Workspaces (L11)</td></tr>
 <tr><td class="ref-id">TD(35)</td><td><span class="ref-tap">⌘1</span></td><td><span class="ref-hold">⌘⇧1</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
 <tr><td class="ref-id">TD(36)</td><td><span class="ref-tap">⌘2</span></td><td><span class="ref-hold">⌘⇧2</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
@@ -862,15 +881,15 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tbody>
 <tr><td class="ref-id">M0</td><td><span class="ref-out">$?</span></td><td>text</td><td>L9</td></tr>
 <tr><td class="ref-id">M1</td><td><span class="ref-out">~/</span></td><td>text</td><td>L9·TD29</td></tr>
-<tr><td class="ref-id">M2</td><td><span class="ref-out">' Spc</span></td><td>tap</td><td>L10·TD34</td></tr>
-<tr><td class="ref-id">M3</td><td><span class="ref-out">' Spc ' Spc ' Spc</span></td><td>tap</td><td>L10·TD34</td></tr>
-<tr><td class="ref-id">M4</td><td><span class="ref-out">" Spc</span></td><td>tap</td><td>L10·TD33</td></tr>
-<tr><td class="ref-id">M5</td><td><span class="ref-out">|</span></td><td>text</td><td>L9·TD45</td></tr>
+<tr><td class="ref-id">M2</td><td><span class="ref-out">'␣</span></td><td>tap</td><td>L10·TD34</td></tr>
+<tr><td class="ref-id">M3</td><td><span class="ref-out">'␣'␣'␣</span></td><td>tap</td><td>L10·TD34</td></tr>
+<tr><td class="ref-id">M4</td><td><span class="ref-out">"␣</span></td><td>tap</td><td>L10·TD33</td></tr>
+<tr><td class="ref-id">M5</td><td><span class="ref-out"> | </span></td><td>text</td><td>L9·TD45</td></tr>
 <tr><td class="ref-id">M6</td><td><span class="ref-out">../</span></td><td>text</td><td>L9·TD29</td></tr>
-<tr><td class="ref-id">M7</td><td><span class="ref-out">2&gt;&1</span></td><td>text</td><td>L9</td></tr>
-<tr><td class="ref-id">M8</td><td><span class="ref-out">$ ( ) ←</span></td><td>tap</td><td>L9·TD30</td></tr>
-<tr><td class="ref-id">M9</td><td><span class="ref-out">$ { } ←</span></td><td>tap</td><td>L9·TD30</td></tr>
-<tr><td class="ref-id">M10</td><td><span class="ref-out">&&</span></td><td>text</td><td>L9</td></tr>
+<tr><td class="ref-id">M7</td><td><span class="ref-out">2&gt;&amp;1</span></td><td>text</td><td>L9</td></tr>
+<tr><td class="ref-id">M8</td><td><span class="ref-out">$()←</span></td><td>tap</td><td>L9·TD30</td></tr>
+<tr><td class="ref-id">M9</td><td><span class="ref-out">${}←</span></td><td>tap</td><td>L9·TD30</td></tr>
+<tr><td class="ref-id">M10</td><td><span class="ref-out">&amp;&amp;</span></td><td>text</td><td>L9</td></tr>
 <tr><td class="ref-id">M11</td><td><span class="ref-out">||</span></td><td>text</td><td>L9</td></tr>
 <tr><td class="ref-id">M12</td><td><span class="ref-out">!=</span></td><td>text</td><td>L9·TD31</td></tr>
 <tr><td class="ref-id">M13</td><td><span class="ref-out">==</span></td><td>text</td><td>L9·TD31</td></tr>
