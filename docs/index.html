@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cadence v1.8.0 — Layout Documentation</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
   --paper: #FAFAF7;
@@ -149,42 +150,37 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 </head>
 <body>
 <div class="container">
-
 <div class="hero">
-  <h1>Cadence</h1>
-  <div class="subtitle">v1.8.0 — Layout Documentation · Ferris Sweep · Colemak-DH · Vial / QMK</div>
-  <p>Cadence is a 34-key split keyboard layout for the Ferris Sweep, built on Colemak-DH and configured in Vial. It is the Sweep adaptation of the <a href="https://github.com/one7two99/cadenza">Cadenza</a> layout (36-key Corne Choc) — same design philosophy, same muscle memory, two thumb keys less.</p>
-  <div class="badges">
-    <span class="badge badge-amber">v1.8.0</span>
-    <span class="badge badge-blue">Colemak-DH</span>
-    <span class="badge badge-green">13 active layers</span>
-    <span class="badge badge-blue">Tap Dance HRM</span>
-    <span class="badge badge-teal">Code &amp; CLI</span>
-    <span class="badge badge-teal">Tiling WM</span>
-    <span class="badge badge-rose">Direct umlauts</span>
-    <span class="badge badge-crimson">Firmware Control</span>
-    <span class="badge badge-green">49/64 TD · 19/32 Macros</span>
-    <span class="badge badge-gray">Vial / QMK · 34 keys</span>
-  </div>
-  <blockquote>Cadenza without compromise — minus two thumbs.</blockquote>
+<h1>Cadence</h1>
+<div class="subtitle">v1.8.0 — Layout Documentation · Ferris Sweep · Colemak-DH · Vial / QMK</div>
+<p>Cadence is a 34-key split keyboard layout for the Ferris Sweep, built on Colemak-DH and configured in Vial. It is the Sweep adaptation of the <a href="https://github.com/one7two99/cadenza">Cadenza</a> layout (36-key Corne Choc) — same design philosophy, same muscle memory, two thumb keys less.</p>
+<div class="badges">
+<span class="badge badge-amber">v1.8.0</span>
+<span class="badge badge-blue">Colemak-DH</span>
+<span class="badge badge-green">13 active layers</span>
+<span class="badge badge-blue">Tap Dance HRM</span>
+<span class="badge badge-teal">Code &amp; CLI</span>
+<span class="badge badge-teal">Tiling WM</span>
+<span class="badge badge-rose">Direct umlauts</span>
+<span class="badge badge-crimson">Firmware Control</span>
+<span class="badge badge-green">49/64 TD · 19/32 Macros</span>
+<span class="badge badge-gray">Vial / QMK · 34 keys</span>
 </div>
-
+<blockquote>Cadenza without compromise — minus two thumbs.</blockquote>
+</div>
 <h2 style="margin-top:0;">Cadence v1.8.0 — Design Decisions and Layer Documentation</h2>
-
 <div class="callout"><strong>What's new in v1.8.0</strong> — direct AltGr-based umlaut access on L10. Three new Tap Dances (TD48/49/50) on the A/U/O positions: tap = ä/ü/ö, hold = Ä/Ü/Ö (via macros M16/M17/M18). The existing <code>"</code> dead-key path is unchanged. Firmware now requires <code>TAP_DANCE_ENTRIES = 64</code>.</div>
-
 <div class="toc"><h3>Contents</h3>
 <ol>
-  <li><a href="#vs-cadenza">What is different from Cadenza</a></li>
-  <li><a href="#vs-miryoku">Why Cadence over standard Miryoku</a></li>
-  <li><a href="#principles">Design Principles</a></li>
-  <li><a href="#layer-map">Layer Access Map</a></li>
-  <li><a href="#layers">Layer Reference (L0–L12)</a></li>
-  <li><a href="#tap-dance">Tap Dance Reference</a></li>
-  <li><a href="#macros">Macro Reference</a></li>
-  <li><a href="#firmware">Firmware Notes</a></li>
+<li><a href="#vs-cadenza">What is different from Cadenza</a></li>
+<li><a href="#vs-miryoku">Why Cadence over standard Miryoku</a></li>
+<li><a href="#principles">Design Principles</a></li>
+<li><a href="#layer-map">Layer Access Map</a></li>
+<li><a href="#layers">Layer Reference (L0–L12)</a></li>
+<li><a href="#tap-dance">Tap Dance Reference</a></li>
+<li><a href="#macros">Macro Reference</a></li>
+<li><a href="#firmware">Firmware Notes</a></li>
 </ol></div>
-
 <h2 id="vs-cadenza">What is different from Cadenza</h2>
 <p>The Ferris Sweep has 34 keys (30 alpha + 4 thumb) versus the Corne Choc's 36 (30 alpha + 6 thumb). The two missing thumb keys force three structural decisions:</p>
 <table>
@@ -198,7 +194,6 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td>(no firmware control layer)</td><td>L12 <strong>Firmware Control</strong></td><td>Bootloader + reboot, accessible only via long pinky-top hold (500 ms) — deliberately uncomfortable</td></tr>
 <tr><td>L10 with " dead-key only</td><td>L10 with <strong>direct ä/ö/ü TDs</strong> + " fallback <span class="new-pill">v1.8.0</span></td><td>Mnemonic A/U/O placement, hold = capital. Faster than dead-key for daily writing.</td></tr>
 </tbody></table>
-
 <h2 id="vs-miryoku">Why Cadence over standard Miryoku</h2>
 <p>Cadence (via Cadenza) keeps Miryoku's core insight (layers via thumb holds, HRM on home row) and replaces the parts that don't serve the specific use case.</p>
 <table>
@@ -215,34 +210,31 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td>Inner column rule</td><td>G/M used for layer content</td><td>G/M never used for layer content</td></tr>
 <tr><td>L6 access on a 34-key board</td><td>Would lose a layer</td><td>Bsp + Spc chord activation</td></tr>
 </tbody></table>
-
 <h2 id="principles">Design Principles</h2>
-
 <div class="design-box">
-  <h4>1. No inner column for layer content</h4>
-  <p>The inner column (G/M in Colemak-DH) requires a lateral inward index movement. G and M carry only their base letters plus App/Menu on hold. Never layer content. <em>This rule holds without exception in v1.8.0.</em></p>
+<h4>1. No inner column for layer content</h4>
+<p>The inner column (G/M in Colemak-DH) requires a lateral inward index movement. G and M carry only their base letters plus App/Menu on hold. Never layer content. <em>This rule holds without exception in v1.8.0.</em></p>
 </div>
 <div class="design-box">
-  <h4>2. Vertical movement only — no lateral stretches</h4>
-  <p>Every layer access key requires straight vertical finger movement. Pinky down (Z/<code>/</code>) → L7. Ring down (X/<code>.</code>) → L9. Middle down (C/<code>,</code>) → L8. Index down (D/H) → L10. Middle up (F/U) → L11. Ring up (W/Y) → L1.</p>
+<h4>2. Vertical movement only — no lateral stretches</h4>
+<p>Every layer access key requires straight vertical finger movement. Pinky down (Z/<code>/</code>) → L7. Ring down (X/<code>.</code>) → L9. Middle down (C/<code>,</code>) → L8. Index down (D/H) → L10. Middle up (F/U) → L11. Ring up (W/Y) → L1.</p>
 </div>
 <div class="design-box">
-  <h4>3. Strongest finger gets highest priority</h4>
-  <p>Index &gt; Middle &gt; Ring &gt; Pinky. <code>=</code> (rank 1 symbol) sits on T. <code>$</code> (rank 5) sits on N. AltGr and Meta on weaker fingers.</p>
+<h4>3. Strongest finger gets highest priority</h4>
+<p>Index &gt; Middle &gt; Ring &gt; Pinky. <code>=</code> (rank 1 symbol) sits on T. <code>$</code> (rank 5) sits on N. AltGr and Meta on weaker fingers.</p>
 </div>
 <div class="design-box">
-  <h4>4. NEIO = ←↓↑→ on directional layers</h4>
-  <p>The N-E-I-O home row positions carry ←/↓/↑/→ on L2 Navigation. The same pattern repeats on L11 Workspaces and L2 word-skip. Once learned, the spatial pattern transfers automatically.</p>
+<h4>4. NEIO = ←↓↑→ on directional layers</h4>
+<p>The N-E-I-O home row positions carry ←/↓/↑/→ on L2 Navigation. The same pattern repeats on L11 Workspaces and L2 word-skip. Once learned, the spatial pattern transfers automatically.</p>
 </div>
 <div class="design-box">
-  <h4>5. No pinky-top holds — with one deliberate exception</h4>
-  <p>Cadence enforces this rule strictly. The single exception: L12 Firmware Control on Q and <code>'</code>, with a 500 ms hold. The uncomfortable position plus the long hold serves as a deliberate safety mechanism for functions that must never accidentally trigger.</p>
+<h4>5. No pinky-top holds — with one deliberate exception</h4>
+<p>Cadence enforces this rule strictly. The single exception: L12 Firmware Control on Q and <code>'</code>, with a 500 ms hold. The uncomfortable position plus the long hold serves as a deliberate safety mechanism for functions that must never accidentally trigger.</p>
 </div>
 <div class="design-box">
-  <h4>6. Frequency × Ergonomic quality = access key rank</h4>
-  <p>The most-frequently-used layers earn the best key positions. Symbols (L4) → right thumb middle (Bsp). International (L10) → strongest index pair (D/H). F-Keys (L6, rare) → chord. Firmware Control (L12, very rare) → worst position with longest hold.</p>
+<h4>6. Frequency × Ergonomic quality = access key rank</h4>
+<p>The most-frequently-used layers earn the best key positions. Symbols (L4) → right thumb middle (Bsp). International (L10) → strongest index pair (D/H). F-Keys (L6, rare) → chord. Firmware Control (L12, very rare) → worst position with longest hold.</p>
 </div>
-
 <h2 id="layer-map">Layer Access Map</h2>
 <p>Access key priority is determined by usage frequency × ergonomic quality.</p>
 <table>
@@ -262,416 +254,379 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td><strong>L11</strong></td><td>Workspaces</td><td>Hold F · Hold U</td><td>Middle top</td><td>WS 1–10 · numpad memory</td></tr>
 <tr><td><strong>L12</strong></td><td>Firmware Control</td><td><strong>Long-hold (500 ms)</strong> Q · '</td><td>Pinky top</td><td>Safety-gated</td></tr>
 </tbody></table>
-
 <h2 id="layers">Layer Reference</h2>
-
 <div class="legend">
-  <div class="li-row"><div class="li-swatch" style="background:var(--access-bg);border-color:var(--access-border);border-width:2px"></div>Layer access key (held)</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--card);border-color:var(--rule2)"></div>Alpha / normal</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--paper2);border-color:var(--rule2)"></div>Modifier</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--sagebg);border-color:var(--sagedim);border-width:2px"></div>Layer / LT</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--copperbg);border-color:var(--copperdim);border-width:2px"></div>Tap Dance</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--plumbg);border-color:var(--plumdim);border-width:2px"></div>Macro</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--rosebg);border-color:var(--rosedim);border-width:2px"></div>International</div>
-  <div class="li-row"><div class="li-swatch" style="background:var(--faded-bg);border-color:var(--faded-border);border-style:dashed"></div>Inactive (faded base letter)</div>
-  <div class="li-row"><span class="li-marker">TD</span> Tap Dance marker</div>
-  <div class="li-row"><span class="li-marker m">M</span> Macro marker</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--access-bg);border-color:var(--access-border);border-width:2px"></div>Layer access key (held)</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--card);border-color:var(--rule2)"></div>Alpha / normal</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--paper2);border-color:var(--rule2)"></div>Modifier</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--sagebg);border-color:var(--sagedim);border-width:2px"></div>Layer / LT</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--copperbg);border-color:var(--copperdim);border-width:2px"></div>Tap Dance</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--plumbg);border-color:var(--plumdim);border-width:2px"></div>Macro</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--rosebg);border-color:var(--rosedim);border-width:2px"></div>International</div>
+<div class="li-row"><div class="li-swatch" style="background:var(--faded-bg);border-color:var(--faded-border);border-style:dashed"></div>Inactive (faded base letter)</div>
+<div class="li-row"><span class="li-marker">TD</span> Tap Dance marker</div>
+<div class="li-row"><span class="li-marker m">M</span> Macro marker</div>
 </div>
-
-
 <div class="layer-card" id="layer-l0">
-  <div class="layer-header">
-    <span class="layer-id">L0</span>
-    <span class="layer-name">Base</span>
-    <span class="layer-trigger">Always active</span>
-  </div>
-  <div class="layer-desc"><p><strong>Colemak-DH base</strong> with Home Row Mods via Tap Dance.</p>
+<div class="layer-header">
+<span class="layer-id">L0</span>
+<span class="layer-name">Base</span>
+<span class="layer-trigger">Always active</span>
+</div>
+<div class="layer-desc"><p><strong>Colemak-DH base</strong> with Home Row Mods via Tap Dance.</p>
 <p><strong>Left HRM:</strong> A=⌘ (250 ms · TD0) · R=⌥ (200 ms · TD1) · S=⌃ (200 ms · TD2) · T=⇧ (200 ms · TD3) · G=RGui (200 ms · TD4 · inner column).</p>
 <p><strong>Right HRM:</strong> M=App/Menu (TD5 · inner column) · N=⇧ (TD6) · E=⌃ (TD7) · I=AltGr (TD8) · O=⌘ (250 ms · TD9).</p>
 <p><strong>Top-row holds:</strong> W/Y → L1 Media (TD11/TD23) · F/U → L11 Workspaces (TD14/TD22) · <strong>Q/' → L12 Firmware Control (TD46/TD47, 500 ms hold)</strong>.</p>
 <p><strong>Bottom-row holds:</strong> Z/<code>/</code> → L7 Clipboard · X/<code>.</code> → L9 Code &amp; CLI · C/<code>,</code> → L8 Brackets · D/H → L10 International.</p>
 <p><strong>Thumb LTs:</strong> Spc → L2 Navigation · Tab → L3 Mouse · Ent → L5 Numbers · Bsp → L4 Symbols.</p>
 <p><strong>L6 access:</strong> Hold Bsp (→ L4) then Hold Spc-position (→ MO(6)) — chord activation.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Q</div><div class="ks">L12</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">W</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">F</div><div class="ks">→L11</div></div><div class="key normal"><div class="km">P</div></div><div class="key normal"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">A</div><div class="ks">⌘</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">R</div><div class="ks">⌥</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">S</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">T</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">G</div><div class="ks">⌘</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Z</div><div class="ks">→L7</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">X</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">C</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">D</div><div class="ks">→L10</div></div><div class="key normal"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key lt tk"><div class="km">Spc</div><div class="ks">→ L2</div></div><div class="key lt tk"><div class="km">Tab</div><div class="ks">→ L3</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key normal"><div class="km">J</div></div><div class="key normal"><div class="km">L</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">U</div><div class="ks">→L11</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">Y</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&#x27;</div><div class="ks">L12</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">M</div><div class="ks">App</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">N</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">E</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">I</div><div class="ks">AltGr</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">O</div><div class="ks">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">K</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">H</div><div class="ks">→L10</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">,</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">.</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">→L7</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key lt tk"><div class="km">Ent</div><div class="ks">→ L5</div></div><div class="key lt tk"><div class="km">Bsp</div><div class="ks">→ L4</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Q</div><div class="ks">L12</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">W</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">F</div><div class="ks">→L11</div></div><div class="key normal"><div class="km">P</div></div><div class="key normal"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">A</div><div class="ks">⌘</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">R</div><div class="ks">⌥</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">S</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">T</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">G</div><div class="ks">⌘</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Z</div><div class="ks">→L7</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">X</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">C</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">D</div><div class="ks">→L10</div></div><div class="key normal"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key lt tk"><div class="km">Spc</div><div class="ks">→ L2</div></div><div class="key lt tk"><div class="km">Tab</div><div class="ks">→ L3</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key normal"><div class="km">J</div></div><div class="key normal"><div class="km">L</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">U</div><div class="ks">→L11</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">Y</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">'</div><div class="ks">L12</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">M</div><div class="ks">App</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">N</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">E</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">I</div><div class="ks">AltGr</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">O</div><div class="ks">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">K</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">H</div><div class="ks">→L10</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">,</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">.</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">→L7</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key lt tk"><div class="km">Ent</div><div class="ks">→ L5</div></div><div class="key lt tk"><div class="km">Bsp</div><div class="ks">→ L4</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l1">
-  <div class="layer-header">
-    <span class="layer-id">L1</span>
-    <span class="layer-name">Media</span>
-    <span class="layer-trigger">Hold W or Hold Y</span>
-  </div>
-  <div class="layer-desc"><p>Volume, brightness, media playback, screen capture and CapsLock.</p>
+<div class="layer-header">
+<span class="layer-id">L1</span>
+<span class="layer-name">Media</span>
+<span class="layer-trigger">Hold W or Hold Y</span>
+</div>
+<div class="layer-desc"><p>Volume, brightness, media playback, screen capture and CapsLock.</p>
 <p><strong>Right home row:</strong> Prev / Vol− / Vol+ / Next.</p>
 <p><strong>Right bottom row:</strong> Bri− / Bri+ on E/I positions.</p>
 <p><strong>Left thumb (Spc):</strong> PrtSc.</p>
 <p><strong>Right thumbs:</strong> Mute / Play-Stop TD.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key faded"><div class="km">S</div></div><div class="key normal"><div class="km">Caps</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">PrtSc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Prev</div></div><div class="key normal"><div class="km">Vol−</div></div><div class="key normal"><div class="km">Vol+</div></div><div class="key normal"><div class="km">Next</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key normal"><div class="km">Bri−</div></div><div class="key normal"><div class="km">Bri+</div></div><div class="key faded"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Mute</div></div><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">Play</div><div class="ks">Stop</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key access"><div class="km">W</div><div class="ks">hold</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key faded"><div class="km">S</div></div><div class="key normal"><div class="km">Caps</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">PrtSc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key access"><div class="km">Y</div><div class="ks">hold</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Prev</div></div><div class="key normal"><div class="km">Vol−</div></div><div class="key normal"><div class="km">Vol+</div></div><div class="key normal"><div class="km">Next</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key normal"><div class="km">Bri−</div></div><div class="key normal"><div class="km">Bri+</div></div><div class="key faded"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Mute</div></div><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">Play</div><div class="ks">Stop</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l2">
-  <div class="layer-header">
-    <span class="layer-id">L2</span>
-    <span class="layer-name">Navigation</span>
-    <span class="layer-trigger">Hold Space</span>
-  </div>
-  <div class="layer-desc"><p>Arrow navigation, page navigation, word-skip, and modifier mirroring on the left hand.</p>
+<div class="layer-header">
+<span class="layer-id">L2</span>
+<span class="layer-name">Navigation</span>
+<span class="layer-trigger">Hold Space</span>
+</div>
+<div class="layer-desc"><p>Arrow navigation, page navigation, word-skip, and modifier mirroring on the left hand.</p>
 <p><strong>Right home row:</strong> ← ↓ ↑ → (NEIO convention).</p>
 <p><strong>Right top row:</strong> ⌃+← / ⌃+↓ / ⌃+↑ / ⌃+→ (word-skip — same NEIO order).</p>
 <p><strong>Right bottom row:</strong> Home / PgDn / PgUp / End.</p>
 <p><strong>Left home row:</strong> ⌘ ⌥ ⌃ ⇧ App — modifier mirror.</p>
 <p><strong>Left bottom row:</strong> AltGr (R-position) · Esc (D-position) · Insert (V-inner column).</p>
 <p><strong>Right thumb:</strong> Ent-position = Del · Bsp = transparent.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key normal"><div class="km">ScrLk</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key normal"><div class="km">Ins</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">⌃←</div></div><div class="key normal"><div class="km">⌃↓</div></div><div class="key normal"><div class="km">⌃↑</div></div><div class="key normal"><div class="km">⌃→</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">←</div></div><div class="key normal"><div class="km">↓</div></div><div class="key normal"><div class="km">↑</div></div><div class="key normal"><div class="km">→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">Home</div></div><div class="key normal"><div class="km">PgDn</div></div><div class="key normal"><div class="km">PgUp</div></div><div class="key normal"><div class="km">End</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Del</div></div><div class="key normal tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key normal"><div class="km">ScrLk</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key normal"><div class="km">Ins</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">⌃←</div></div><div class="key normal"><div class="km">⌃↓</div></div><div class="key normal"><div class="km">⌃↑</div></div><div class="key normal"><div class="km">⌃→</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">←</div></div><div class="key normal"><div class="km">↓</div></div><div class="key normal"><div class="km">↑</div></div><div class="key normal"><div class="km">→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">Home</div></div><div class="key normal"><div class="km">PgDn</div></div><div class="key normal"><div class="km">PgUp</div></div><div class="key normal"><div class="km">End</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Del</div></div><div class="key normal tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l3">
-  <div class="layer-header">
-    <span class="layer-id">L3</span>
-    <span class="layer-name">Mouse</span>
-    <span class="layer-trigger">Hold Tab</span>
-  </div>
-  <div class="layer-desc"><p>Mouse pointer movement, scroll wheel, and click buttons on thumbs.</p>
+<div class="layer-header">
+<span class="layer-id">L3</span>
+<span class="layer-name">Mouse</span>
+<span class="layer-trigger">Hold Tab</span>
+</div>
+<div class="layer-desc"><p>Mouse pointer movement, scroll wheel, and click buttons on thumbs.</p>
 <p><strong>Right home row:</strong> M← / M↓ / M↑ / M→ (NEIO).</p>
 <p><strong>Right bottom row:</strong> Wheel-Left / Wheel-Down / Wheel-Up / Wheel-Right.</p>
 <p><strong>Left home row:</strong> Modifier mirror (⌘ ⌥ ⌃ ⇧ App).</p>
 <p><strong>Left bottom row:</strong> AltGr · Esc.</p>
 <p><strong>Right thumbs:</strong> Btn2 (Ent-position) · Btn1 (Bsp-position).</p>
 <p>Mouse acceleration and scroll behaviour are tuned in the Vial settings section.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">M←</div></div><div class="key normal"><div class="km">M↓</div></div><div class="key normal"><div class="km">M↑</div></div><div class="key normal"><div class="km">M→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">W←</div></div><div class="key normal"><div class="km">W↓</div></div><div class="key normal"><div class="km">W↑</div></div><div class="key normal"><div class="km">W→</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key access tk"><div class="km">Tab</div><div class="ks">hold</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">M←</div></div><div class="key normal"><div class="km">M↓</div></div><div class="key normal"><div class="km">M↑</div></div><div class="key normal"><div class="km">M→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">W←</div></div><div class="key normal"><div class="km">W↓</div></div><div class="key normal"><div class="km">W↑</div></div><div class="key normal"><div class="km">W→</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l4">
-  <div class="layer-header">
-    <span class="layer-id">L4</span>
-    <span class="layer-name">Symbols</span>
-    <span class="layer-trigger">Hold Bsp</span>
-  </div>
-  <div class="layer-desc"><p>Symbols ranked by daily usage frequency in German IT writing, then assigned to fingers in strength order.</p>
+<div class="layer-header">
+<span class="layer-id">L4</span>
+<span class="layer-name">Symbols</span>
+<span class="layer-trigger">Hold Bsp</span>
+</div>
+<div class="layer-desc"><p>Symbols ranked by daily usage frequency in German IT writing, then assigned to fingers in strength order.</p>
 <p><strong>Left home row:</strong> # (A) · _ (R) · ! (S) · = (T, rank 1, strongest finger).</p>
 <p><strong>Right home row:</strong> $ (N, rank 5) · @ (E) · % (I) · &amp; (O).</p>
 <p><strong>Left bottom row:</strong> <code>`</code> (Z) · ~ (X) · + (C) · : (D).</p>
 <p><strong>Right bottom row:</strong> * (H) · ^ (comma) · ; (period) · / (slash).</p>
 <p><strong>Left thumb (Spc):</strong> MO(6) — chord with Bsp activates L6 F-Keys.</p>
 <p><strong>Left thumb (Tab):</strong> − (minus).</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">#</div></div><div class="key normal"><div class="km">_</div></div><div class="key normal"><div class="km">!</div></div><div class="key normal"><div class="km">=</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">~</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">:</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key layer tk"><div class="km">L6</div><div class="ks">MO</div></div><div class="key normal tk"><div class="km">-</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">$</div></div><div class="key normal"><div class="km">@</div></div><div class="key normal"><div class="km">%</div></div><div class="key normal"><div class="km">&amp;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">*</div></div><div class="key normal"><div class="km">^</div></div><div class="key normal"><div class="km">;</div></div><div class="key normal"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">#</div></div><div class="key normal"><div class="km">_</div></div><div class="key normal"><div class="km">!</div></div><div class="key normal"><div class="km">=</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">~</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">:</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key layer tk"><div class="km">L6</div><div class="ks">MO</div></div><div class="key normal tk"><div class="km">-</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">$</div></div><div class="key normal"><div class="km">@</div></div><div class="key normal"><div class="km">%</div></div><div class="key normal"><div class="km">&amp;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">*</div></div><div class="key normal"><div class="km">^</div></div><div class="key normal"><div class="km">;</div></div><div class="key normal"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Bsp</div><div class="ks">hold</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l5">
-  <div class="layer-header">
-    <span class="layer-id">L5</span>
-    <span class="layer-name">Numbers</span>
-    <span class="layer-trigger">Hold Ent</span>
-  </div>
-  <div class="layer-desc"><p>Numpad on the left hand, operators on the right, modifiers on the right home row.</p>
+<div class="layer-header">
+<span class="layer-id">L5</span>
+<span class="layer-name">Numbers</span>
+<span class="layer-trigger">Hold Ent</span>
+</div>
+<div class="layer-desc"><p>Numpad on the left hand, operators on the right, modifiers on the right home row.</p>
 <p><strong>Left half:</strong> 7 8 9 / 4 5 6 / 1 2 3 (numpad layout, top-down).</p>
 <p><strong>Left thumb (Spc):</strong> 0.</p>
 <p><strong>Left thumb (Tab):</strong> − (minus).</p>
 <p><strong>Right top row:</strong> KP+ / KP− / KP*.</p>
 <p><strong>Right home row:</strong> ⇧ ⌃ AltGr ⌘ — modifier mirror (right-hand variant).</p>
 <p><strong>Right bottom row:</strong> KP= / KP, / KP. / KP/.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key normal"><div class="km">7</div></div><div class="key normal"><div class="km">8</div></div><div class="key normal"><div class="km">9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key normal"><div class="km">4</div></div><div class="key normal"><div class="km">5</div></div><div class="key normal"><div class="km">6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key normal"><div class="km">1</div></div><div class="key normal"><div class="km">2</div></div><div class="key normal"><div class="km">3</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">0</div></div><div class="key normal tk"><div class="km">-</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">−</div></div><div class="key normal"><div class="km">*</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">=</div></div><div class="key normal"><div class="km">,</div></div><div class="key normal"><div class="km">.</div></div><div class="key normal"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key normal"><div class="km">7</div></div><div class="key normal"><div class="km">8</div></div><div class="key normal"><div class="km">9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key normal"><div class="km">4</div></div><div class="key normal"><div class="km">5</div></div><div class="key normal"><div class="km">6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key normal"><div class="km">1</div></div><div class="key normal"><div class="km">2</div></div><div class="key normal"><div class="km">3</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">0</div></div><div class="key normal tk"><div class="km">-</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">−</div></div><div class="key normal"><div class="km">*</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">=</div></div><div class="key normal"><div class="km">,</div></div><div class="key normal"><div class="km">.</div></div><div class="key normal"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key access tk"><div class="km">Ent</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l6">
-  <div class="layer-header">
-    <span class="layer-id">L6</span>
-    <span class="layer-name">Function Keys</span>
-    <span class="layer-trigger">Bsp + Spc chord</span>
-  </div>
-  <div class="layer-desc"><p>F1–F12 on the left half, modifier mirror on the right.</p>
+<div class="layer-header">
+<span class="layer-id">L6</span>
+<span class="layer-name">Function Keys</span>
+<span class="layer-trigger">Bsp + Spc chord</span>
+</div>
+<div class="layer-desc"><p>F1–F12 on the left half, modifier mirror on the right.</p>
 <p><strong>Left half top-down:</strong> F12 F7 F8 F9 / F11 F4 F5 F6 / F10 F1 F2 F3.</p>
 <p><strong>Right home row:</strong> ⇧ ⌃ AltGr ⌘.</p>
 <p><strong>Right thumb (Bsp):</strong> Del.</p>
 <p>Access via chord: Hold Bsp (→ L4 active) then hold the Spc-position (which on L4 carries MO(6)). Order matters: Bsp first.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key normal"><div class="km">F12</div></div><div class="key normal"><div class="km">F7</div></div><div class="key normal"><div class="km">F8</div></div><div class="key normal"><div class="km">F9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">F11</div></div><div class="key normal"><div class="km">F4</div></div><div class="key normal"><div class="km">F5</div></div><div class="key normal"><div class="km">F6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">F10</div></div><div class="key normal"><div class="km">F1</div></div><div class="key normal"><div class="km">F2</div></div><div class="key normal"><div class="km">F3</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Del</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key normal"><div class="km">F12</div></div><div class="key normal"><div class="km">F7</div></div><div class="key normal"><div class="km">F8</div></div><div class="key normal"><div class="km">F9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">F11</div></div><div class="key normal"><div class="km">F4</div></div><div class="key normal"><div class="km">F5</div></div><div class="key normal"><div class="km">F6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">F10</div></div><div class="key normal"><div class="km">F1</div></div><div class="key normal"><div class="km">F2</div></div><div class="key normal"><div class="km">F3</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">+ Bsp</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Del</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l7">
-  <div class="layer-header">
-    <span class="layer-id">L7</span>
-    <span class="layer-name">Clipboard</span>
-    <span class="layer-trigger">Hold Z or Hold /</span>
-  </div>
-  <div class="layer-desc"><p>Clipboard primitives mirrored across both hands so the same operation is available regardless of which hand holds the access key.</p>
+<div class="layer-header">
+<span class="layer-id">L7</span>
+<span class="layer-name">Clipboard</span>
+<span class="layer-trigger">Hold Z or Hold /</span>
+</div>
+<div class="layer-desc"><p>Clipboard primitives mirrored across both hands so the same operation is available regardless of which hand holds the access key.</p>
 <p><strong>Pattern:</strong> Undo / Cut / Copy / Paste / Redo.</p>
 <p>The right half shows the same actions in reverse order, reflecting the bilateral access principle.</p>
 <p><strong>Combo:</strong> M-Btn1 + M-Btn2 → M-Btn3 (Linux paste-on-middle-click).</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key normal"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key access"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">Btn1</div></div><div class="key normal tk"><div class="km">Btn2</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Undo</div></div></div><div class="row"><div class="key mod"><div class="km">App</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key access"><div class="km">Undo</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key normal"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key access"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">Btn1</div></div><div class="key normal tk"><div class="km">Btn2</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Undo</div></div></div><div class="row"><div class="key mod"><div class="km">App</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key access"><div class="km">Undo</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l8">
-  <div class="layer-header">
-    <span class="layer-id">L8</span>
-    <span class="layer-name">Brackets</span>
-    <span class="layer-trigger">Hold C or Hold ,</span>
-  </div>
-  <div class="layer-desc"><p>Bracket pairs as Tap Dances: tap = open, hold = close.</p>
+<div class="layer-header">
+<span class="layer-id">L8</span>
+<span class="layer-name">Brackets</span>
+<span class="layer-trigger">Hold C or Hold ,</span>
+</div>
+<div class="layer-desc"><p>Bracket pairs as Tap Dances: tap = open, hold = close.</p>
 <p><strong>TD25:</strong> ( / ) — tap = (, hold = ).</p>
 <p><strong>TD26:</strong> [ / ] — same pattern.</p>
 <p><strong>TD27:</strong> &lt; / &gt;.</p>
 <p><strong>TD28:</strong> { / }.</p>
 <p>Same TD slots are placed bilaterally — both hands offer the same brackets.</p>
 <p><strong>Right pinky bottom:</strong> <code>\</code> (backslash).</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key normal"><div class="km">\</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key access"><div class="km">C</div><div class="ks">hold</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key access"><div class="km">,</div><div class="ks">hold</div></div><div class="key faded"><div class="km">.</div></div><div class="key normal"><div class="km">\</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l9">
-  <div class="layer-header">
-    <span class="layer-id">L9</span>
-    <span class="layer-name">Code & CLI</span>
-    <span class="layer-trigger">Hold X or Hold .</span>
-  </div>
-  <div class="layer-desc"><p>Shell operators, path navigation, comparison and arrow operators as macros and tap-dances.</p>
-<p><strong>Left home row:</strong> M11 (||) · M7 (2&gt;&amp;1) · M10 (&amp;&amp;) · TD45 (| / &nbsp;|&nbsp;).</p>
+<div class="layer-header">
+<span class="layer-id">L9</span>
+<span class="layer-name">Code &amp; CLI</span>
+<span class="layer-trigger">Hold X or Hold .</span>
+</div>
+<div class="layer-desc"><p>Shell operators, path navigation, comparison and arrow operators as macros and tap-dances.</p>
+<p><strong>Left home row:</strong> M11 (||) · M7 (2&gt;&amp;1) · M10 (&amp;&amp;) · TD45 (| /  | ).</p>
 <p><strong>Left bottom row middle/ring:</strong> <code>`</code> (C-position) · <code>\</code> (D-position).</p>
 <p><strong>Right home row:</strong> TD29 (/ ~/ ../) · TD30 ($() ${}) · TD31 (!= ==) · TD32 (=&gt; -&gt;).</p>
 <p><strong>Right bottom row middle/ring:</strong> M0 ($?) · ~ (LSft+grave).</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key macro"><div class="marker m-mark">M</div><div class="km">||</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">2&gt;&amp;1</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">&amp;&amp;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">|</div><div class="ks"> | </div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">\</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">~/</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">$()</div><div class="ks">${}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">!=</div><div class="ks">==</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">=&gt;</div><div class="ks">-&gt;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">$?</div></div><div class="key normal"><div class="km">~</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key macro"><div class="marker m-mark">M</div><div class="km">||</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">2&gt;&amp;1</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">&amp;&amp;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">|</div><div class="ks"> | </div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key access"><div class="km">X</div><div class="ks">hold</div></div><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">\</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">~/</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">$()</div><div class="ks">${}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">!=</div><div class="ks">==</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">=&gt;</div><div class="ks">-&gt;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">$?</div></div><div class="key normal"><div class="km">~</div></div><div class="key access"><div class="km">.</div><div class="ks">hold</div></div><div class="key faded"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l10">
-  <div class="layer-header">
-    <span class="layer-id">L10</span>
-    <span class="layer-name">International <span class="new-pill">v1.8.0 · 3 new TDs</span></span>
-    <span class="layer-trigger">Hold D or Hold H</span>
-  </div>
-  <div class="layer-desc"><p>German umlauts, ß and €. Bilateral access — hold D or H to activate.</p>
+<div class="layer-header">
+<span class="layer-id">L10</span>
+<span class="layer-name">International <span class="new-pill">v1.8.0 · 3 new TDs</span></span>
+<span class="layer-trigger">Hold D or Hold H</span>
+</div>
+<div class="layer-desc"><p>German umlauts, ß and €. Bilateral access — hold D or H to activate.</p>
 <p><strong>v1.8.0 — direct umlaut TDs:</strong> TD(48) on A → ä (tap) / Ä (hold) · TD(49) on U → ü / Ü · TD(50) on O → ö / Ö. Mnemonically placed on the A / U / O positions.</p>
 <p><strong>Hold uses macro</strong> (M16 / M17 / M18) because Tap Dance hold slots take a single keycode but capital umlauts require <code>RShift+RAlt+letter</code>.</p>
 <p><strong>Left home row R / S:</strong> RAlt+5 → € · RAlt+S → ß.</p>
-<p><strong>Dead-key fallback:</strong> TD(33) on T (left) and N (right) — tap = <code>"</code>, hold = <code>"</code>+space (typing &quot;a, &quot;o, &quot;u produces ä, ö, ü on US-International).</p>
+<p><strong>Dead-key fallback:</strong> TD(33) on T (left) and N (right) — tap = <code>"</code>, hold = <code>"</code>+space (typing "a, "o, "u produces ä, ö, ü on US-International).</p>
 <p><strong>Right home row I / E:</strong> TD(34) ' / '''  ·  literal <code>'</code> (E-position).</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ä</div><div class="ks">Ä</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">€</div><div class="ks">RAlt+5</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ß</div><div class="ks">RAlt+S</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&quot;</div><div class="ks">&quot;␣</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ü</div><div class="ks">Ü</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&quot;</div><div class="ks">&quot;␣</div></div><div class="key normal"><div class="km">&#x27;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&#x27;␣</div><div class="ks">&#x27;␣&#x27;␣&#x27;␣</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ö</div><div class="ks">Ö</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ä</div><div class="ks">Ä</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">€</div><div class="ks">RAlt+5</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ß</div><div class="ks">RAlt+S</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key access"><div class="km">D</div><div class="ks">hold</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ü</div><div class="ks">Ü</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key normal"><div class="km">'</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">'␣</div><div class="ks">'␣'␣'␣</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ö</div><div class="ks">Ö</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key access"><div class="km">H</div><div class="ks">hold</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l11">
-  <div class="layer-header">
-    <span class="layer-id">L11</span>
-    <span class="layer-name">Workspaces</span>
-    <span class="layer-trigger">Hold F or Hold U</span>
-  </div>
-  <div class="layer-desc"><p>Tiling window manager control. Workspaces 1–10 in numpad layout on the left, focus and window-move on the right.</p>
+<div class="layer-header">
+<span class="layer-id">L11</span>
+<span class="layer-name">Workspaces</span>
+<span class="layer-trigger">Hold F or Hold U</span>
+</div>
+<div class="layer-desc"><p>Tiling window manager control. Workspaces 1–10 in numpad layout on the left, focus and window-move on the right.</p>
 <p><strong>Left half (numpad):</strong> 7-8-9 (top) / 4-5-6 (mid) / 1-2-3 (bot) — each TD: tap = ⌘+N (go), hold = ⌘⇧+N (move window).</p>
 <p><strong>Left thumb (Spc):</strong> TD44 = WS10.</p>
 <p><strong>Left thumb (Tab):</strong> ⌘⇧+Q = Kill.</p>
@@ -679,63 +634,56 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <p><strong>Right bottom row:</strong> ⌘⇧+← / ⌘⇧+↓ / ⌘⇧+↑ / ⌘⇧+→ — window move (NEIO).</p>
 <p><strong>Right thumb (Ent):</strong> ⌘+Spc = Float toggle.</p>
 <p><strong>Right thumb (Bsp):</strong> ⌘+F = Fullscreen.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘7</div><div class="ks">⌘⇧7</div></div><div class="key access"><div class="km">⌘8</div><div class="ks">⌘⇧8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘9</div><div class="ks">⌘⇧9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘4</div><div class="ks">⌘⇧4</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘5</div><div class="ks">⌘⇧5</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘6</div><div class="ks">⌘⇧6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘1</div><div class="ks">⌘⇧1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘2</div><div class="ks">⌘⇧2</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘3</div><div class="ks">⌘⇧3</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">⌘0</div><div class="ks">⌘⇧0</div></div><div class="key normal tk"><div class="km">⌘⇧Q</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">⌘←</div></div><div class="key normal"><div class="km">⌘↓</div></div><div class="key normal"><div class="km">⌘↑</div></div><div class="key normal"><div class="km">⌘→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">⌘⇧←</div></div><div class="key normal"><div class="km">⌘⇧↓</div></div><div class="key normal"><div class="km">⌘⇧↑</div></div><div class="key normal"><div class="km">⌘⇧→</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">⌘Spc</div></div><div class="key normal tk"><div class="km">⌘F</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘7</div><div class="ks">⌘⇧7</div></div><div class="key access"><div class="km">⌘8</div><div class="ks">⌘⇧8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘9</div><div class="ks">⌘⇧9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘4</div><div class="ks">⌘⇧4</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘5</div><div class="ks">⌘⇧5</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘6</div><div class="ks">⌘⇧6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘1</div><div class="ks">⌘⇧1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘2</div><div class="ks">⌘⇧2</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘3</div><div class="ks">⌘⇧3</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">⌘0</div><div class="ks">⌘⇧0</div></div><div class="key normal tk"><div class="km">⌘⇧Q</div></div></div>
 </div>
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key access"><div class="km">U</div><div class="ks">hold</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">⌘←</div></div><div class="key normal"><div class="km">⌘↓</div></div><div class="key normal"><div class="km">⌘↑</div></div><div class="key normal"><div class="km">⌘→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">⌘⇧←</div></div><div class="key normal"><div class="km">⌘⇧↓</div></div><div class="key normal"><div class="km">⌘⇧↑</div></div><div class="key normal"><div class="km">⌘⇧→</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">⌘Spc</div></div><div class="key normal tk"><div class="km">⌘F</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <div class="layer-card" id="layer-l12">
-  <div class="layer-header">
-    <span class="layer-id">L12</span>
-    <span class="layer-name">Firmware Control</span>
-    <span class="layer-trigger">Long-hold (500 ms) Q or '</span>
-  </div>
-  <div class="layer-desc"><p>Bootloader and reboot — deliberately uncomfortable to prevent accidental triggering.</p>
+<div class="layer-header">
+<span class="layer-id">L12</span>
+<span class="layer-name">Firmware Control</span>
+<span class="layer-trigger">Long-hold (500 ms) Q or '</span>
+</div>
+<div class="layer-desc"><p>Bootloader and reboot — deliberately uncomfortable to prevent accidental triggering.</p>
 <p><strong>Access:</strong> 500 ms hold on Q (left pinky top, TD46) or <code>'</code> (right pinky top, TD47). The 500 ms term is more than double the standard 200 ms.</p>
 <p><strong>Layer content:</strong> QK_BOOT and QK_REBOOT placed symmetrically on home-row middle positions, mirrored on both hands.</p>
 <p>This is the only intentional pinky-top hold in the entire layout. The combination of an uncomfortable position, a long hold term, and a separate home-row press is the safety mechanism.</p></div>
-  
 <div class="kb">
-  <div class="half left">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-    </div>
-  </div>
-  <div class="kb-gap"></div>
-  <div class="half right">
-    <div class="rows">
-      <div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">&#x27;</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key faded"><div class="km">I</div></div><div class="key faded"><div class="km">O</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-    </div>
-    <div class="thumb-row">
-      <div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-    </div>
-  </div>
+<div class="half left">
+<div class="rows">
+<div class="row"><div class="key access"><div class="km">Q</div><div class="ks">500ms</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
 </div>
-
+<div class="thumb-row">
+<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
 </div>
-
-
+</div>
+<div class="kb-gap"></div>
+<div class="half right">
+<div class="rows">
+<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key access"><div class="km">'</div><div class="ks">500ms</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key faded"><div class="km">I</div></div><div class="key faded"><div class="km">O</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
+</div>
+<div class="thumb-row">
+<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
+</div>
+</div>
+</div>
+</div>
 <h2 id="tap-dance">Tap Dance Reference</h2>
 <p>Cadence v1.8.0 uses 49 of 64 available Tap Dance slots. Free: TD(10), TD(21), TD(51)–TD(63).</p>
 <table>
@@ -758,8 +706,8 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td class="ref-id">TD(14)</td><td><span class="ref-tap">F</span></td><td><span class="ref-hold">MO(11)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
 <tr><td class="ref-id">TD(22)</td><td><span class="ref-tap">U</span></td><td><span class="ref-hold">MO(11)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
 <tr><td class="ref-id">TD(23)</td><td><span class="ref-tap">Y</span></td><td><span class="ref-hold">MO(1)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(46)</td><td><span class="ref-tap">Q</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class='long-term'>500 ms</span></td><td>L0</td></tr>
-<tr><td class="ref-id">TD(47)</td><td><span class="ref-tap">'</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class='long-term'>500 ms</span></td><td>L0</td></tr>
+<tr><td class="ref-id">TD(46)</td><td><span class="ref-tap">Q</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class="long-term">500 ms</span></td><td>L0</td></tr>
+<tr><td class="ref-id">TD(47)</td><td><span class="ref-tap">'</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class="long-term">500 ms</span></td><td>L0</td></tr>
 <tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Layer Holds — bottom row</td></tr>
 <tr><td class="ref-id">TD(12)</td><td><span class="ref-tap">Z</span></td><td><span class="ref-hold">MO(7)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
 <tr><td class="ref-id">TD(13)</td><td><span class="ref-tap">/</span></td><td><span class="ref-hold">MO(7)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
@@ -801,7 +749,6 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td class="ref-id">TD(43)</td><td><span class="ref-tap">⌘9</span></td><td><span class="ref-hold">⌘⇧9</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
 <tr><td class="ref-id">TD(44)</td><td><span class="ref-tap">⌘0</span></td><td><span class="ref-hold">⌘⇧0</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
 </tbody></table>
-
 <h2 id="macros">Macro Reference</h2>
 <p>Cadence v1.8.0 uses 19 of 32 macro slots.</p>
 <table>
@@ -827,47 +774,39 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td class="ref-id">M17</td><td><span class="ref-out">Ü</span></td><td>tap-seq (RShift+RAlt+Y)</td><td>L10·TD49</td></tr>
 <tr><td class="ref-id">M18</td><td><span class="ref-out">Ö</span></td><td>tap-seq (RShift+RAlt+P)</td><td>L10·TD50</td></tr>
 </tbody></table>
-
 <h2 id="firmware">Firmware Notes</h2>
-
 <div class="design-box">
-  <h4>Vial-QMK build</h4>
-  <p>Cadence v1.8.0 uses 49/64 Tap Dance slots. The standard Vial-Sweep firmware build ships with 48 entries — a custom build with <code>TAP_DANCE_ENTRIES = 64</code> is required for v1.8 because TD(50) is now occupied.</p>
-  <p>Set in <code>keyboards/ferris/sweep/keymaps/vial/config.h</code>:</p>
-  <pre style="background:var(--paper2);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;overflow-x:auto;">#define TAP_DANCE_ENTRIES 64</pre>
+<h4>Vial-QMK build</h4>
+<p>Cadence v1.8.0 uses 49/64 Tap Dance slots. The standard Vial-Sweep firmware build ships with 48 entries — a custom build with <code>TAP_DANCE_ENTRIES = 64</code> is required for v1.8 because TD(50) is now occupied.</p>
+<p>Set in <code>keyboards/ferris/sweep/keymaps/vial/config.h</code>:</p>
+<pre style="background:var(--paper2);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;overflow-x:auto;">#define TAP_DANCE_ENTRIES 64</pre>
 </div>
-
 <div class="design-box">
-  <h4>Mouse / scroll settings</h4>
-  <p>The Vial <code>settings</code> section in v1.8.0 contains tuned QMK settings (unchanged from v1.5.0). The values are stored as numeric Vial setting IDs that depend on the specific firmware build. Documenting the semantic mapping is on the v1.8.x ROADMAP.</p>
+<h4>Mouse / scroll settings</h4>
+<p>The Vial <code>settings</code> section in v1.8.0 contains tuned QMK settings (unchanged from v1.5.0). The values are stored as numeric Vial setting IDs that depend on the specific firmware build. Documenting the semantic mapping is on the v1.8.x ROADMAP.</p>
 </div>
-
 <div class="design-box">
-  <h4>OS keyboard layout</h4>
-  <p>Set the OS keyboard layout to <strong>US International</strong>. Required for:</p>
-  <ul>
-    <li><code>RAlt+S</code> → ß</li>
-    <li><code>RAlt+5</code> → €</li>
-    <li><code>RAlt+Q</code>/<code>Y</code>/<code>P</code> → ä/ü/ö (and <code>Shift+RAlt+Q/Y/P</code> → Ä/Ü/Ö, used by L10 hold-macros M16/M17/M18)</li>
-    <li><code>"</code> dead key (Shift+Quote) → ä/ö/ü when followed by a vowel</li>
-  </ul>
+<h4>OS keyboard layout</h4>
+<p>Set the OS keyboard layout to <strong>US International</strong>. Required for:</p>
+<ul>
+<li><code>RAlt+S</code> → ß</li>
+<li><code>RAlt+5</code> → €</li>
+<li><code>RAlt+Q</code>/<code>Y</code>/<code>P</code> → ä/ü/ö (and <code>Shift+RAlt+Q/Y/P</code> → Ä/Ü/Ö, used by L10 hold-macros M16/M17/M18)</li>
+<li><code>"</code> dead key (Shift+Quote) → ä/ö/ü when followed by a vowel</li>
+</ul>
 </div>
-
 <div class="design-box">
-  <h4>Loading the layout</h4>
-  <p>Open Vial → <strong>File → Load saved layout</strong> → select <code>configuration/Cadence-FerrisSweep_v1_8_0.vil</code>.</p>
+<h4>Loading the layout</h4>
+<p>Open Vial → <strong>File → Load saved layout</strong> → select <code>configuration/Cadence-FerrisSweep_v1_8_0.vil</code>.</p>
 </div>
-
 <div class="design-box">
-  <h4>Recovery</h4>
-  <p>If the keyboard becomes unresponsive: enter the bootloader by holding Q for 500 ms (left half) or <code>'</code> for 500 ms (right half), then press the S-position (<code>QK_BOOT</code>). The half will appear as a USB drive; drop the <code>.uf2</code> firmware file onto it.</p>
+<h4>Recovery</h4>
+<p>If the keyboard becomes unresponsive: enter the bootloader by holding Q for 500 ms (left half) or <code>'</code> for 500 ms (right half), then press the S-position (<code>QK_BOOT</code>). The half will appear as a USB drive; drop the <code>.uf2</code> firmware file onto it.</p>
 </div>
-
 <footer>
-Cadence v1.8.0 · MIT License · 2026 · one7two99<br>
+Cadence v1.8.0 · MIT License · 2026 · one7two99<br/>
 Based on <a href="https://github.com/one7two99/cadenza">Cadenza</a> · <a href="https://colemakmods.github.io/mod-dh/">Colemak-DH</a> · Inspired by <a href="https://github.com/manna-harbour/miryoku">Miryoku</a>
 </footer>
-
 </div>
 </body>
 </html>
