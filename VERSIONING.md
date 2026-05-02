@@ -43,7 +43,7 @@ reordering the numpad grid, swapping a thumb cluster assignment.*
 ## Version alignment with the Ferris Sweep configuration
 
 Cadence's version numbers map **1:1** to the underlying Vial configuration
-file. `Cadence v1.5.0` corresponds to `Cadence-FerrisSweep_v1_5_0.vil`.
+file. `Cadence v1.8.0` corresponds to `Cadence-FerrisSweep_v1_8_0.vil`.
 
 This intentional alignment means: the version number on a release page is
 also the version number stamped into the configuration file name. There is
@@ -95,6 +95,27 @@ meaning as described above.
 
 ## Version history
 
+### v1.8.0 — 2026-05-02 — direct umlaut access on L10
+
+MINOR — three new Tap Dances and three new macros add direct AltGr-based
+ä/ü/ö (and capital Ä/Ü/Ö) access on L10, mnemonically placed on the
+A / U / O positions. The existing `"` dead key path remains unchanged.
+
+The version jump from v1.5.0 to v1.8.0 reflects three internal Vial
+configuration revisions (v1.6, v1.7, v1.8) used to test different
+combinations of Tap Dance placements, hold encodings, and macro timings
+for the umlaut work. v1.6 and v1.7 surfaced issues during daily use
+(false triggers, modifier-stickiness on capital holds, HRM interaction
+edge cases) and were never published. v1.8.0 is the first revision in
+this series that resolves all known issues and is stable in extended use.
+
+The 1:1 alignment between version number and configuration file name is
+preserved — analogous to v1.5.0 itself being the first public release
+rather than v1.0.0.
+
+Firmware change: `TAP_DANCE_ENTRIES` increased from 48 to 64 to
+accommodate TD(50). 15 TD slots remain free.
+
 ### v1.5.0 — 2026-05-01 — initial public release
 
 **Stability declaration.** First public release of Cadence as a standalone
@@ -118,20 +139,20 @@ Detailed changes from the pre-release Sweep adaptation revisions: see
 ```bash
 # PATCH
 git commit -m "fix(l9): correct TD(45) tipping term"
-git tag v1.5.1
-git push origin v1.5.1
-gh release create v1.5.1 \
-  "configuration/Cadence-FerrisSweep_v1_5_1.vil#Cadence-v1.5.1.vil" \
-  --title "v1.5.1 — <short description>" \
+git tag v1.8.1
+git push origin v1.8.1
+gh release create v1.8.1 \
+  "configuration/Cadence-FerrisSweep_v1_8_1.vil#Cadence-v1.8.1.vil" \
+  --title "v1.8.1 — <short description>" \
   --notes-file release-notes.md
 
 # MINOR
 git commit -m "feat: add international preset for French"
-git tag v1.6.0
-git push origin v1.6.0
-gh release create v1.6.0 \
-  "configuration/Cadence-FerrisSweep_v1_6_0.vil#Cadence-v1.6.0.vil" \
-  --title "v1.6.0 — <short description>" \
+git tag v1.9.0
+git push origin v1.9.0
+gh release create v1.9.0 \
+  "configuration/Cadence-FerrisSweep_v1_9_0.vil#Cadence-v1.9.0.vil" \
+  --title "v1.9.0 — <short description>" \
   --notes-file release-notes.md
 
 # MAJOR
@@ -156,8 +177,9 @@ Configuration files follow the version number directly:
 
 ```
 Cadence-FerrisSweep_v1_5_0.vil
-Cadence-FerrisSweep_v1_5_1.vil
-Cadence-FerrisSweep_v1_6_0.vil
+Cadence-FerrisSweep_v1_8_0.vil
+Cadence-FerrisSweep_v1_8_1.vil
+Cadence-FerrisSweep_v1_9_0.vil
 Cadence-FerrisSweep_v2_0_0.vil
 ```
 

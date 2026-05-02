@@ -1,5 +1,16 @@
 # Cadence Roadmap
 
+## v1.8.0 — Completed ✓
+
+- [x] **Direct umlaut access on L10** — TD(48/49/50) for ä/ü/ö (tap)
+  and Ä/Ü/Ö (hold) on the A/U/O positions; macros M16/17/18 carry the
+  Shift+RAlt key sequences. The `"` dead key path remains unchanged.
+- [x] **Firmware capacity expanded** — `TAP_DANCE_ENTRIES` raised
+  from 48 to 64. 15 TD slots remain free for future high-value
+  action keys.
+
+---
+
 ## v1.5.0 — Completed ✓
 
 - [x] **Sweep adaptation of Cadenza** — Colemak-DH base, Tap Dance HRM,
@@ -25,13 +36,13 @@
 - [x] **QMK mouse settings tuned** — mouse / scroll behaviour configured
   in the `.vil` settings section
 - [x] **Documentation suite** — README, VERSIONING, CHANGELOG, ROADMAP,
-  CONTRIBUTING, design documentation HTML, interactive layer viewer
+  CONTRIBUTING, design documentation HTML with interactive layer reference
 
 ---
 
 ## v1.x — Active / Planned
 
-### v1.5.x — Stabilisation (PATCH)
+### v1.8.x — Stabilisation (PATCH)
 
 - [ ] **Real-world tipping term data** — validate 200 / 250 ms defaults
   for HRM and the 500 ms terms on TD46 / TD47 (L12 access). Adjust if
@@ -52,17 +63,23 @@
   `⌘+Spc` for Float, and `⌘+F` for Fullscreen match the actual
   i3 / Sway / macOS configuration in use.
 
-- [ ] **QMK mouse settings — document semantic intent** — the v1.5
-  settings section uses numeric Vial setting IDs (1, 2, 3 … 27) that
-  are not self-documenting in the `.vil` format. Document the mapping
-  from numeric ID to QMK setting name (acceleration enable, base speed,
+- [ ] **L10 umlaut TD validation** — confirm that TD(48/49/50) trigger
+  reliably under fast typing without the modifier-stickiness or false-
+  trigger issues that surfaced in v1.6 / v1.7. If problems re-appear,
+  re-evaluate the macro encoding (currently `down`/`tap`/`up` sequence)
+  or consider per-TD tipping term adjustment.
+
+- [ ] **QMK mouse settings — document semantic intent** — the settings
+  section uses numeric Vial setting IDs (1, 2, 3 … 27) that are not
+  self-documenting in the `.vil` format. Document the mapping from
+  numeric ID to QMK setting name (acceleration enable, base speed,
   scroll speed, etc.) for future reference and easier review.
 
-### v1.6.0 — New features (MINOR)
+### v1.9.0 — New features (MINOR)
 
 - [ ] **Key Overrides** — 32 slots completely free. Low-hanging fruit:
   `Shift + Bsp → Del` (standard ergonomic habit), `Shift + Esc → ~`
-  (common in vim). Does not consume any TD slot. Evaluate after v1.5.x
+  (common in vim). Does not consume any TD slot. Evaluate after v1.8.x
   stabilisation.
 
 - [ ] **Combos** — 31 slots free (1 used: `M-Btn1 + M-Btn2 → M-Btn3` on
@@ -71,24 +88,24 @@
   pattern), `S + D` → `Ctrl+S` (save). Requires careful testing to avoid
   false triggers with Colemak-DH bigrams.
 
-- [ ] **TD slot 10 / 21** — only two free TD slots remaining (TD10, TD21).
-  Reserve for future high-value action keys; do not allocate without
-  clear use-case.
+- [ ] **TD slot allocation** — 15 free slots remain (TD10, TD21,
+  TD51–TD63). Reserve for future high-value action keys; do not
+  allocate without clear use-case.
 
-- [ ] **Macro slots 16–31** — 16 free macro slots available. Candidates:
+- [ ] **Macro slots 19–31** — 13 free macro slots available. Candidates:
   common email signatures, frequent file paths, project-specific snippets.
   Define on demand rather than pre-allocating.
 
 - [ ] **L13–L15 future layers** — three layer slots remain. Possible uses:
   a second international set (Cyrillic / French / Spanish), an
   app-launcher layer, a date / time / unit-conversion macro layer.
-  Decide based on actual usage gaps after v1.5.x stabilisation.
+  Decide based on actual usage gaps after v1.8.x stabilisation.
 
 ---
 
 ## v2.0.0 — QMK migration (MAJOR)
 
-The most significant planned evolution. Cadence v1.5.0 is fully specified
+The most significant planned evolution. Cadence v1.8.0 is fully specified
 and verified — the natural moment to port from Vial's EEPROM-based config
 to a proper `keymap.c` source file.
 
@@ -102,7 +119,7 @@ to a proper `keymap.c` source file.
 - Self-documenting QMK settings — no opaque numeric IDs
 
 **Migration approach:**
-- Use `Cadence-FerrisSweep_v1_5_0.vil` as the authoritative source of truth
+- Use `Cadence-FerrisSweep_v1_8_0.vil` as the authoritative source of truth
 - Generate `keymap.c` systematically from the JSON rather than by hand
 - Keep Vial support enabled (via `vial_enable = true` in `rules.mk`) so
   the Vial UI can still be used for live experimentation — changes that
@@ -132,9 +149,11 @@ access key), the change should be evaluated against the other family
 members. This is especially relevant for Cadence ↔ Cadenza: anyone using
 both keyboards should not have to relearn anything when switching.
 
-The current v1.5.0 state is fully consistent with Cadenza on every shared
+The current v1.8.0 state is fully consistent with Cadenza on every shared
 position — Bottom Row layer access, Home Row HRMs, Frequency+Strength
-symbols, Path TD, Bracket pairs.
+symbols, Path TD, Bracket pairs. The L10 direct-umlaut TDs are a Cadence-
+specific addition; whether to backport them to Cadenza is a decision for
+that project.
 
 ---
 

@@ -2,6 +2,68 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.8.0] — 2026-05-02
+
+Direct AltGr-based umlaut access on L10 International. The previous
+`"` dead key path remains available unchanged.
+
+### Why v1.8.0 and not v1.6.0?
+
+Three internal Vial configuration revisions (v1.6, v1.7, v1.8) were
+created during the development of direct umlaut access on L10. Each
+revision tested a different combination of Tap Dance placements, hold
+behaviours, and macro encodings. v1.6 and v1.7 surfaced issues during
+daily-driver use that did not justify a public release — false triggers,
+modifier-stickiness on capital-letter holds, and edge cases in the
+interaction between L10 hold-macros and HRM. v1.8 is the first revision
+in this series that resolves all of these issues and behaves cleanly in
+extended use.
+
+Publishing only v1.8 (and not the intermediate test revisions) preserves
+the 1:1 alignment between the published version number and the
+configuration file name — analogous to v1.5.0 itself being the first
+public release rather than v1.0.0.
+
+### Added
+
+**L10 International — direct umlaut Tap Dances**
+- TD(48) on left A-position: tap = `RAlt+Q` → ä, hold = M16 (`Shift+RAlt+Q` → Ä)
+- TD(49) on right U-position: tap = `RAlt+Y` → ü, hold = M17 (`Shift+RAlt+Y` → Ü)
+- TD(50) on right O-position: tap = `RAlt+P` → ö, hold = M18 (`Shift+RAlt+P` → Ö)
+
+The mnemonic placement (ä on A, ü on U, ö on O) means the lookup is
+direct rather than positional. Bilateral access is preserved: holding
+D or H activates L10, the umlaut TDs are reachable from either hand
+depending on which layer-access key is held.
+
+**Why hold = macro, not `Shift+RAlt+letter` keycode?** Tap Dance hold
+slots accept a single Vial keycode, but the capital umlaut requires
+two simultaneous modifiers (`RShift`+`RAlt`) plus the letter. Macros
+are the cleanest expression of this sequence and produce identical USB
+HID output.
+
+### Firmware
+
+`TAP_DANCE_ENTRIES` increased to 64 (default Vial-Sweep ships with 48).
+Required because v1.8 uses TD(50). 15 TD slots remain free.
+
+### Unchanged from v1.5.0
+
+L0–L9, L11, L12 layers, all HRMs and tipping terms, all M0–M15 macros,
+the M-Btn combo, and all Vial settings remain untouched.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 49 | 64 |
+| Macro | 19 | 32 |
+| Layers | 13 active | 16 |
+| Combos | 1 | 32 |
+| Key Overrides | 0 | 32 |
+
+---
+
 ## [1.5.0] — 2026-05-01
 
 Initial public release. Cadence is the Ferris Sweep adaptation of

@@ -1,11 +1,11 @@
 <div align="center">
   <h1>Cadence</h1>
   <p>
-    <img src="https://img.shields.io/badge/version-1.5.0-brightgreen?style=flat-square" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.8.0-brightgreen?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/keyboard-Ferris%20Sweep-blue?style=flat-square" alt="Keyboard">
     <img src="https://img.shields.io/badge/firmware-Vial%20%2F%20QMK-orange?style=flat-square" alt="Firmware">
     <img src="https://img.shields.io/badge/base-Colemak--DH-purple?style=flat-square" alt="Base">
-    <img src="https://img.shields.io/badge/tap%20dances-46%20%2F%2048-yellow?style=flat-square" alt="Tap Dances">
+    <img src="https://img.shields.io/badge/tap%20dances-49%20%2F%2064-yellow?style=flat-square" alt="Tap Dances">
     <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License">
   </p>
 </div>
@@ -62,7 +62,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 - **Frequency + Strength symbols** — most-used symbol on strongest finger, identical ranking to Cadenza
 - **Bilateral layer access** — L7/L8/L9/L10/L11 reachable from either hand
 - **Code & CLI layer (L9)** — `||` · `2>&1` · `&&` · `|` (tap) / ` | ` (hold) · `/` / `~/` / `../` · `$()` / `${}` · `!=` / `==` · `=>` / `->` · `$?` · `` ` `` · `~` · `\`
-- **International layer (L10)** — `"` dead key for ä/ö/ü, ß (`RAlt+S`), € (`RAlt+5`), `'` literal — bilateral access
+- **International layer (L10)** — direct umlaut TDs (ä/ö/ü on A/O/U positions, hold = capital), `"` dead key fallback, ß (`RAlt+S`), € (`RAlt+5`), `'` literal — bilateral access
 - **Tiling WM (L11)** — WS 1–10 tap=go / hold=move (numpad memory) · focus and window-move on right hand · Kill / Float / Fullscreen on thumbs
 - **Firmware Control (L12)** — `QK_BOOT` and `QK_REBOOT` symmetrically placed, accessible only via deliberate long-hold pinky-top combination
 - **Layer-6 chord activation** — Bsp + Spc → F-Keys, no pinky-top hold required
@@ -84,7 +84,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 | L7 | Clipboard | Hold **Z** *or* Hold **/** | Undo/Cut/Copy/Paste/Redo — symmetric, both hands |
 | L8 | Brackets | Hold **C** *or* Hold **,** | `(` `)` `[` `]` `<` `>` `{` `}` — tap/hold, both hands · `\` |
 | L9 | Code & CLI | Hold **X** *or* Hold **.** | Shell operators · path navigation TD · `\|` (tap) / ` \| ` (hold) · `` ` `` · `~` · `\` |
-| L10 | International | Hold **D** *or* Hold **H** | `"` dead key · ß · € · `'` |
+| L10 | International | Hold **D** *or* Hold **H** | direct **ä/ö/ü** TDs (tap=lower, hold=capital) · `"` dead key · ß · € · `'` |
 | L11 | Workspaces | Hold **F** *or* Hold **U** | WS 1–10 (numpad memory) · focus · window move · Kill / Float / Fullscreen |
 | L12 | Firmware Control | **Long-hold (500 ms) Q** *or* Long-hold **'** | `QK_BOOT` (bootloader) · `QK_REBOOT` |
 
@@ -112,9 +112,11 @@ Access keys are assigned by **usage frequency × ergonomic quality**. The right 
 
 **Pipe TD on L9 (TD45):** Tap = `|`, hold = ` | ` (with surrounding spaces). Both pipe variants on the strongest left index position.
 
+**Direct umlaut TDs on L10 (TD48/49/50):** Tap = `ä` / `ü` / `ö`, hold = `Ä` / `Ü` / `Ö`. Mnemonically placed on the A / U / O positions. The `"` dead key (TD33) remains available as a fallback for typing systems where the AltGr-shortcut is not desired (e.g. text fields that consume AltGr modifiers). The hold is implemented as a macro (M16/M17/M18) because Tap Dance hold slots accept only a single Vial keycode, while a capital umlaut requires `RShift+RAlt+letter`.
+
 **Backtick on L4 and L9:** Backtick is reachable on L4 (left pinky bottom) and on L9 (left middle bottom), with `~` on the same row right side. Sufficient access for Markdown code-fences, JS template literals, and shell command substitution.
 
-**No inner column for layer content:** G and M require a lateral inward index stretch — the same problem Colemak-DH solves for B and H. Cadence preserves Cadenza's extension: G/M only carry their letters and `App/Menu` on hold, never layer content. *No exceptions in v1.5.0.*
+**No inner column for layer content:** G and M require a lateral inward index stretch — the same problem Colemak-DH solves for B and H. Cadence preserves Cadenza's extension: G/M only carry their letters and `App/Menu` on hold, never layer content. *No exceptions in v1.8.0.*
 
 ---
 
@@ -123,12 +125,12 @@ Access keys are assigned by **usage frequency × ergonomic quality**. The right 
 ### Requirements
 
 - Ferris Sweep (any RP2040-compatible variant)
-- Vial-compatible firmware
+- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.8 uses TD(50); the default Vial-Sweep build ships with 48)
 - OS keyboard layout set to **US International** (required for dead keys and `RAlt` combinations)
 
 ### Step 1 — Flash Vial firmware
 
-The default Vial-Sweep firmware supports at least 48 Tap Dance slots — Cadence v1.5 uses 46/48. No custom firmware build is required as long as the Sweep firmware was compiled with the standard Vial defaults. If a custom build is needed:
+Cadence v1.8 uses 49 Tap Dance slots and requires a firmware build with at least 50 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
 
 ```bash
 # Clone Vial-QMK
@@ -137,7 +139,7 @@ cd vial-qmk
 make git-submodule
 
 # Verify keyboards/ferris/sweep/keymaps/vial/config.h
-# Should contain: #define TAP_DANCE_ENTRIES 48 (or higher)
+# Should contain: #define TAP_DANCE_ENTRIES 64
 
 # Build
 qmk compile -kb ferris/sweep -km vial
@@ -151,7 +153,7 @@ Flash via RP2040 drag-and-drop:
 ### Step 2 — Load the layout
 
 1. Open Vial desktop app, connect keyboard via USB
-2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_5_0.vil`
+2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_8_0.vil`
 3. Confirm all layers loaded correctly
 
 ### Step 3 — Verify OS layout
@@ -160,6 +162,7 @@ Set your OS keyboard layout to **US International**. This is required for:
 
 - `RAlt+S` → ß
 - `RAlt+5` → €
+- `RAlt+Q/Y/P` → ä/ü/ö (and `Shift+RAlt+Q/Y/P` → Ä/Ü/Ö, used by L10 hold-macros)
 - Dead key `"` (Shift+Quote) → ä, ö, ü when followed by a vowel
 
 ---
@@ -168,8 +171,8 @@ Set your OS keyboard layout to **US International**. This is required for:
 
 | Resource | Used | Available | Free |
 |---|---|---|---|
-| Tap Dance slots | 46 | 48 | 2 (TD10, TD21) |
-| Macro slots | 16 | 32 | 16 |
+| Tap Dance slots | 49 | 64 | 15 (incl. TD10, TD21) |
+| Macro slots | 19 | 32 | 13 |
 | Key Overrides | 0 | 32 | 32 |
 | Combos | 1 | 32 | 31 *(M-Btn1+M-Btn2 → M-Btn3 on L7)* |
 | Layers | 13 active | 16 | 3 |
@@ -180,8 +183,7 @@ Set your OS keyboard layout to **US International**. This is required for:
 
 | Document | Description |
 |---|---|
-| **[docs/index.html](docs/index.html)** | Full design documentation — layer cards, design decisions, TD/macro reference |
-| **[docs/cadence-viewer-v1.5.0.html](docs/cadence-viewer-v1.5.0.html)** | Interactive layer viewer — switch between all layers, reference tables, philosophy |
+| **[docs/index.html](docs/index.html)** | Full design documentation and layer reference — keyboard visualisations for all 13 layers, design decisions, design principles, complete Tap Dance and Macro tables, firmware notes |
 | **[VERSIONING.md](VERSIONING.md)** | Semantic versioning policy and version history |
 | **[CHANGELOG.md](CHANGELOG.md)** | Detailed change log including the Cadenza heritage |
 | **[ROADMAP.md](ROADMAP.md)** | Planned milestones — patches, features, QMK migration |
@@ -198,7 +200,7 @@ Cadence follows [Semantic Versioning](https://semver.org/) — `vMAJOR.MINOR.PAT
 | **MINOR** | New layer, macro, or Tap Dance added |
 | **MAJOR** | Existing key behaviour changes — muscle memory impact |
 
-Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.5.0` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_5_0.vil`.
+Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.8.0` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_8_0.vil`.
 
 Full versioning policy and change log: [VERSIONING.md](VERSIONING.md)
 
