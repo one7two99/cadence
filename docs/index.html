@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Cadence v1.8.0 — Layout Documentation</title>
+<title>Cadence v1.9.0 — Layout Documentation</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
@@ -146,30 +146,67 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 36px 0; }
 .danger { background: var(--crimsonbg); border-left: 3px solid var(--crimson); padding: 12px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 13px; color: #6a1024; }
 .new-pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-family: 'IBM Plex Mono', monospace; font-weight: 700; letter-spacing: 0.04em; background: var(--rosebg); color: var(--rose); border: 1px solid var(--rosedim); margin-left: 6px; vertical-align: middle; }
 footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule); text-align: center; color: var(--ink4); font-size: 12px; }
+
+/* === v1.9 Layer rendering (Sonata-style) === */
+.kb{display:flex;gap:60px;align-items:flex-start;justify-content:center;margin:14px 0 4px;padding:10px;overflow-x:auto}
+.kb-half{display:flex;flex-direction:column;flex:0 0 300px;gap:3px}
+.key-row{display:flex;gap:3px}
+.key-thumbs{margin-top:6px}
+.key-thumbs-l{margin-left:171px}
+.key-thumbs-r{margin-left:0}
+.key{position:relative;width:54px;height:48px;border-radius:6px;border:1.5px solid #C8C4BA;background:#F4F1EC;box-shadow:0 2px 0 #B0ADA4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2px;color:#1C1A2E;flex-shrink:0;font-size:11px}
+.key-row .key:nth-child(2){}
+.key-thumbs .key{height:42px}
+.key-lbl{font-size:11px;font-weight:800;line-height:1;word-break:break-all;max-width:100%}
+.key-pos{font-size:7.5px;margin-top:2px;opacity:.55;line-height:1.1;font-family:'SF Mono',Consolas,monospace}
+.key-empty{border-color:#E5DFD0;background:#F8F4E8;box-shadow:none;color:#A89870;opacity:.45}
+.key-trans{border-style:dashed;color:#aaa}
+.key-active{border-color:#2A3888;background:#3B4BA8;box-shadow:0 2px 0 #1A2870;color:#FFFFFF;border-width:2px}
+.key-active .key-pos{opacity:.85}
+.key-access{border-color:#EF9F27;background:#FDF0DC;box-shadow:0 2px 0 #C77A12;color:#3A2810}
+.key-bdg{position:absolute;top:2px;font-size:7px;font-weight:700;line-height:1;padding:1px 3px;border-radius:3px;font-family:'SF Mono',Consolas,monospace;letter-spacing:.02em}
+.key-bdg-layer{left:3px;background:#EF9F27;color:#FFFFFF;border:none;font-size:9px;font-weight:800;padding:1.5px 4px}
+.key-bdg-td{right:3px;background:#E4F0DC;color:#1A5010;border:1px solid #88B870}
+.key-bdg-m{right:3px;background:#FDF0E0;color:#7A3600;border:1px solid #E0A060}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0;padding:14px;background:#fbf9f4;border:1px solid #E8E6E0;border-radius:8px;align-items:center;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-key{display:inline-block;width:18px;height:14px;border-radius:3px;border:1.5px solid #C8C4BA;background:#F4F1EC;flex-shrink:0}
+.legend-key.key-active{border-color:#2A3888;background:#3B4BA8}
+.legend-key.key-access{border-color:#EF9F27;background:#FDF0DC}
+.legend-key.key-empty{border-color:#E5DFD0;background:#F8F4E8;opacity:.5}
+.legend-bdg{font-size:8px;font-weight:700;padding:1.5px 4px;border-radius:3px;font-family:'SF Mono',Consolas,monospace}
+
+/* layer-card refresh */
+.layer-card{background:#fff;border:1px solid #E8E6E0;border-radius:12px;padding:24px 24px 18px;margin:20px 0 28px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.layer-header{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.layer-id{font-size:20px;font-weight:800;color:#111;font-family:'SF Mono',Consolas,monospace}
+.layer-name{font-size:15px;color:#555}
+.layer-trigger{font-size:12px;background:#FDF0DC;color:#633806;border:1px solid #EF9F27;padding:2px 9px;border-radius:20px;font-weight:500;margin-left:auto;white-space:nowrap;font-family:'SF Mono',Consolas,monospace}
+.layer-desc{margin:8px 0 14px;font-size:13.5px;color:#444;line-height:1.6}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="hero">
 <h1>Cadence</h1>
-<div class="subtitle">v1.8.0 — Layout Documentation · Ferris Sweep · Colemak-DH · Vial / QMK</div>
+<div class="subtitle">v1.9.0 — Layout Documentation · Ferris Sweep · Colemak-DH · Vial / QMK</div>
 <p>Cadence is a 34-key split keyboard layout for the Ferris Sweep, built on Colemak-DH and configured in Vial. It is the Sweep adaptation of the <a href="https://github.com/one7two99/cadenza">Cadenza</a> layout (36-key Corne Choc) — same design philosophy, same muscle memory, two thumb keys less.</p>
 <div class="badges">
-<span class="badge badge-amber">v1.8.0</span>
+<span class="badge badge-amber">v1.9.0 — Sonata-aligned</span>
 <span class="badge badge-blue">Colemak-DH</span>
-<span class="badge badge-green">13 active layers</span>
+<span class="badge badge-green">11 reachable layers</span>
 <span class="badge badge-blue">Tap Dance HRM</span>
 <span class="badge badge-teal">Code &amp; CLI</span>
 <span class="badge badge-teal">Tiling WM</span>
 <span class="badge badge-rose">Direct umlauts</span>
 <span class="badge badge-crimson">Firmware Control</span>
-<span class="badge badge-green">49/64 TD · 19/32 Macros</span>
+<span class="badge badge-green">50/64 TD · 19/32 Macros</span>
 <span class="badge badge-gray">Vial / QMK · 34 keys</span>
 </div>
 <blockquote>Cadenza without compromise — minus two thumbs.</blockquote>
 </div>
-<h2 style="margin-top:0;">Cadence v1.8.0 — Design Decisions and Layer Documentation</h2>
-<div class="callout"><strong>What's new in v1.8.0</strong> — direct AltGr-based umlaut access on L10. Three new Tap Dances (TD48/49/50) on the A/U/O positions: tap = ä/ü/ö, hold = Ä/Ü/Ö (via macros M16/M17/M18). The existing <code>"</code> dead-key path is unchanged. Firmware now requires <code>TAP_DANCE_ENTRIES = 64</code>.</div>
+<h2 style="margin-top:0;">Cadence v1.9.0 — Design Decisions and Layer Documentation</h2>
+<div class="callout"><strong>What's new in v1.9.0</strong> — direct AltGr-based umlaut access on L10. Three new Tap Dances (TD48/49/50) on the A/U/O positions: tap = ä/ü/ö, hold = Ä/Ü/Ö (via macros M16/M17/M18). The existing <code>"</code> dead-key path is unchanged. Firmware now requires <code>TAP_DANCE_ENTRIES = 64</code>.</div>
 <div class="toc"><h3>Contents</h3>
 <ol>
 <li><a href="#vs-cadenza">What is different from Cadenza</a></li>
@@ -181,6 +218,63 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <li><a href="#macros">Macro Reference</a></li>
 <li><a href="#firmware">Firmware Notes</a></li>
 </ol></div>
+<div class="changelog" style="background:#fffaee;border:1px solid #ECDCB0;border-left:4px solid #d9a93b;border-radius:8px;padding:18px 22px;margin:24px 0;">
+<h3 style="margin-top:0;color:#5C3D00;font-size:16px;">★ Changelog · v1.8.0 → v1.9.0 — Sonata-aligned release</h3>
+<p style="font-size:13px;color:#5C3D00;margin-bottom:10px;">v1.9.0 reorganizes Cadence's layer system to mirror Sonata v3.0 wherever physically possible. The intent: future migration to Sonata hardware becomes a "learn the new alpha grid" exercise rather than a complete relearning of the layer architecture. Layers L1–L9 now match Sonata's numbering; L10 (Clipboard) and L11 (Firmware Control) are Cadence-only extras.</p>
+
+<h4 style="font-size:14px;color:#5C3D00;margin:14px 0 6px;">Layer renumbering</h4>
+<table style="font-size:12.5px;width:100%;">
+<tr><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">v1.8.0 layer</th><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">v1.9.0 layer</th><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">Change</th></tr>
+<tr><td style="padding:3px 8px;">L1 Media</td><td style="padding:3px 8px;">merged into L6</td><td style="padding:3px 8px;">Combined with F-Keys into single Fn+Media layer</td></tr>
+<tr><td style="padding:3px 8px;">L2 Navigation</td><td style="padding:3px 8px;">L4 Navigation</td><td style="padding:3px 8px;">Renumbered (Sonata position)</td></tr>
+<tr><td style="padding:3px 8px;">L3 Mouse</td><td style="padding:3px 8px;">L5 Mouse</td><td style="padding:3px 8px;">Renumbered</td></tr>
+<tr><td style="padding:3px 8px;">L4 Symbols</td><td style="padding:3px 8px;">L2 Symbols</td><td style="padding:3px 8px;">Renumbered</td></tr>
+<tr><td style="padding:3px 8px;">L5 Numbers</td><td style="padding:3px 8px;">L3 Numbers</td><td style="padding:3px 8px;">Renumbered</td></tr>
+<tr><td style="padding:3px 8px;">L6 F-Keys</td><td style="padding:3px 8px;">merged into L6</td><td style="padding:3px 8px;">Combined with Media; chord trigger eliminated</td></tr>
+<tr><td style="padding:3px 8px;">L7 Clipboard</td><td style="padding:3px 8px;">L10 Clipboard</td><td style="padding:3px 8px;">Renumbered to "Cadence extra" range; trigger removed</td></tr>
+<tr><td style="padding:3px 8px;">L8 Brackets</td><td style="padding:3px 8px;">L9 Brackets</td><td style="padding:3px 8px;">Renumbered to "Cadence extra" range</td></tr>
+<tr><td style="padding:3px 8px;">L9 Code &amp; CLI</td><td style="padding:3px 8px;">L7 Code &amp; CLI</td><td style="padding:3px 8px;">Renumbered (Sonata position)</td></tr>
+<tr><td style="padding:3px 8px;">L10 International</td><td style="padding:3px 8px;">L1 Overflow + International</td><td style="padding:3px 8px;">Renumbered + renamed</td></tr>
+<tr><td style="padding:3px 8px;">L11 Workspaces</td><td style="padding:3px 8px;">L8 Tiling WM</td><td style="padding:3px 8px;">Renumbered + renamed</td></tr>
+<tr><td style="padding:3px 8px;">L12 Firmware Control</td><td style="padding:3px 8px;">L11 Firmware Control</td><td style="padding:3px 8px;">Renumbered to "Cadence extra" range</td></tr>
+</table>
+
+<h4 style="font-size:14px;color:#5C3D00;margin:14px 0 6px;">Access key reassignment</h4>
+<p style="font-size:12.5px;color:#5C3D00;margin-bottom:8px;">Access keys reassigned by <em>usage frequency × ergonomic strength × hold-detection safety</em>. The Bsp+Spc chord trigger (formerly for F-Keys) is eliminated since L6 Fn+Media now has direct bilateral access via C+,. All access keys remain configured as Tap Dance for per-key tapping-term control.</p>
+<table style="font-size:12.5px;width:100%;">
+<tr><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">Layer</th><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">v1.8 access</th><th style="text-align:left;padding:4px 8px;border-bottom:1px solid #ECDCB0;">v1.9 access</th></tr>
+<tr><td style="padding:3px 8px;">L1 Overflow + Intl</td><td style="padding:3px 8px;">D + H bilateral (was L10)</td><td style="padding:3px 8px;">Hold Spc (single thumb)</td></tr>
+<tr><td style="padding:3px 8px;">L2 Symbols</td><td style="padding:3px 8px;">Hold Bsp (was L4)</td><td style="padding:3px 8px;">Hold Bsp (unchanged)</td></tr>
+<tr><td style="padding:3px 8px;">L3 Numbers</td><td style="padding:3px 8px;">Hold Ent (was L5)</td><td style="padding:3px 8px;">Hold Ent (unchanged)</td></tr>
+<tr><td style="padding:3px 8px;">L4 Navigation</td><td style="padding:3px 8px;">Hold Spc (was L2)</td><td style="padding:3px 8px;">Hold Tab</td></tr>
+<tr><td style="padding:3px 8px;">L5 Mouse</td><td style="padding:3px 8px;">Hold Tab (was L3)</td><td style="padding:3px 8px;">F + U (Middle Top)</td></tr>
+<tr><td style="padding:3px 8px;">L6 Fn + Media</td><td style="padding:3px 8px;">L1: W+Y · L6: Bsp+Spc chord</td><td style="padding:3px 8px;">C + , (Middle Bottom)</td></tr>
+<tr><td style="padding:3px 8px;">L7 Code &amp; CLI</td><td style="padding:3px 8px;">X + . (was L9)</td><td style="padding:3px 8px;">W + Y (Ring Top)</td></tr>
+<tr><td style="padding:3px 8px;">L8 Tiling WM</td><td style="padding:3px 8px;">F + U (was L11)</td><td style="padding:3px 8px;">Z + / (Pinky Bottom)</td></tr>
+<tr><td style="padding:3px 8px;">L9 Brackets</td><td style="padding:3px 8px;">C + , (was L8)</td><td style="padding:3px 8px;">D + H (Index Bottom)</td></tr>
+<tr><td style="padding:3px 8px;">L10 Clipboard</td><td style="padding:3px 8px;">Z + / (was L7)</td><td style="padding:3px 8px;">no trigger (unreachable)</td></tr>
+<tr><td style="padding:3px 8px;">L11 Firmware</td><td style="padding:3px 8px;">Q + ' long-hold (was L12)</td><td style="padding:3px 8px;">Q + ' long-hold (unchanged)</td></tr>
+</table>
+
+<h4 style="font-size:14px;color:#5C3D00;margin:14px 0 6px;">Other changes</h4>
+<ul style="font-size:13px;color:#5C3D00;margin:6px 0 0;padding-left:22px;">
+<li><strong>Bilateral pair finger-symmetry verified.</strong> All five bilateral triggers (F+U, C+,, W+Y, Z+/, D+H) use the same finger on both hands in the same row.</li>
+<li><strong>L10 Clipboard intentionally has no access key.</strong> User does not currently use clipboard macros. Layer remains in firmware for future activation.</li>
+<li><strong>X and . keys lose their MO holds.</strong> Both were L9 Code &amp; CLI triggers in v1.8.0; now they are pure letter keys with no hold function.</li>
+<li><strong>Sonata-compatibility note.</strong> Layers L0–L8 now match Sonata v3.0's numbering and layer roles. The Cadence-specific extras (L9 Brackets, L10 Clipboard, L11 Firmware) live above Sonata's range.</li>
+<li><strong>Inner column rule verified.</strong> All 12 modal layers continue to leave the inner column (G/M positions) empty per Cadence's "no inner column for layer content" design rule.</li>
+</ul>
+
+<h4 style="font-size:14px;color:#5C3D00;margin:14px 0 6px;">Migration notes for users coming from v1.8.0</h4>
+<ul style="font-size:13px;color:#5C3D00;margin:6px 0 0;padding-left:22px;">
+<li><strong>Thumb mapping changes.</strong> Spc no longer triggers Navigation; it now triggers Overflow+International (L1). Tab triggers Navigation (L4). Bsp and Ent are unchanged.</li>
+<li><strong>The two-thumb chord for F-Keys is gone.</strong> F-Keys are now part of L6 Fn+Media, accessed via C+, bilateral hold.</li>
+<li><strong>Brackets moved from C+, to D+H.</strong> If you had Brackets-related muscle memory on the middle-bottom positions, it now lives on index-bottom.</li>
+<li><strong>Tapping-term tuning recommended for D+H.</strong> Both D and H are common letters (~5% frequency each). With the default 200 ms tapping term, occasional false-positive hold detection is likely during normal typing of words like "und", "der", "hat". Increase to 220–250 ms or rely on <code>HOLD_ON_OTHER_KEY_PRESS</code>.</li>
+<li><strong>Expected adaptation period:</strong> 2–3 weeks of daily typing for the new triggers to feel natural. The first week will feel ~30% slower with frequent layer-trigger errors; week two stabilizes; week three should match or exceed v1.8 typing speed.</li>
+</ul>
+</div>
+
 <h2 id="vs-cadenza">What is different from Cadenza</h2>
 <p>The Ferris Sweep has 34 keys (30 alpha + 4 thumb) versus the Corne Choc's 36 (30 alpha + 6 thumb). The two missing thumb keys force three structural decisions:</p>
 <table>
@@ -192,12 +286,12 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <tr><td>L1 RGB &amp; Media</td><td>L1 <strong>Media only</strong></td><td>Sweep has no RGB — feature dropped</td></tr>
 <tr><td>L11 (WS Quick) + L12 (WS Full)</td><td>L11 <strong>Workspaces</strong> (consolidated)</td><td>Single unified WM layer, F/U → L11</td></tr>
 <tr><td>(no firmware control layer)</td><td>L12 <strong>Firmware Control</strong></td><td>Bootloader + reboot, accessible only via long pinky-top hold (500 ms) — deliberately uncomfortable</td></tr>
-<tr><td>L10 with " dead-key only</td><td>L10 with <strong>direct ä/ö/ü TDs</strong> + " fallback <span class="new-pill">v1.8.0</span></td><td>Mnemonic A/U/O placement, hold = capital. Faster than dead-key for daily writing.</td></tr>
+<tr><td>L10 with " dead-key only</td><td>L10 with <strong>direct ä/ö/ü TDs</strong> + " fallback</td><td>Mnemonic A/U/O placement, hold = capital. Faster than dead-key for daily writing.</td></tr>
 </tbody></table>
 <h2 id="vs-miryoku">Why Cadence over standard Miryoku</h2>
 <p>Cadence (via Cadenza) keeps Miryoku's core insight (layers via thumb holds, HRM on home row) and replaces the parts that don't serve the specific use case.</p>
 <table>
-<thead><tr><th>Feature</th><th>Miryoku</th><th>Cadence v1.8.0</th></tr></thead>
+<thead><tr><th>Feature</th><th>Miryoku</th><th>Cadence v1.9.0</th></tr></thead>
 <tbody>
 <tr><td>HRM implementation</td><td><code>MT()</code> — global tipping term</td><td>Tap Dance — per-key tipping terms (200 / 250 ms)</td></tr>
 <tr><td>Symbol layer design</td><td>Shifted symbols at numpad positions</td><td>Frequency + Strength ranking</td></tr>
@@ -213,7 +307,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <h2 id="principles">Design Principles</h2>
 <div class="design-box">
 <h4>1. No inner column for layer content</h4>
-<p>The inner column (G/M in Colemak-DH) requires a lateral inward index movement. G and M carry only their base letters plus App/Menu on hold. Never layer content. <em>This rule holds without exception in v1.8.0.</em></p>
+<p>The inner column (G/M in Colemak-DH) requires a lateral inward index movement. G and M carry only their base letters plus App/Menu on hold. Never layer content. <em>This rule holds without exception through v1.9.0.</em></p>
 </div>
 <div class="design-box">
 <h4>2. Vertical movement only — no lateral stretches</h4>
@@ -236,36 +330,57 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <p>The most-frequently-used layers earn the best key positions. Symbols (L4) → right thumb middle (Bsp). International (L10) → strongest index pair (D/H). F-Keys (L6, rare) → chord. Firmware Control (L12, very rare) → worst position with longest hold.</p>
 </div>
 <h2 id="layer-map">Layer Access Map</h2>
-<p>Access key priority is determined by usage frequency × ergonomic quality.</p>
+<p>v1.9.0 reorganizes layer numbering and access keys for compatibility with Sonata v3.0. The first 9 modal layers (L1–L9) match Sonata's layer order, simplifying any future migration to Sonata hardware.</p>
+
 <table>
-<thead><tr><th>Layer</th><th>Name</th><th>Access</th><th>Position</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td><strong>L0</strong></td><td>Base</td><td>—</td><td>Always active</td><td>Colemak-DH + Tap Dance HRM</td></tr>
-<tr><td><strong>L1</strong></td><td>Media</td><td>Hold W · Hold Y</td><td>Ring top</td><td>Thumbs free for PrtSc / Mute / Play-Stop</td></tr>
-<tr><td><strong>L2</strong></td><td>Navigation</td><td>Hold Space</td><td>L thumb inner</td><td>Best left-thumb key</td></tr>
-<tr><td><strong>L3</strong></td><td>Mouse</td><td>Hold Tab</td><td>L thumb outer</td><td>Pointer + scroll + buttons</td></tr>
-<tr><td><strong>L4</strong></td><td>Symbols</td><td>Hold Bsp</td><td>R thumb middle</td><td>No lateral movement</td></tr>
-<tr><td><strong>L5</strong></td><td>Numbers</td><td>Hold Ent</td><td>R thumb inner</td><td>Numpad on left</td></tr>
-<tr><td><strong>L6</strong></td><td>F-Keys</td><td>Bsp + Spc chord</td><td>Two-thumb chord</td><td>L4 → MO(6)</td></tr>
-<tr><td><strong>L7</strong></td><td>Clipboard</td><td>Hold Z · Hold /</td><td>Pinky bottom</td><td>Symmetric</td></tr>
-<tr><td><strong>L8</strong></td><td>Brackets</td><td>Hold C · Hold ,</td><td>Middle bottom</td><td>Tap = open, hold = close</td></tr>
-<tr><td><strong>L9</strong></td><td>Code &amp; CLI</td><td>Hold X · Hold .</td><td>Ring bottom</td><td>Shell operators · path TD · pipe TD</td></tr>
-<tr><td><strong>L10</strong></td><td>International</td><td>Hold D · Hold H</td><td>Index bottom</td><td>direct ä/ü/ö TDs · " dead key · ß · €</td></tr>
-<tr><td><strong>L11</strong></td><td>Workspaces</td><td>Hold F · Hold U</td><td>Middle top</td><td>WS 1–10 · numpad memory</td></tr>
-<tr><td><strong>L12</strong></td><td>Firmware Control</td><td><strong>Long-hold (500 ms)</strong> Q · '</td><td>Pinky top</td><td>Safety-gated</td></tr>
-</tbody></table>
+<tr><th>Layer</th><th>Name</th><th>Access</th><th>Position</th><th>Notes</th></tr>
+<tr><td>L0</td><td>Base</td><td>—</td><td>Always active</td><td>Colemak-DH + Tap Dance HRM</td></tr>
+<tr><td>L1</td><td>Overflow + International</td><td>Hold Spc</td><td>L thumb outer</td><td>ä Ä ö Ö ü Ü as TD · " dead key · ß · €</td></tr>
+<tr><td>L2</td><td>Symbols</td><td>Hold Bsp</td><td>R thumb outer</td><td>= and - on thumbs · brackets as TD on right top</td></tr>
+<tr><td>L3</td><td>Numbers</td><td>Hold Ent</td><td>R thumb inner</td><td>Numpad on left · 0 on Spc · - on Tab</td></tr>
+<tr><td>L4</td><td>Navigation</td><td>Hold Tab</td><td>L thumb inner</td><td>Arrows on right home · word jumps · Home/End/PgUp/PgDn</td></tr>
+<tr><td>L5</td><td>Mouse</td><td>Hold F · Hold U</td><td>Middle Top</td><td>Strong + safe pair · most-used non-thumb layer</td></tr>
+<tr><td>L6</td><td>Function Keys + Media</td><td>Hold C · Hold ,</td><td>Middle Bottom</td><td>F1–F12 left, media right · merged from v1.8 L1+L6</td></tr>
+<tr><td>L7</td><td>Code &amp; CLI</td><td>Hold W · Hold Y</td><td>Ring Top</td><td>Pipe macros · path/expansion/comparison TDs</td></tr>
+<tr><td>L8</td><td>Tiling WM</td><td>Hold Z · Hold /</td><td>Pinky Bottom</td><td>WS 1–10 · numpad spatial memory · safest hold pair</td></tr>
+<tr><td>L9</td><td>Brackets</td><td>Hold D · Hold H</td><td>Index Bottom</td><td>Bilateral mirror · tap = open, hold = close · needs term tuning</td></tr>
+<tr><td>L10</td><td>Clipboard</td><td>—</td><td>(no trigger)</td><td>Layer present but unreachable — user opts out</td></tr>
+<tr><td>L11</td><td>Firmware Control</td><td>Long-hold (500 ms) Q · '</td><td>Pinky Top</td><td>Safety-gated bootloader access</td></tr>
+</table>
+
+<h3>Bilateral pair finger-symmetry</h3>
+<p>All five bilateral letter-pair triggers in v1.9.0 are <em>finger-symmetric</em>: the left-hand and right-hand triggers are played by the same finger on both hands, in the same row. This makes the muscle memory uniform — the brain learns "Mouse = both middle fingers, top row" rather than memorizing two separate positions.</p>
+
+<table>
+<tr><th>Layer</th><th>Pair</th><th>Finger</th><th>Row</th><th>Letter frequency</th></tr>
+<tr><td>L5 Mouse</td><td>F + U</td><td>Middle</td><td>Top</td><td>moderate (~2-3% each) — safe</td></tr>
+<tr><td>L6 Fn+Media</td><td>C + ,</td><td>Middle</td><td>Bottom</td><td>C ~3%, , very frequent in prose — riskier</td></tr>
+<tr><td>L7 Code &amp; CLI</td><td>W + Y</td><td>Ring</td><td>Top</td><td>both rare — very safe</td></tr>
+<tr><td>L8 Tiling WM</td><td>Z + /</td><td>Pinky</td><td>Bottom</td><td>both rare — safest pair</td></tr>
+<tr><td>L9 Brackets</td><td>D + H</td><td>Index</td><td>Bottom</td><td>~5% each — needs tapping-term tuning</td></tr>
+</table>
+
+<h3>Frequency-driven assignment rationale</h3>
+<p>Layer access positions in v1.9.0 follow a deliberate priority: <strong>most-used layers get the strongest+safest finger pairs</strong>, least-used get the weakest. The user's actual usage hierarchy on a Windows corporate laptop drives the assignment:</p>
+<ol>
+<li><strong>L5 Mouse (most used)</strong> → F+U Middle Top: strong finger, safe hold-detection. Used heavily on a laptop without trackpad-replacement options.</li>
+<li><strong>L9 Brackets</strong> → D+H Index Bottom: strongest fingers, slight hold-risk on common letters. Acceptable for the second-most-used layer with tapping-term tuning.</li>
+<li><strong>L7 Code &amp; CLI</strong> → W+Y Ring Top: medium-strength position, very safe hold-detection. Used during shell/code work.</li>
+<li><strong>L6 Fn+Media</strong> → C+, Middle Bottom: middle-finger curl, mid-frequency layer.</li>
+<li><strong>L8 Tiling WM (currently not used)</strong> → Z+/ Pinky Bottom: weakest position, but safest hold-detection. Acceptable since user does not currently use a tiling WM.</li>
+<li><strong>L10 Clipboard (currently not used)</strong> → no trigger: layer kept in firmware but unreachable; the user does not currently use it.</li>
+</ol>
+
 <h2 id="layers">Layer Reference</h2>
+<p>All 12 layers as configured in the Vial keymap. Each card shows the complete 34-key board with activator highlighting, access-key markings on Base, and finger-position labels at the bottom of each key.</p>
 <div class="legend">
-<div class="li-row"><div class="li-swatch" style="background:var(--access-bg);border-color:var(--access-border);border-width:2px"></div>Layer access key (held)</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--card);border-color:var(--rule2)"></div>Alpha / normal</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--paper2);border-color:var(--rule2)"></div>Modifier</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--sagebg);border-color:var(--sagedim);border-width:2px"></div>Layer / LT</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--copperbg);border-color:var(--copperdim);border-width:2px"></div>Tap Dance</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--plumbg);border-color:var(--plumdim);border-width:2px"></div>Macro</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--rosebg);border-color:var(--rosedim);border-width:2px"></div>International</div>
-<div class="li-row"><div class="li-swatch" style="background:var(--faded-bg);border-color:var(--faded-border);border-style:dashed"></div>Inactive (faded base letter)</div>
-<div class="li-row"><span class="li-marker">TD</span> Tap Dance marker</div>
-<div class="li-row"><span class="li-marker m">M</span> Macro marker</div>
+<div class="legend-item"><span class="legend-key"></span><span>Active key</span></div>
+<div class="legend-item"><span class="legend-key key-active"></span><span>Layer activator (★ held)</span></div>
+<div class="legend-item"><span class="legend-key key-access"></span><span>Base-layer access key (Hold → Layer N)</span></div>
+<div class="legend-item"><span class="legend-key key-empty"></span><span>No function on this layer</span></div>
+<div class="legend-item"><span class="legend-bdg key-bdg-layer" style="background:#EF9F27;color:#fff;border:none">L1</span><span>Triggers layer N</span></div>
+<div class="legend-item"><span class="legend-bdg key-bdg-td" style="background:#E4F0DC;color:#1A5010;border:1px solid #88B870">TD</span><span>Tap Dance</span></div>
+<div class="legend-item"><span class="legend-bdg key-bdg-m" style="background:#FDF0E0;color:#7A3600;border:1px solid #E0A060">M</span><span>Macro</span></div>
 </div>
 <div class="layer-card" id="layer-l0">
 <div class="layer-header">
@@ -273,517 +388,238 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <span class="layer-name">Base</span>
 <span class="layer-trigger">Always active</span>
 </div>
-<div class="layer-desc"><p><strong>Colemak-DH base</strong> with Home Row Mods via Tap Dance.</p>
-<p><strong>Left HRM:</strong> A=⌘ (250 ms · TD0) · R=⌥ (200 ms · TD1) · S=⌃ (200 ms · TD2) · T=⇧ (200 ms · TD3) · G=RGui (200 ms · TD4 · inner column).</p>
-<p><strong>Right HRM:</strong> M=App/Menu (TD5 · inner column) · N=⇧ (TD6) · E=⌃ (TD7) · I=AltGr (TD8) · O=⌘ (250 ms · TD9).</p>
-<p><strong>Top-row holds:</strong> W/Y → L1 Media (TD11/TD23) · F/U → L11 Workspaces (TD14/TD22) · <strong>Q/' → L12 Firmware Control (TD46/TD47, 500 ms hold)</strong>.</p>
-<p><strong>Bottom-row holds:</strong> Z/<code>/</code> → L7 Clipboard · X/<code>.</code> → L9 Code &amp; CLI · C/<code>,</code> → L8 Brackets · D/H → L10 International.</p>
-<p><strong>Thumb LTs:</strong> Spc → L2 Navigation · Tab → L3 Mouse · Ent → L5 Numbers · Bsp → L4 Symbols.</p>
-<p><strong>L6 access:</strong> Hold Bsp (→ L4) then Hold Spc-position (→ MO(6)) — chord activation.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Q</div><div class="ks">L12</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">W</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">F</div><div class="ks">→L11</div></div><div class="key normal"><div class="km">P</div></div><div class="key normal"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">A</div><div class="ks">⌘</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">R</div><div class="ks">⌥</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">S</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">T</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">G</div><div class="ks">⌘</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">Z</div><div class="ks">→L7</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">X</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">C</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">D</div><div class="ks">→L10</div></div><div class="key normal"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key lt tk"><div class="km">Spc</div><div class="ks">→ L2</div></div><div class="key lt tk"><div class="km">Tab</div><div class="ks">→ L3</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key normal"><div class="km">J</div></div><div class="key normal"><div class="km">L</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">U</div><div class="ks">→L11</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">Y</div><div class="ks">→L1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">'</div><div class="ks">L12</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">M</div><div class="ks">App</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">N</div><div class="ks">⇧</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">E</div><div class="ks">⌃</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">I</div><div class="ks">AltGr</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">O</div><div class="ks">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">K</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">H</div><div class="ks">→L10</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">,</div><div class="ks">→L8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">.</div><div class="ks">→L9</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">→L7</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key lt tk"><div class="km">Ent</div><div class="ks">→ L5</div></div><div class="key lt tk"><div class="km">Bsp</div><div class="ks">→ L4</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Colemak-DH alpha grid with Tap Dance Home Row Mods on the eight home positions (A R S T / N E I O). Layer triggers are placed by frequency × ergonomic strength: thumbs for the four most-used modal layers, bilateral letter pairs for the next five, long-hold pinky-top for safety-gated firmware control. L10 Clipboard has no access key by user choice.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-access"><span class="key-bdg key-bdg-layer">L11</span><span class="key-lbl">Q</span><span class="key-pos">Q</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L7</span><span class="key-lbl">W</span><span class="key-pos">W</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L5</span><span class="key-lbl">F</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">P</span><span class="key-pos">P</span></div><div class="key"><span class="key-lbl">B</span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">A</span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">R</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">S</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">T</span><span class="key-pos">T</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">G</span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-access"><span class="key-bdg key-bdg-layer">L8</span><span class="key-lbl">Z</span><span class="key-pos">Z</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">X</span><span class="key-pos">X</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L6</span><span class="key-lbl">C</span><span class="key-pos">C</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L9</span><span class="key-lbl">D</span><span class="key-pos">D</span></div><div class="key"><span class="key-lbl">V</span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-access"><span class="key-bdg key-bdg-layer">L1</span><span class="key-lbl">Spc</span><span class="key-pos">Spc</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L4</span><span class="key-lbl">Tab</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-access"><span class="key-bdg key-bdg-layer">L11</span><span class="key-lbl">'</span><span class="key-pos">'</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L7</span><span class="key-lbl">Y</span><span class="key-pos">Y</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L5</span><span class="key-lbl">U</span><span class="key-pos">U</span></div><div class="key"><span class="key-lbl">L</span><span class="key-pos">L</span></div><div class="key"><span class="key-lbl">J</span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">O</span><span class="key-pos">O</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">I</span><span class="key-pos">I</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">E</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">N</span><span class="key-pos">N</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">M</span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-access"><span class="key-bdg key-bdg-layer">L8</span><span class="key-lbl">/</span><span class="key-pos">/</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">.</span><span class="key-pos">.</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L6</span><span class="key-lbl">,</span><span class="key-pos">,</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L9</span><span class="key-lbl">H</span><span class="key-pos">H</span></div><div class="key"><span class="key-lbl">K</span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-access"><span class="key-bdg key-bdg-layer">L2</span><span class="key-lbl">Bsp</span><span class="key-pos">Bsp</span></div><div class="key key-access"><span class="key-bdg key-bdg-layer">L3</span><span class="key-lbl">Ent</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l1">
 <div class="layer-header">
 <span class="layer-id">L1</span>
-<span class="layer-name">Media</span>
-<span class="layer-trigger">Hold W or Hold Y</span>
+<span class="layer-name">Overflow + International</span>
+<span class="layer-trigger">Hold Spc</span>
 </div>
-<div class="layer-desc"><p>Volume, brightness, media playback, screen capture and CapsLock.</p>
-<p><strong>Right home row:</strong> Prev / Vol− / Vol+ / Next.</p>
-<p><strong>Right bottom row:</strong> Bri− / Bri+ on E/I positions.</p>
-<p><strong>Left thumb (Spc):</strong> PrtSc.</p>
-<p><strong>Right thumbs:</strong> Mute / Play-Stop TD.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key access"><div class="km">W</div><div class="ks">hold</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key faded"><div class="km">S</div></div><div class="key normal"><div class="km">Caps</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">PrtSc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key access"><div class="km">Y</div><div class="ks">hold</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Prev</div></div><div class="key normal"><div class="km">Vol−</div></div><div class="key normal"><div class="km">Vol+</div></div><div class="key normal"><div class="km">Next</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key normal"><div class="km">Bri−</div></div><div class="key normal"><div class="km">Bri+</div></div><div class="key faded"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Mute</div></div><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">Play</div><div class="ks">Stop</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">German letters and currency: ä Ä ö Ö ü Ü as Tap Dance (tap = lowercase, hold = capital), ß and € as direct AltGr keycodes, " and ' as Tap Dance for either-hand access. Q and X are also reachable here for Sonata-compatibility (already on Cadence Base, but mirrored here so muscle memory transfers if the user later moves to Sonata hardware).</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">AltGr+Q·Ä</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">AltGr+5</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">AltGr+S</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">"·" </span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">C</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">'·' </span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Spc</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">AltGr+Y·Ü</span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">AltGr+P·Ö</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">X</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">Q</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">"·" </span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">,</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">'·' </span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">Esc</span><span class="key-pos">Bsp</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l2">
 <div class="layer-header">
 <span class="layer-id">L2</span>
-<span class="layer-name">Navigation</span>
-<span class="layer-trigger">Hold Space</span>
+<span class="layer-name">Symbols</span>
+<span class="layer-trigger">Hold Bsp</span>
 </div>
-<div class="layer-desc"><p>Arrow navigation, page navigation, word-skip, and modifier mirroring on the left hand.</p>
-<p><strong>Right home row:</strong> ← ↓ ↑ → (NEIO convention).</p>
-<p><strong>Right top row:</strong> ⌃+← / ⌃+↓ / ⌃+↑ / ⌃+→ (word-skip — same NEIO order).</p>
-<p><strong>Right bottom row:</strong> Home / PgDn / PgUp / End.</p>
-<p><strong>Left home row:</strong> ⌘ ⌥ ⌃ ⇧ App — modifier mirror.</p>
-<p><strong>Left bottom row:</strong> AltGr (R-position) · Esc (D-position) · Insert (V-inner column).</p>
-<p><strong>Right thumb:</strong> Ent-position = Del · Bsp = transparent.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key normal"><div class="km">ScrLk</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key normal"><div class="km">Ins</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">⌃←</div></div><div class="key normal"><div class="km">⌃↓</div></div><div class="key normal"><div class="km">⌃↑</div></div><div class="key normal"><div class="km">⌃→</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">←</div></div><div class="key normal"><div class="km">↓</div></div><div class="key normal"><div class="km">↑</div></div><div class="key normal"><div class="km">→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">Home</div></div><div class="key normal"><div class="km">PgDn</div></div><div class="key normal"><div class="km">PgUp</div></div><div class="key normal"><div class="km">End</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Del</div></div><div class="key normal tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Symbols sorted by daily usage frequency in German IT writing, then assigned to fingers in strength order. <code>-</code> on Spc-thumb, <code>=</code> on Tab-thumb (the two most-used operators on the strongest positions). <code>*</code> on T (left index home, strongest finger after thumbs); <code>!</code> on S; <code>+</code> on R; <code>\</code> on A. Bracket pairs as Tap Dance on right top: <code>(·)</code> on L, <code>[·]</code> on U, <code>{·}</code> on Y, <code>&lt;·&gt;</code> on '. Prose punctuation on right home: <code>.</code> on N, <code>,</code> on E, <code>"·'</code> TD on I, <code>;</code> on O. Less common math/logic on bottom rows.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">~</span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">@</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">#</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">$</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">\</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">+</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">!</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">*</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">_</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">/</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">-</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">=</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">{·}</span><span class="key-pos">'</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">&lt;·&gt;</span><span class="key-pos">Y</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">[·]</span><span class="key-pos">U</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">(·)</span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">;</span><span class="key-pos">O</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">'·"</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">,</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">.</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">%</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">:</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">?</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Bsp</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l3">
 <div class="layer-header">
 <span class="layer-id">L3</span>
-<span class="layer-name">Mouse</span>
-<span class="layer-trigger">Hold Tab</span>
+<span class="layer-name">Numbers</span>
+<span class="layer-trigger">Hold Ent</span>
 </div>
-<div class="layer-desc"><p>Mouse pointer movement, scroll wheel, and click buttons on thumbs.</p>
-<p><strong>Right home row:</strong> M← / M↓ / M↑ / M→ (NEIO).</p>
-<p><strong>Right bottom row:</strong> Wheel-Left / Wheel-Down / Wheel-Up / Wheel-Right.</p>
-<p><strong>Left home row:</strong> Modifier mirror (⌘ ⌥ ⌃ ⇧ App).</p>
-<p><strong>Left bottom row:</strong> AltGr · Esc.</p>
-<p><strong>Right thumbs:</strong> Btn2 (Ent-position) · Btn1 (Bsp-position).</p>
-<p>Mouse acceleration and scroll behaviour are tuned in the Vial settings section.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key faded"><div class="km">C</div></div><div class="key normal"><div class="km">Esc</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key access tk"><div class="km">Tab</div><div class="ks">hold</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">M←</div></div><div class="key normal"><div class="km">M↓</div></div><div class="key normal"><div class="km">M↑</div></div><div class="key normal"><div class="km">M→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">W←</div></div><div class="key normal"><div class="km">W↓</div></div><div class="key normal"><div class="km">W↑</div></div><div class="key normal"><div class="km">W→</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Numpad on the left hand: ring=1/4/7, middle=2/5/8, index=3/6/9. 0 on Spc-thumb, minus on Tab-thumb. Right hand carries math operators (+ − ×) on top, modifier mirror on home, keypad equivalents on bottom.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">7</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">8</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">9</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">4</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">5</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">6</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key"><span class="key-lbl">1</span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">2</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">3</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">0</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">-</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key"><span class="key-lbl">×</span><span class="key-pos">Y</span></div><div class="key"><span class="key-lbl">−</span><span class="key-pos">U</span></div><div class="key"><span class="key-lbl">+</span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">AltGr</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">⌃</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">⇧</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">/</span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">.</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">,</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">=</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Bsp</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l4">
 <div class="layer-header">
 <span class="layer-id">L4</span>
-<span class="layer-name">Symbols</span>
-<span class="layer-trigger">Hold Bsp</span>
+<span class="layer-name">Navigation</span>
+<span class="layer-trigger">Hold Tab</span>
 </div>
-<div class="layer-desc"><p>Symbols ranked by daily usage frequency in German IT writing, then assigned to fingers in strength order.</p>
-<p><strong>Left home row:</strong> # (A) · _ (R) · ! (S) · = (T, rank 1, strongest finger).</p>
-<p><strong>Right home row:</strong> $ (N, rank 5) · @ (E) · % (I) · &amp; (O).</p>
-<p><strong>Left bottom row:</strong> <code>`</code> (Z) · ~ (X) · + (C) · : (D).</p>
-<p><strong>Right bottom row:</strong> * (H) · ^ (comma) · ; (period) · / (slash).</p>
-<p><strong>Left thumb (Spc):</strong> MO(6) — chord with Bsp activates L6 F-Keys.</p>
-<p><strong>Left thumb (Tab):</strong> − (minus).</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">#</div></div><div class="key normal"><div class="km">_</div></div><div class="key normal"><div class="km">!</div></div><div class="key normal"><div class="km">=</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">~</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">:</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key layer tk"><div class="km">L6</div><div class="ks">MO</div></div><div class="key normal tk"><div class="km">-</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">$</div></div><div class="key normal"><div class="km">@</div></div><div class="key normal"><div class="km">%</div></div><div class="key normal"><div class="km">&amp;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">*</div></div><div class="key normal"><div class="km">^</div></div><div class="key normal"><div class="km">;</div></div><div class="key normal"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Bsp</div><div class="ks">hold</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Arrow cluster on right home (← ↓ ↑ →). Word-jump (Ctrl+arrow) on right top. Home/PgDn/PgUp/End on right bottom. Modifier mirror on left home for Shift+arrow selection. Esc on Tab-thumb (trans on hold), Caps Lock on P-position.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">Caps</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">⌥</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">⌃</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">⇧</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">Ins</span><span class="key-pos">C</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Spc</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">C+→</span><span class="key-pos">'</span></div><div class="key"><span class="key-lbl">C+↑</span><span class="key-pos">Y</span></div><div class="key"><span class="key-lbl">C+↓</span><span class="key-pos">U</span></div><div class="key"><span class="key-lbl">C+←</span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">→</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">↑</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">↓</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">←</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">End</span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">PgUp</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">PgDn</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">Home</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">Bsp</span><span class="key-pos">Bsp</span></div><div class="key"><span class="key-lbl">Del</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l5">
 <div class="layer-header">
 <span class="layer-id">L5</span>
-<span class="layer-name">Numbers</span>
-<span class="layer-trigger">Hold Ent</span>
+<span class="layer-name">Mouse</span>
+<span class="layer-trigger">Hold F or Hold U</span>
 </div>
-<div class="layer-desc"><p>Numpad on the left hand, operators on the right, modifiers on the right home row.</p>
-<p><strong>Left half:</strong> 7 8 9 / 4 5 6 / 1 2 3 (numpad layout, top-down).</p>
-<p><strong>Left thumb (Spc):</strong> 0.</p>
-<p><strong>Left thumb (Tab):</strong> − (minus).</p>
-<p><strong>Right top row:</strong> KP+ / KP− / KP*.</p>
-<p><strong>Right home row:</strong> ⇧ ⌃ AltGr ⌘ — modifier mirror (right-hand variant).</p>
-<p><strong>Right bottom row:</strong> KP= / KP, / KP. / KP/.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key normal"><div class="km">7</div></div><div class="key normal"><div class="km">8</div></div><div class="key normal"><div class="km">9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key normal"><div class="km">4</div></div><div class="key normal"><div class="km">5</div></div><div class="key normal"><div class="km">6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key normal"><div class="km">1</div></div><div class="key normal"><div class="km">2</div></div><div class="key normal"><div class="km">3</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">0</div></div><div class="key normal tk"><div class="km">-</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key normal"><div class="km">+</div></div><div class="key normal"><div class="km">−</div></div><div class="key normal"><div class="km">*</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">=</div></div><div class="key normal"><div class="km">,</div></div><div class="key normal"><div class="km">.</div></div><div class="key normal"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key access tk"><div class="km">Ent</div><div class="ks">hold</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Most-used non-thumb layer per the user's workflow (Windows corporate laptop, no trackpad-replacement). Bilateral activation via F or U (both Middle Top — strong finger, safe hold-detection). Cursor on right home, scroll wheel on right bottom, mouse buttons on right thumbs (Bsp=MB1, Ent=MB2). Tab-thumb=Esc; Spc-thumb=MB3 (middle click).</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">W</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">⌥</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">⌃</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">⇧</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">C</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">MB3</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">Esc</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">M→</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">M↑</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">M↓</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">M←</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">Wh→</span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">Wh↑</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">Wh↓</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">Wh←</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">MB1</span><span class="key-pos">Bsp</span></div><div class="key"><span class="key-lbl">MB2</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l6">
 <div class="layer-header">
 <span class="layer-id">L6</span>
-<span class="layer-name">Function Keys</span>
-<span class="layer-trigger">Bsp + Spc chord</span>
+<span class="layer-name">Function Keys + Media</span>
+<span class="layer-trigger">Hold C or Hold ,</span>
 </div>
-<div class="layer-desc"><p>F1–F12 on the left half, modifier mirror on the right.</p>
-<p><strong>Left half top-down:</strong> F12 F7 F8 F9 / F11 F4 F5 F6 / F10 F1 F2 F3.</p>
-<p><strong>Right home row:</strong> ⇧ ⌃ AltGr ⌘.</p>
-<p><strong>Right thumb (Bsp):</strong> Del.</p>
-<p>Access via chord: Hold Bsp (→ L4 active) then hold the Spc-position (which on L4 carries MO(6)). Order matters: Bsp first.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key normal"><div class="km">F12</div></div><div class="key normal"><div class="km">F7</div></div><div class="key normal"><div class="km">F8</div></div><div class="key normal"><div class="km">F9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key normal"><div class="km">F11</div></div><div class="key normal"><div class="km">F4</div></div><div class="key normal"><div class="km">F5</div></div><div class="key normal"><div class="km">F6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key normal"><div class="km">F10</div></div><div class="key normal"><div class="km">F1</div></div><div class="key normal"><div class="km">F2</div></div><div class="key normal"><div class="km">F3</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key access tk"><div class="km">Spc</div><div class="ks">+ Bsp</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key access tk"><div class="km">Del</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Merged in v1.9 from the former L1 Media + L6 F-Keys. F1–F12 on left in numpad-spatial layout (matches L_NUM and L_WM positions for muscle-memory transfer): ring=F4/F7/F1, middle=F5/F8/F2, index=F6/F9/F3; F10/F11/F12 on pinky column. Right hand carries media controls: Prev/Vol−/Vol+/Next on home, Bri−/Bri+ on bottom, Mute/Play-Stop TD on thumbs.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">F12</span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">F7</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">F8</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">F9</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">F11</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">F4</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">F5</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">F6</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">F10</span><span class="key-pos">Z</span></div><div class="key"><span class="key-lbl">F1</span><span class="key-pos">X</span></div><div class="key key-active"><span class="key-lbl">F2</span><span class="key-pos">★ C</span></div><div class="key"><span class="key-lbl">F3</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Spc</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">Next</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">Vol+</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">Vol−</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">Prev</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">Bri+</span><span class="key-pos">.</span></div><div class="key key-active"><span class="key-lbl">Bri−</span><span class="key-pos">★ ,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">Play·Stop</span><span class="key-pos">Bsp</span></div><div class="key"><span class="key-lbl">Mute</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l7">
 <div class="layer-header">
 <span class="layer-id">L7</span>
-<span class="layer-name">Clipboard</span>
-<span class="layer-trigger">Hold Z or Hold /</span>
+<span class="layer-name">Code & CLI</span>
+<span class="layer-trigger">Hold W or Hold Y</span>
 </div>
-<div class="layer-desc"><p>Clipboard primitives mirrored across both hands so the same operation is available regardless of which hand holds the access key.</p>
-<p><strong>Pattern:</strong> Undo / Cut / Copy / Paste / Redo.</p>
-<p>The right half shows the same actions in reverse order, reflecting the bilateral access principle.</p>
-<p><strong>Combo:</strong> M-Btn1 + M-Btn2 → M-Btn3 (Linux paste-on-middle-click).</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key normal"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div><div class="row"><div class="key mod"><div class="km">⌘</div></div><div class="key mod"><div class="km">⌥</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">App</div></div></div><div class="row"><div class="key access"><div class="km">Undo</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Redo</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key normal tk"><div class="km">Btn1</div></div><div class="key normal tk"><div class="km">Btn2</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key normal"><div class="km">Undo</div></div></div><div class="row"><div class="key mod"><div class="km">App</div></div><div class="key mod"><div class="km">⇧</div></div><div class="key mod"><div class="km">⌃</div></div><div class="key mod"><div class="km">AltGr</div></div><div class="key mod"><div class="km">⌘</div></div></div><div class="row"><div class="key normal"><div class="km">Redo</div></div><div class="key normal"><div class="km">Paste</div></div><div class="key normal"><div class="km">Copy</div></div><div class="key normal"><div class="km">Cut</div></div><div class="key access"><div class="km">Undo</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">Btn2</div></div><div class="key normal tk"><div class="km">Btn1</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Shell-tuned layer activated bilaterally via W or Y (Ring Top, low-frequency letters → safe hold-detection). Left home: <code>||</code> on A, <code>2&gt;&amp;1</code> on R, <code>&amp;&amp;</code> on S, pipe Tap Dance on T (tap = <code>|</code>, hold = <code>&nbsp;|&nbsp;</code> with surrounding spaces for shell readability). Left bottom: backtick <code>`</code> on C, backslash <code>\</code> on D. Right home as Tap Dances: path TD on N (tap = <code>/</code>, hold = <code>~/</code>, double = <code>../</code>); shell expansion TD on E (tap = <code>$()</code>, hold = <code>${}</code>); comparison TD on I (tap = <code>!=</code>, hold = <code>==</code>); arrow TD on O (tap = <code>=&gt;</code>, hold = <code>-&gt;</code>). Right bottom: <code>$?</code> macro on H (last command exit status), tilde <code>~</code> on comma position.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">||</span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">2&gt;&amp;1</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">&amp;&amp;</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">|· | </span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">`</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">\</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Spc</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">=&gt;·-&gt;</span><span class="key-pos">O</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">!=·==</span><span class="key-pos">I</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">$()·${}</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">/·../</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">~</span><span class="key-pos">,</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">$?</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Bsp</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l8">
 <div class="layer-header">
 <span class="layer-id">L8</span>
-<span class="layer-name">Brackets</span>
-<span class="layer-trigger">Hold C or Hold ,</span>
+<span class="layer-name">Tiling WM</span>
+<span class="layer-trigger">Hold Z or Hold /</span>
 </div>
-<div class="layer-desc"><p>Bracket pairs as Tap Dances: tap = open, hold = close.</p>
-<p><strong>TD25:</strong> ( / ) — tap = (, hold = ).</p>
-<p><strong>TD26:</strong> [ / ] — same pattern.</p>
-<p><strong>TD27:</strong> &lt; / &gt;.</p>
-<p><strong>TD28:</strong> { / }.</p>
-<p>Same TD slots are placed bilaterally — both hands offer the same brackets.</p>
-<p><strong>Right pinky bottom:</strong> <code>\</code> (backslash).</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key access"><div class="km">C</div><div class="ks">hold</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">(</div><div class="ks">)</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">[</div><div class="ks">]</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">&lt;</div><div class="ks">&gt;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">{</div><div class="ks">}</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key access"><div class="km">,</div><div class="ks">hold</div></div><div class="key faded"><div class="km">.</div></div><div class="key normal"><div class="km">\</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Bilateral activation via Z or / (Pinky Bottom — both letters very rare in DE+EN, safest hold-detection of all bilateral pairs). Workspaces 1–9 on left in numpad spatial layout (matches L_NUM): X/C/D = WS1/2/3, R/S/T = WS4/5/6, W/F/P = WS7/8/9. WS10 on Spc-thumb. Right hand carries window focus arrows (⌘+arrow) on home and window-move arrows (⌘⇧+arrow) on bottom.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+7·S⌘+7</span><span class="key-pos">W</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+8·S⌘+8</span><span class="key-pos">F</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+9·S⌘+9</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+4·S⌘+4</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+5·S⌘+5</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+6·S⌘+6</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Z</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+1·S⌘+1</span><span class="key-pos">X</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+2·S⌘+2</span><span class="key-pos">C</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+3·S⌘+3</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">⌘+0·S⌘+0</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">S⌘+Q</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘+→</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">⌘+↑</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">⌘+↓</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">⌘+←</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-active"><span class="key-lbl">S⌘+→</span><span class="key-pos">★ /</span></div><div class="key"><span class="key-lbl">S⌘+↑</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">S⌘+↓</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">S⌘+←</span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">⌘+F</span><span class="key-pos">Bsp</span></div><div class="key"><span class="key-lbl">⌘+Spc</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l9">
 <div class="layer-header">
 <span class="layer-id">L9</span>
-<span class="layer-name">Code &amp; CLI</span>
-<span class="layer-trigger">Hold X or Hold .</span>
+<span class="layer-name">Brackets</span>
+<span class="layer-trigger">Hold D or Hold H</span>
 </div>
-<div class="layer-desc"><p>Shell operators, path navigation, comparison and arrow operators as macros and tap-dances.</p>
-<p><strong>Left home row:</strong> M11 (||) · M7 (2&gt;&amp;1) · M10 (&amp;&amp;) · TD45 (| /  | ).</p>
-<p><strong>Left bottom row middle/ring:</strong> <code>`</code> (C-position) · <code>\</code> (D-position).</p>
-<p><strong>Right home row:</strong> TD29 (/ ~/ ../) · TD30 ($() ${}) · TD31 (!= ==) · TD32 (=&gt; -&gt;).</p>
-<p><strong>Right bottom row middle/ring:</strong> M0 ($?) · ~ (LSft+grave).</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key macro"><div class="marker m-mark">M</div><div class="km">||</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">2&gt;&amp;1</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">&amp;&amp;</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">|</div><div class="ks"> | </div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key access"><div class="km">X</div><div class="ks">hold</div></div><div class="key normal"><div class="km">`</div></div><div class="key normal"><div class="km">\</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">/</div><div class="ks">~/</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">$()</div><div class="ks">${}</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">!=</div><div class="ks">==</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">=&gt;</div><div class="ks">-&gt;</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key macro"><div class="marker m-mark">M</div><div class="km">$?</div></div><div class="key normal"><div class="km">~</div></div><div class="key access"><div class="km">.</div><div class="ks">hold</div></div><div class="key faded"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Bilateral mirror of bracket pairs as Tap Dance (tap = open, hold or double-tap = close). Bilateral access via D or H (Index Bottom — strongest fingers; needs HOLD_ON_OTHER_KEY_PRESS + tapping-term tuning since both letters are common ~5%). Brackets are also available on L_SYM, but L_BRK provides the bilateral mirror for two-handed code entry.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">{·}</span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">&lt;·&gt;</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">[·]</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">(·)</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">C</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Spc</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">{·}</span><span class="key-pos">O</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">&lt;·&gt;</span><span class="key-pos">I</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">[·]</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">(·)</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">\</span><span class="key-pos">/</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">,</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Bsp</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l10">
 <div class="layer-header">
 <span class="layer-id">L10</span>
-<span class="layer-name">International <span class="new-pill">v1.8.0 · 3 new TDs</span></span>
-<span class="layer-trigger">Hold D or Hold H</span>
+<span class="layer-name">Clipboard</span>
+<span class="layer-trigger">No trigger (intentional — currently unused)</span>
 </div>
-<div class="layer-desc"><p>German umlauts, ß and €. Bilateral access — hold D or H to activate.</p>
-<p><strong>v1.8.0 — direct umlaut TDs:</strong> TD(48) on A → ä (tap) / Ä (hold) · TD(49) on U → ü / Ü · TD(50) on O → ö / Ö. Mnemonically placed on the A / U / O positions.</p>
-<p><strong>Hold uses macro</strong> (M16 / M17 / M18) because Tap Dance hold slots take a single keycode but capital umlauts require <code>RShift+RAlt+letter</code>.</p>
-<p><strong>Left home row R / S:</strong> RAlt+5 → € · RAlt+S → ß.</p>
-<p><strong>Dead-key fallback:</strong> TD(33) on T (left) and N (right) — tap = <code>"</code>, hold = <code>"</code>+space (typing "a, "o, "u produces ä, ö, ü on US-International).</p>
-<p><strong>Right home row I / E:</strong> TD(34) ' / '''  ·  literal <code>'</code> (E-position).</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ä</div><div class="ks">Ä</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">€</div><div class="ks">RAlt+5</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ß</div><div class="ks">RAlt+S</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key access"><div class="km">D</div><div class="ks">hold</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ü</div><div class="ks">Ü</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">"</div><div class="ks">"␣</div></div><div class="key normal"><div class="km">'</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">'␣</div><div class="ks">'␣'␣'␣</div></div><div class="key intl"><div class="marker td-mark">TD</div><div class="km">ö</div><div class="ks">Ö</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key access"><div class="km">H</div><div class="ks">hold</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
+<p class="layer-desc">Layer present in firmware but no access key assigned. Per user decision: clipboard layer is not currently in active use, so no trigger has been allocated. Layer can be reactivated at any time by adding a hold target in Vial.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">Undo</span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">Cut</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">Copy</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">Paste</span><span class="key-pos">P</span></div><div class="key"><span class="key-lbl">Redo</span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">⌥</span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">⌃</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">⇧</span><span class="key-pos">T</span></div><div class="key"><span class="key-lbl">App</span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">Undo</span><span class="key-pos">Z</span></div><div class="key"><span class="key-lbl">Cut</span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">Copy</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">Paste</span><span class="key-pos">D</span></div><div class="key"><span class="key-lbl">Redo</span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">MB1</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">MB2</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">Undo</span><span class="key-pos">'</span></div><div class="key"><span class="key-lbl">Cut</span><span class="key-pos">Y</span></div><div class="key"><span class="key-lbl">Copy</span><span class="key-pos">U</span></div><div class="key"><span class="key-lbl">Paste</span><span class="key-pos">L</span></div><div class="key"><span class="key-lbl">Redo</span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">⌘</span><span class="key-pos">O</span></div><div class="key"><span class="key-lbl">AltGr</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">⌃</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">⇧</span><span class="key-pos">N</span></div><div class="key"><span class="key-lbl">App</span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">Undo</span><span class="key-pos">/</span></div><div class="key"><span class="key-lbl">Cut</span><span class="key-pos">.</span></div><div class="key"><span class="key-lbl">Copy</span><span class="key-pos">,</span></div><div class="key"><span class="key-lbl">Paste</span><span class="key-pos">H</span></div><div class="key"><span class="key-lbl">Redo</span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">MB1</span><span class="key-pos">Bsp</span></div><div class="key"><span class="key-lbl">MB2</span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
 <div class="layer-card" id="layer-l11">
 <div class="layer-header">
 <span class="layer-id">L11</span>
-<span class="layer-name">Workspaces</span>
-<span class="layer-trigger">Hold F or Hold U</span>
-</div>
-<div class="layer-desc"><p>Tiling window manager control. Workspaces 1–10 in numpad layout on the left, focus and window-move on the right.</p>
-<p><strong>Left half (numpad):</strong> 7-8-9 (top) / 4-5-6 (mid) / 1-2-3 (bot) — each TD: tap = ⌘+N (go), hold = ⌘⇧+N (move window).</p>
-<p><strong>Left thumb (Spc):</strong> TD44 = WS10.</p>
-<p><strong>Left thumb (Tab):</strong> ⌘⇧+Q = Kill.</p>
-<p><strong>Right home row:</strong> ⌘+← / ⌘+↓ / ⌘+↑ / ⌘+→ — focus switch (NEIO).</p>
-<p><strong>Right bottom row:</strong> ⌘⇧+← / ⌘⇧+↓ / ⌘⇧+↑ / ⌘⇧+→ — window move (NEIO).</p>
-<p><strong>Right thumb (Ent):</strong> ⌘+Spc = Float toggle.</p>
-<p><strong>Right thumb (Bsp):</strong> ⌘+F = Fullscreen.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">Q</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘7</div><div class="ks">⌘⇧7</div></div><div class="key access"><div class="km">⌘8</div><div class="ks">⌘⇧8</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘9</div><div class="ks">⌘⇧9</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘4</div><div class="ks">⌘⇧4</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘5</div><div class="ks">⌘⇧5</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘6</div><div class="ks">⌘⇧6</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘1</div><div class="ks">⌘⇧1</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘2</div><div class="ks">⌘⇧2</div></div><div class="key td"><div class="marker td-mark">TD</div><div class="km">⌘3</div><div class="ks">⌘⇧3</div></div><div class="key faded"><div class="km">V</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key td tk"><div class="marker td-mark">TD</div><div class="km">⌘0</div><div class="ks">⌘⇧0</div></div><div class="key normal tk"><div class="km">⌘⇧Q</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key access"><div class="km">U</div><div class="ks">hold</div></div><div class="key faded"><div class="km">Y</div></div><div class="key faded"><div class="km">'</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">⌘←</div></div><div class="key normal"><div class="km">⌘↓</div></div><div class="key normal"><div class="km">⌘↑</div></div><div class="key normal"><div class="km">⌘→</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key normal"><div class="km">⌘⇧←</div></div><div class="key normal"><div class="km">⌘⇧↓</div></div><div class="key normal"><div class="km">⌘⇧↑</div></div><div class="key normal"><div class="km">⌘⇧→</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key normal tk"><div class="km">⌘Spc</div></div><div class="key normal tk"><div class="km">⌘F</div></div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="layer-card" id="layer-l12">
-<div class="layer-header">
-<span class="layer-id">L12</span>
 <span class="layer-name">Firmware Control</span>
 <span class="layer-trigger">Long-hold (500 ms) Q or '</span>
 </div>
-<div class="layer-desc"><p>Bootloader and reboot — deliberately uncomfortable to prevent accidental triggering.</p>
-<p><strong>Access:</strong> 500 ms hold on Q (left pinky top, TD46) or <code>'</code> (right pinky top, TD47). The 500 ms term is more than double the standard 200 ms.</p>
-<p><strong>Layer content:</strong> QK_BOOT and QK_REBOOT placed symmetrically on home-row middle positions, mirrored on both hands.</p>
-<p>This is the only intentional pinky-top hold in the entire layout. The combination of an uncomfortable position, a long hold term, and a separate home-row press is the safety mechanism.</p></div>
-<div class="kb">
-<div class="half left">
-<div class="rows">
-<div class="row"><div class="key access"><div class="km">Q</div><div class="ks">500ms</div></div><div class="key faded"><div class="km">W</div></div><div class="key faded"><div class="km">F</div></div><div class="key faded"><div class="km">P</div></div><div class="key faded"><div class="km">B</div></div></div><div class="row"><div class="key faded"><div class="km">A</div></div><div class="key faded"><div class="km">R</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key faded"><div class="km">G</div></div></div><div class="row"><div class="key faded"><div class="km">Z</div></div><div class="key faded"><div class="km">X</div></div><div class="key faded"><div class="km">C</div></div><div class="key faded"><div class="km">D</div></div><div class="key faded"><div class="km">V</div></div></div>
+<p class="layer-desc">Safety-gated bootloader access. Q (left pinky top) and ' (right pinky top) both act as Tap Dance with 500 ms tapping term — accidental triggering on prose typing is unlikely. Hold opens the layer where QK_BOOT (bootloader) and QK_REBOOT live on the home row.</p>
+<div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Q</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">A</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">R</span></div><div class="key"><span class="key-lbl">BOOT</span><span class="key-pos">S</span></div><div class="key"><span class="key-lbl">REBOOT</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">C</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Spc</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ '</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">O</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">BOOT</span><span class="key-pos">E</span></div><div class="key"><span class="key-lbl">REBOOT</span><span class="key-pos">N</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Bsp</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div></div></div></div>
 </div>
-<div class="thumb-row">
-<div class="thumbs left-thumbs"><div class="key faded tk"><div class="km">Spc</div></div><div class="key faded tk"><div class="km">Tab</div></div></div>
-</div>
-</div>
-<div class="kb-gap"></div>
-<div class="half right">
-<div class="rows">
-<div class="row"><div class="key faded"><div class="km">J</div></div><div class="key faded"><div class="km">L</div></div><div class="key faded"><div class="km">U</div></div><div class="key faded"><div class="km">Y</div></div><div class="key access"><div class="km">'</div><div class="ks">500ms</div></div></div><div class="row"><div class="key faded"><div class="km">M</div></div><div class="key normal"><div class="km">Reboot</div></div><div class="key normal"><div class="km">Boot</div></div><div class="key faded"><div class="km">I</div></div><div class="key faded"><div class="km">O</div></div></div><div class="row"><div class="key faded"><div class="km">K</div></div><div class="key faded"><div class="km">H</div></div><div class="key faded"><div class="km">,</div></div><div class="key faded"><div class="km">.</div></div><div class="key faded"><div class="km">/</div></div></div>
-</div>
-<div class="thumb-row">
-<div class="thumbs right-thumbs"><div class="key faded tk"><div class="km">Ent</div></div><div class="key faded tk"><div class="km">Bsp</div></div></div>
-</div>
-</div>
-</div>
-</div>
+
 <h2 id="tap-dance">Tap Dance Reference</h2>
-<p>Cadence v1.8.0 uses 49 of 64 available Tap Dance slots. Free: TD(10), TD(21), TD(51)–TD(63).</p>
+<p>Cadence v1.9.0 uses 50 of 64 available Tap Dance slots. The remaining slots (TD(10), TD(21), TD(52)–TD(63)) are reserved for future expansion. All values are extracted directly from the Vial configuration file.</p>
+<h3>Tap Dance summary by group</h3>
 <table>
-<thead><tr><th>TD</th><th>Tap</th><th>Hold</th><th>Double</th><th>Term</th><th>Used in</th></tr></thead>
-<tbody>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Home Row Mods (HRM) — left</td></tr>
-<tr><td class="ref-id">TD(0)</td><td><span class="ref-tap">A</span></td><td><span class="ref-hold">⌘</span></td><td><span class="ref-dbl">—</span></td><td>250 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(1)</td><td><span class="ref-tap">R</span></td><td><span class="ref-hold">⌥</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(2)</td><td><span class="ref-tap">S</span></td><td><span class="ref-hold">⌃</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(3)</td><td><span class="ref-tap">T</span></td><td><span class="ref-hold">⇧</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(4)</td><td><span class="ref-tap">G</span></td><td><span class="ref-hold">⌘</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Home Row Mods (HRM) — right</td></tr>
-<tr><td class="ref-id">TD(5)</td><td><span class="ref-tap">M</span></td><td><span class="ref-hold">App</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(6)</td><td><span class="ref-tap">N</span></td><td><span class="ref-hold">⇧</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(7)</td><td><span class="ref-tap">E</span></td><td><span class="ref-hold">⌃</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(8)</td><td><span class="ref-tap">I</span></td><td><span class="ref-hold">AltGr</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(9)</td><td><span class="ref-tap">O</span></td><td><span class="ref-hold">⌘</span></td><td><span class="ref-dbl">—</span></td><td>250 ms</td><td>L0</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Layer Holds — top row</td></tr>
-<tr><td class="ref-id">TD(11)</td><td><span class="ref-tap">W</span></td><td><span class="ref-hold">MO(1)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(14)</td><td><span class="ref-tap">F</span></td><td><span class="ref-hold">MO(11)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(22)</td><td><span class="ref-tap">U</span></td><td><span class="ref-hold">MO(11)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(23)</td><td><span class="ref-tap">Y</span></td><td><span class="ref-hold">MO(1)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(46)</td><td><span class="ref-tap">Q</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class="long-term">500 ms</span></td><td>L0</td></tr>
-<tr><td class="ref-id">TD(47)</td><td><span class="ref-tap">'</span></td><td><span class="ref-hold">MO(12)</span></td><td><span class="ref-dbl">—</span></td><td><span class="long-term">500 ms</span></td><td>L0</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Layer Holds — bottom row</td></tr>
-<tr><td class="ref-id">TD(12)</td><td><span class="ref-tap">Z</span></td><td><span class="ref-hold">MO(7)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(13)</td><td><span class="ref-tap">/</span></td><td><span class="ref-hold">MO(7)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(15)</td><td><span class="ref-tap">X</span></td><td><span class="ref-hold">MO(9)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(16)</td><td><span class="ref-tap">C</span></td><td><span class="ref-hold">MO(8)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(17)</td><td><span class="ref-tap">D</span></td><td><span class="ref-hold">MO(10)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(18)</td><td><span class="ref-tap">H</span></td><td><span class="ref-hold">MO(10)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(19)</td><td><span class="ref-tap">,</span></td><td><span class="ref-hold">MO(8)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr><td class="ref-id">TD(20)</td><td><span class="ref-tap">.</span></td><td><span class="ref-hold">MO(9)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L0</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Media (L1)</td></tr>
-<tr><td class="ref-id">TD(24)</td><td><span class="ref-tap">Play</span></td><td><span class="ref-hold">Stop</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L1</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Brackets (L8)</td></tr>
-<tr><td class="ref-id">TD(25)</td><td><span class="ref-tap">(</span></td><td><span class="ref-hold">)</span></td><td><span class="ref-dbl">)</span></td><td>200 ms</td><td>L8</td></tr>
-<tr><td class="ref-id">TD(26)</td><td><span class="ref-tap">[</span></td><td><span class="ref-hold">]</span></td><td><span class="ref-dbl">]</span></td><td>200 ms</td><td>L8</td></tr>
-<tr><td class="ref-id">TD(27)</td><td><span class="ref-tap">&lt;</span></td><td><span class="ref-hold">&gt;</span></td><td><span class="ref-dbl">&gt;</span></td><td>200 ms</td><td>L8</td></tr>
-<tr><td class="ref-id">TD(28)</td><td><span class="ref-tap">{</span></td><td><span class="ref-hold">}</span></td><td><span class="ref-dbl">}</span></td><td>200 ms</td><td>L8</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — Code &amp; CLI (L9)</td></tr>
-<tr><td class="ref-id">TD(29)</td><td><span class="ref-tap">/</span></td><td><span class="ref-hold">M1 (~/)</span></td><td><span class="ref-dbl">M6 (../)</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(30)</td><td><span class="ref-tap">M8 ($())</span></td><td><span class="ref-hold">M9 (${})</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(31)</td><td><span class="ref-tap">M12 (!=)</span></td><td><span class="ref-hold">M13 (==)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(32)</td><td><span class="ref-tap">M14 (=&gt;)</span></td><td><span class="ref-hold">M15 (-&gt;)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr><td class="ref-id">TD(45)</td><td><span class="ref-tap">|</span></td><td><span class="ref-hold">M5 ( | )</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L9</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Action Keys — International (L10)</td></tr>
-<tr><td class="ref-id">TD(33)</td><td><span class="ref-tap">"</span></td><td><span class="ref-hold">M4 ("␣)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr><td class="ref-id">TD(34)</td><td><span class="ref-tap">M2 ('␣)</span></td><td><span class="ref-hold">M3 ('␣'␣'␣)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Direct umlauts (L10) — new in v1.8.0</td></tr>
-<tr><td class="ref-id">TD(48)</td><td><span class="ref-tap">ä</span></td><td><span class="ref-hold">M16 (Ä)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr><td class="ref-id">TD(49)</td><td><span class="ref-tap">ü</span></td><td><span class="ref-hold">M17 (Ü)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr><td class="ref-id">TD(50)</td><td><span class="ref-tap">ö</span></td><td><span class="ref-hold">M18 (Ö)</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L10</td></tr>
-<tr style="background:var(--paper2);"><td colspan="6" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);font-weight:600;">Workspaces (L11)</td></tr>
-<tr><td class="ref-id">TD(35)</td><td><span class="ref-tap">⌘1</span></td><td><span class="ref-hold">⌘⇧1</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(36)</td><td><span class="ref-tap">⌘2</span></td><td><span class="ref-hold">⌘⇧2</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(37)</td><td><span class="ref-tap">⌘3</span></td><td><span class="ref-hold">⌘⇧3</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(38)</td><td><span class="ref-tap">⌘4</span></td><td><span class="ref-hold">⌘⇧4</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(39)</td><td><span class="ref-tap">⌘5</span></td><td><span class="ref-hold">⌘⇧5</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(40)</td><td><span class="ref-tap">⌘6</span></td><td><span class="ref-hold">⌘⇧6</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(41)</td><td><span class="ref-tap">⌘7</span></td><td><span class="ref-hold">⌘⇧7</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(42)</td><td><span class="ref-tap">⌘8</span></td><td><span class="ref-hold">⌘⇧8</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(43)</td><td><span class="ref-tap">⌘9</span></td><td><span class="ref-hold">⌘⇧9</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-<tr><td class="ref-id">TD(44)</td><td><span class="ref-tap">⌘0</span></td><td><span class="ref-hold">⌘⇧0</span></td><td><span class="ref-dbl">—</span></td><td>200 ms</td><td>L11</td></tr>
-</tbody></table>
+<tr><th>Group</th><th>Count</th><th>Used in</th></tr>
+<tr><td>Home Row Mods</td><td>10</td><td>L0 Base</td></tr>
+<tr><td>Layer access keys (top row)</td><td>6</td><td>L0 Base</td></tr>
+<tr><td>Layer access keys (bottom row)</td><td>8</td><td>L0 Base</td></tr>
+<tr><td>Action TDs (Media)</td><td>1</td><td>L6 Fn+Media</td></tr>
+<tr><td>Action TDs (Symbols/Brackets)</td><td>5</td><td>L2 Symbols, L9 Brackets</td></tr>
+<tr><td>Action TDs (Code & CLI)</td><td>7</td><td>L7 Code & CLI</td></tr>
+<tr><td>Action TDs (Workspaces)</td><td>10</td><td>L8 Tiling WM</td></tr>
+<tr><td>Action TDs (Umlaut capitals)</td><td>3</td><td>L1 Overflow + International</td></tr>
+<tr><td>Total used</td><td>50</td><td>—</td></tr>
+</table>
+<h3>Detailed Tap Dance table</h3>
+<table>
+<tr><th>TD#</th><th>Tap</th><th>Hold</th><th>Double</th><th>Tap-Hold</th><th>Term</th><th>Used in</th></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Home Row Mods — left hand</td></tr>
+<tr><td><code>TD(0)</code></td><td>A</td><td>⌘</td><td>—</td><td>—</td><td>250&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(1)</code></td><td>R</td><td>⌥</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(2)</code></td><td>S</td><td>⌃</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(3)</code></td><td>T</td><td>⇧</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(4)</code></td><td>G</td><td>⌘</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Home Row Mods — right hand</td></tr>
+<tr><td><code>TD(5)</code></td><td>M</td><td>App</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(6)</code></td><td>N</td><td>⇧</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(7)</code></td><td>E</td><td>⌃</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(8)</code></td><td>I</td><td>AltGr</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td><code>TD(9)</code></td><td>O</td><td>⌘</td><td>—</td><td>—</td><td>250&nbsp;ms</td><td style="font-size:11px;color:#666">L0 Base (HRM)</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Layer access — top row</td></tr>
+<tr><td><code>TD(11)</code></td><td>W</td><td>→ L7</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L7</td></tr>
+<tr><td><code>TD(14)</code></td><td>F</td><td>→ L5</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L5</td></tr>
+<tr><td><code>TD(22)</code></td><td>U</td><td>→ L5</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L5</td></tr>
+<tr><td><code>TD(23)</code></td><td>Y</td><td>→ L7</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L7</td></tr>
+<tr><td><code>TD(46)</code></td><td>Q</td><td>→ L11</td><td>—</td><td>—</td><td>500&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Long-hold to L11</td></tr>
+<tr><td><code>TD(47)</code></td><td>'</td><td>→ L11</td><td>—</td><td>—</td><td>500&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Long-hold to L11</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Layer access — bottom row</td></tr>
+<tr><td><code>TD(12)</code></td><td>Z</td><td>→ L8</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L8</td></tr>
+<tr><td><code>TD(13)</code></td><td>/</td><td>→ L8</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L8</td></tr>
+<tr><td><code>TD(15)</code></td><td>X</td><td>—</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 (no hold)</td></tr>
+<tr><td><code>TD(16)</code></td><td>C</td><td>→ L6</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L6</td></tr>
+<tr><td><code>TD(17)</code></td><td>D</td><td>→ L9</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L9</td></tr>
+<tr><td><code>TD(18)</code></td><td>H</td><td>→ L9</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L9</td></tr>
+<tr><td><code>TD(19)</code></td><td>,</td><td>→ L6</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 → Hold to L6</td></tr>
+<tr><td><code>TD(20)</code></td><td>.</td><td>—</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L0 (no hold)</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Action TDs — Media (L6)</td></tr>
+<tr><td><code>TD(24)</code></td><td>MPLY</td><td>MSTP</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L6 R thumb</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Action TDs — Symbols / Brackets (L2 / L9)</td></tr>
+<tr><td><code>TD(25)</code></td><td>(</td><td>)</td><td>)</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L2 R idx top, L9 R idx home, L9 L idx home</td></tr>
+<tr><td><code>TD(26)</code></td><td>[</td><td>]</td><td>]</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L2 R mid top, L9 R mid home, L9 L mid home</td></tr>
+<tr><td><code>TD(27)</code></td><td>&lt;</td><td>&gt;</td><td>&gt;</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L2 R ring top, L9 R ring home, L9 L ring home</td></tr>
+<tr><td><code>TD(28)</code></td><td>{</td><td>}</td><td>}</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L2 R pinky top, L9 R pinky home, L9 L pinky home</td></tr>
+<tr><td><code>TD(51)</code></td><td>'</td><td>"</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L2 I position</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Action TDs — Code & CLI (L7)</td></tr>
+<tr><td><code>TD(29)</code></td><td>/</td><td>Macro 1</td><td>Macro 6</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L7 R idx home</td></tr>
+<tr><td><code>TD(30)</code></td><td>Macro 8</td><td>Macro 9</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L7 R mid home</td></tr>
+<tr><td><code>TD(31)</code></td><td>Macro 12</td><td>Macro 13</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L7 R ring home</td></tr>
+<tr><td><code>TD(32)</code></td><td>Macro 14</td><td>Macro 15</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L7 R pinky home</td></tr>
+<tr><td><code>TD(33)</code></td><td>"</td><td>Macro 4</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L1 T position, L1 N position</td></tr>
+<tr><td><code>TD(34)</code></td><td>'</td><td>Macro 2</td><td>—</td><td>Macro 3</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L1 D position, L1 H position</td></tr>
+<tr><td><code>TD(45)</code></td><td>|</td><td>Macro 5</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L7 T position</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Action TDs — Workspaces (L8)</td></tr>
+<tr><td><code>TD(35)</code></td><td>⌘+1</td><td>⌘⇧+1</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 X</td></tr>
+<tr><td><code>TD(36)</code></td><td>⌘+2</td><td>⌘⇧+2</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 C</td></tr>
+<tr><td><code>TD(37)</code></td><td>⌘+3</td><td>⌘⇧+3</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 D</td></tr>
+<tr><td><code>TD(38)</code></td><td>⌘+4</td><td>⌘⇧+4</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 R</td></tr>
+<tr><td><code>TD(39)</code></td><td>⌘+5</td><td>⌘⇧+5</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 S</td></tr>
+<tr><td><code>TD(40)</code></td><td>⌘+6</td><td>⌘⇧+6</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 T</td></tr>
+<tr><td><code>TD(41)</code></td><td>⌘+7</td><td>⌘⇧+7</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 W</td></tr>
+<tr><td><code>TD(42)</code></td><td>⌘+8</td><td>⌘⇧+8</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 F</td></tr>
+<tr><td><code>TD(43)</code></td><td>⌘+9</td><td>⌘⇧+9</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 P</td></tr>
+<tr><td><code>TD(44)</code></td><td>⌘+0</td><td>⌘⇧+0</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L8 Spc thumb</td></tr>
+<tr><td colspan="7" style="background:#fbf9f4;font-weight:600;color:#333;padding-top:10px;">Action TDs — Umlaut capitals (L1)</td></tr>
+<tr><td><code>TD(48)</code></td><td>AltGr+Q</td><td>Macro 16</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L1 A position</td></tr>
+<tr><td><code>TD(49)</code></td><td>AltGr+Y</td><td>Macro 17</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L1 U position (right ring top)</td></tr>
+<tr><td><code>TD(50)</code></td><td>AltGr+P</td><td>Macro 18</td><td>—</td><td>—</td><td>200&nbsp;ms</td><td style="font-size:11px;color:#666">L1 O position</td></tr>
+</table>
+
 <h2 id="macros">Macro Reference</h2>
-<p>Cadence v1.8.0 uses 19 of 32 macro slots.</p>
+<p>Cadence v1.9.0 uses 19 of 32 available macro slots. Macros are categorised by purpose: shell helpers, code operators, and German uppercase umlauts.</p>
+<h3>Shell helpers</h3>
 <table>
-<thead><tr><th>ID</th><th>Output</th><th>Type</th><th>Used in</th></tr></thead>
-<tbody>
-<tr><td class="ref-id">M0</td><td><span class="ref-out">$?</span></td><td>text</td><td>L9</td></tr>
-<tr><td class="ref-id">M1</td><td><span class="ref-out">~/</span></td><td>text</td><td>L9·TD29</td></tr>
-<tr><td class="ref-id">M2</td><td><span class="ref-out">'␣</span></td><td>tap</td><td>L10·TD34</td></tr>
-<tr><td class="ref-id">M3</td><td><span class="ref-out">'␣'␣'␣</span></td><td>tap</td><td>L10·TD34</td></tr>
-<tr><td class="ref-id">M4</td><td><span class="ref-out">"␣</span></td><td>tap</td><td>L10·TD33</td></tr>
-<tr><td class="ref-id">M5</td><td><span class="ref-out"> | </span></td><td>text</td><td>L9·TD45</td></tr>
-<tr><td class="ref-id">M6</td><td><span class="ref-out">../</span></td><td>text</td><td>L9·TD29</td></tr>
-<tr><td class="ref-id">M7</td><td><span class="ref-out">2&gt;&amp;1</span></td><td>text</td><td>L9</td></tr>
-<tr><td class="ref-id">M8</td><td><span class="ref-out">$()←</span></td><td>tap</td><td>L9·TD30</td></tr>
-<tr><td class="ref-id">M9</td><td><span class="ref-out">${}←</span></td><td>tap</td><td>L9·TD30</td></tr>
-<tr><td class="ref-id">M10</td><td><span class="ref-out">&amp;&amp;</span></td><td>text</td><td>L9</td></tr>
-<tr><td class="ref-id">M11</td><td><span class="ref-out">||</span></td><td>text</td><td>L9</td></tr>
-<tr><td class="ref-id">M12</td><td><span class="ref-out">!=</span></td><td>text</td><td>L9·TD31</td></tr>
-<tr><td class="ref-id">M13</td><td><span class="ref-out">==</span></td><td>text</td><td>L9·TD31</td></tr>
-<tr><td class="ref-id">M14</td><td><span class="ref-out">=&gt;</span></td><td>text</td><td>L9·TD32</td></tr>
-<tr><td class="ref-id">M15</td><td><span class="ref-out">-&gt;</span></td><td>text</td><td>L9·TD32</td></tr>
-<tr><td class="ref-id">M16</td><td><span class="ref-out">Ä</span></td><td>tap-seq (RShift+RAlt+Q)</td><td>L10·TD48</td></tr>
-<tr><td class="ref-id">M17</td><td><span class="ref-out">Ü</span></td><td>tap-seq (RShift+RAlt+Y)</td><td>L10·TD49</td></tr>
-<tr><td class="ref-id">M18</td><td><span class="ref-out">Ö</span></td><td>tap-seq (RShift+RAlt+P)</td><td>L10·TD50</td></tr>
-</tbody></table>
+<tr><th>Macro</th><th>Output</th><th>Action sequence</th><th>Purpose</th></tr>
+<tr><td><code>M0</code></td><td><code>$?</code></td><td>Text: <code>$?</code></td><td style="font-size:12px;color:#666">Shell: last command exit status</td></tr>
+<tr><td><code>M1</code></td><td><code>~/</code></td><td>Text: <code>~/</code></td><td style="font-size:12px;color:#666">Shell: home directory shortcut</td></tr>
+<tr><td><code>M5</code></td><td><code> | </code></td><td>Text: <code> | </code></td><td style="font-size:12px;color:#666">Shell: pipe with surrounding spaces</td></tr>
+<tr><td><code>M6</code></td><td><code>../</code></td><td>Text: <code>../</code></td><td style="font-size:12px;color:#666">Shell: parent directory</td></tr>
+<tr><td><code>M7</code></td><td><code>2&gt;&amp;1</code></td><td>Text: <code>2&gt;&amp;1</code></td><td style="font-size:12px;color:#666">Shell: redirect stderr to stdout</td></tr>
+<tr><td><code>M8</code></td><td><code>$()</code></td><td>Tap: <code>$ ( ) LEFT</code></td><td style="font-size:12px;color:#666">Shell: command substitution (cursor inside)</td></tr>
+<tr><td><code>M9</code></td><td><code>${}</code></td><td>Tap: <code>$ { } LEFT</code></td><td style="font-size:12px;color:#666">Shell: variable expansion (cursor inside)</td></tr>
+<tr><td><code>M10</code></td><td><code>&amp;&amp;</code></td><td>Text: <code>&amp;&amp;</code></td><td style="font-size:12px;color:#666">Shell: logical AND</td></tr>
+<tr><td><code>M11</code></td><td><code>||</code></td><td>Text: <code>||</code></td><td style="font-size:12px;color:#666">Shell: logical OR</td></tr>
+</table>
+<h3>Code operators</h3>
+<table>
+<tr><th>Macro</th><th>Output</th><th>Action sequence</th><th>Purpose</th></tr>
+<tr><td><code>M12</code></td><td><code>!=</code></td><td>Text: <code>!=</code></td><td style="font-size:12px;color:#666">Code: not-equal comparison</td></tr>
+<tr><td><code>M13</code></td><td><code>==</code></td><td>Text: <code>==</code></td><td style="font-size:12px;color:#666">Code: equality comparison</td></tr>
+<tr><td><code>M14</code></td><td><code>=&gt;</code></td><td>Text: <code>=&gt;</code></td><td style="font-size:12px;color:#666">Code: fat arrow (lambdas)</td></tr>
+<tr><td><code>M15</code></td><td><code>-&gt;</code></td><td>Text: <code>-&gt;</code></td><td style="font-size:12px;color:#666">Code: thin arrow (function return type, pointer member)</td></tr>
+</table>
+<h3>German uppercase umlauts</h3>
+<p style="font-size:13px;color:#666">QMK keycode <code>S(RALT(KC_X))</code> is supported, but Vial UI represents these via macros for clarity. The action sequence below uses explicit Shift+AltGr down/up to ensure consistent behaviour across operating systems.</p>
+<table>
+<tr><th>Macro</th><th>Output</th><th>Action sequence</th><th>Purpose</th></tr>
+<tr><td><code>M16</code></td><td><code>Ä</code></td><td>Hold down: <code>⇧ AltGr</code> → Tap: <code>Q</code> → Release: <code>AltGr ⇧</code></td><td style="font-size:12px;color:#666">Capital ä via Shift+AltGr+Q</td></tr>
+<tr><td><code>M17</code></td><td><code>Ü</code></td><td>Hold down: <code>⇧ AltGr</code> → Tap: <code>Y</code> → Release: <code>AltGr ⇧</code></td><td style="font-size:12px;color:#666">Capital ü via Shift+AltGr+Y</td></tr>
+<tr><td><code>M18</code></td><td><code>Ö</code></td><td>Hold down: <code>⇧ AltGr</code> → Tap: <code>P</code> → Release: <code>AltGr ⇧</code></td><td style="font-size:12px;color:#666">Capital ö via Shift+AltGr+P</td></tr>
+</table>
+<h3>Apostrophe / quote dead-key helpers</h3>
+<p style="font-size:13px;color:#666">On dead-key keyboard layouts (US-International, German with dead keys), pressing apostrophe or quote alone produces no output until the next keystroke. These macros explicitly type the apostrophe + space to commit the character.</p>
+<table>
+<tr><th>Macro</th><th>Output</th><th>Action sequence</th><th>Purpose</th></tr>
+<tr><td><code>M2</code></td><td><code>' </code></td><td>Tap: <code>' Spc</code></td><td style="font-size:12px;color:#666">Apostrophe + space (macro for dead-key avoidance)</td></tr>
+<tr><td><code>M3</code></td><td><code>' ' ' </code></td><td>Tap: <code>' Spc ' Spc ' Spc</code></td><td style="font-size:12px;color:#666">Three apostrophe-spaces (markdown italic dance)</td></tr>
+<tr><td><code>M4</code></td><td><code>" </code></td><td>Tap: <code>" Spc</code></td><td style="font-size:12px;color:#666">Double quote + space (macro for dead-key avoidance)</td></tr>
+</table>
+
 <h2 id="firmware">Firmware Notes</h2>
 <div class="design-box">
 <h4>Vial-QMK build</h4>
-<p>Cadence v1.8.0 uses 49/64 Tap Dance slots. The standard Vial-Sweep firmware build ships with 48 entries — a custom build with <code>TAP_DANCE_ENTRIES = 64</code> is required for v1.8 because TD(50) is now occupied.</p>
+<p>Cadence v1.9.0 uses 50/64 Tap Dance slots. The standard Vial-Sweep firmware build ships with 48 entries — a custom build with <code>TAP_DANCE_ENTRIES = 64</code> is required for v1.8 because TD(50) is now occupied.</p>
 <p>Set in <code>keyboards/ferris/sweep/keymaps/vial/config.h</code>:</p>
 <pre style="background:var(--paper2);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;overflow-x:auto;">#define TAP_DANCE_ENTRIES 64</pre>
 </div>
 <div class="design-box">
 <h4>Mouse / scroll settings</h4>
-<p>The Vial <code>settings</code> section in v1.8.0 contains tuned QMK settings (unchanged from v1.5.0). The values are stored as numeric Vial setting IDs that depend on the specific firmware build. Documenting the semantic mapping is on the v1.8.x ROADMAP.</p>
+<p>The Vial <code>settings</code> section in v1.9.0 contains tuned QMK settings (unchanged from v1.5.0–v1.8.0). The values are stored as numeric Vial setting IDs that depend on the specific firmware build. Documenting the semantic mapping is on the v2.0 ROADMAP.</p>
 </div>
 <div class="design-box">
 <h4>OS keyboard layout</h4>
@@ -804,7 +640,7 @@ footer { margin-top: 70px; padding-top: 28px; border-top: 1px solid var(--rule);
 <p>If the keyboard becomes unresponsive: enter the bootloader by holding Q for 500 ms (left half) or <code>'</code> for 500 ms (right half), then press the S-position (<code>QK_BOOT</code>). The half will appear as a USB drive; drop the <code>.uf2</code> firmware file onto it.</p>
 </div>
 <footer>
-Cadence v1.8.0 · MIT License · 2026 · one7two99<br/>
+Cadence v1.9.0 · MIT License · 2026 · one7two99<br/>
 Based on <a href="https://github.com/one7two99/cadenza">Cadenza</a> · <a href="https://colemakmods.github.io/mod-dh/">Colemak-DH</a> · Inspired by <a href="https://github.com/manna-harbour/miryoku">Miryoku</a>
 </footer>
 </div>
