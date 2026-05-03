@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L4 Symbol Layer — Cadence v1.9 / Sonata v2.0</title>
+<style>
+:root {
+  --paper: #F4F1EC;
+  --paper-light: #FAF8F3;
+  --paper-dark: #EAE6DC;
+  --ink: #1C1A2E;
+  --ink-mid: #3A3550;
+  --ink-soft: #6A6280;
+  --ink-faint: #9A93AA;
+  --border: #C8C4BA;
+  --border-light: #E8E6E0;
+  --border-faint: #DCD7CC;
+  --accent: #3B4BA8;
+  --accent-light: #E6F1FB;
+  --accent-dark: #1A2870;
+  --green: #5A8B3A;
+  --green-light: #EAF3DE;
+  --green-dark: #2C5A12;
+  --amber: #BA7517;
+  --amber-light: #FAEEDA;
+  --amber-dark: #6B3D08;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  margin: 0;
+  padding: 40px 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 48px 56px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+header {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.meta {
+  font-family: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  color: var(--ink-mid);
+  font-size: 15px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 40px 0 16px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  color: var(--ink-mid);
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--paper);
+  border: 0.5px solid var(--border-light);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 0.92em;
+  color: var(--ink);
+}
+
+ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+ul li {
+  margin: 6px 0;
+  font-size: 14.5px;
+  color: var(--ink-mid);
+}
+
+strong { color: var(--ink); font-weight: 600; }
+
+/* Principle blocks */
+.principle {
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 16px;
+  margin: 16px 0;
+}
+
+.principle h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.principle p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Keyboard layout */
+.kb-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 12px;
+  padding: 28px 16px;
+  background: var(--paper-light);
+  border-radius: 8px;
+  border: 0.5px solid var(--border-light);
+}
+
+.kb {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.kb-half {
+  display: grid;
+  grid-template-columns: repeat(6, 56px);
+  grid-template-rows: repeat(4, 56px);
+  gap: 4px;
+}
+
+.key {
+  position: relative;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 1px 0 #B0ADA4;
+  padding: 4px;
+}
+
+.key .pos {
+  position: absolute;
+  bottom: 3px;
+  font-size: 8px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.key.empty {
+  background: var(--paper-dark);
+  border: 1px dashed var(--border);
+  color: var(--ink-faint);
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.key.trans {
+  background: var(--paper);
+  border: 1px dashed var(--border-faint);
+  color: var(--ink-faint);
+  box-shadow: none;
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.key.activator {
+  background: var(--accent);
+  color: white;
+  border: 1px solid var(--accent-dark);
+  box-shadow: 0 1px 0 var(--accent-dark);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.key.activator .pos { color: rgba(255,255,255,0.65); }
+
+.key.td {
+  background: white;
+}
+
+.key.td .label {
+  font-size: 12px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.td-badge {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  font-size: 7px;
+  font-weight: 700;
+  padding: 1px 4px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: 0.5px solid var(--green);
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.legend-swatch.solid {
+  background: white;
+  box-shadow: 0 1px 0 #B0ADA4;
+}
+
+.legend-swatch.td {
+  background: var(--green-light);
+  border-color: var(--green);
+}
+
+.legend-swatch.empty {
+  background: var(--paper-dark);
+  border-style: dashed;
+}
+
+.legend-swatch.trans {
+  background: var(--paper);
+  border-style: dashed;
+  border-color: var(--border-faint);
+}
+
+.legend-swatch.activator {
+  background: var(--accent);
+  border-color: var(--accent-dark);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 24px;
+  font-size: 13.5px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 0.5px solid var(--border-light);
+  vertical-align: top;
+}
+
+th {
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+
+td.pos-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink-soft);
+  font-size: 12px;
+  width: 26%;
+}
+
+td.sym-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  width: 12%;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+/* Notes */
+.note {
+  background: var(--amber-light);
+  border-left: 3px solid var(--amber);
+  padding: 12px 16px;
+  margin: 18px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 13.5px;
+  color: var(--amber-dark);
+}
+
+.note strong { color: var(--amber-dark); }
+
+/* Stage list (development process) */
+.stage {
+  margin: 22px 0;
+  padding-left: 38px;
+  position: relative;
+}
+
+.stage-num {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.stage h3 {
+  margin: 0 0 6px;
+  font-size: 14.5px;
+}
+
+.stage p {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.stage ul {
+  margin-top: 6px;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 0.5px solid var(--border-light);
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 760px) {
+  .container { padding: 28px 18px; }
+  .kb-half { grid-template-columns: repeat(6, 44px); grid-template-rows: repeat(4, 44px); }
+  .key { font-size: 14px; }
+  .key.td .label { font-size: 10px; }
+  .kb { gap: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="meta">Cadence v1.9 · Sonata v2.0 · 2026-05</div>
+  <h1>L4 Symbol Layer</h1>
+  <p class="lede">Design rationale, key placement, and development history. Specification shared by Cadence (Ferris Sweep, 34 keys) and Sonata (28 keys).</p>
+</header>
+
+<section>
+<h2>1. Overview</h2>
+<p>L4 is the most frequently used non-base layer. It is activated by holding <code>Bsp</code> (right thumb, outer key) and carries 21 symbols across both hands and the left thumb cluster. The layout targets mixed German + English + code workloads.</p>
+<p>This specification establishes a shared L4 layout across the Cadence (Sweep) and Sonata (28-key) sister projects. Cadenza retains its v1.0.0 heritage layout for muscle-memory continuity with users of the Corne Choc daily driver.</p>
+</section>
+
+<section>
+<h2>2. Design principles</h2>
+
+<div class="principle">
+<h3>Access asymmetry</h3>
+<p>L4 is activated by holding the right thumb's outer key (<code>Bsp</code>). The right hand is therefore anchored during typing, and the right bottom row becomes the layout's worst region — middle and ring fingers must work against the thumb anchor to reach it. High-frequency symbols stay on the freer left hand or on the upper rows of the right hand. The right bottom row is left transparent.</p>
+</div>
+
+<div class="principle">
+<h3>Frequency × strength</h3>
+<p>Symbols ranked by daily usage frequency are assigned to fingers in strength order, weighted by the position-quality penalty for the anchored right hand. Index ranks higher than middle, middle higher than ring, ring higher than pinky.</p>
+</div>
+
+<div class="principle">
+<h3>No inner column for layer content</h3>
+<p>G, V, B (left) and J, M, K (right) require an inward index stretch. They never carry layer content — only their letters and App/Menu on hold. This rule holds without exception.</p>
+</div>
+
+<div class="principle">
+<h3>Tap dance for low-cost redundancy</h3>
+<p>A tap-or-hold tap dance with no double-tap action commits the tap on key release without latency. Latency only appears when a double-tap action is also assigned, requiring the firmware to wait for a possible second tap. With this constraint understood, tap dances become viable for low-cost redundancy: pairing a primary high-frequency symbol with a low-frequency secondary on the same strong position. The primary input pays no speed penalty; only the secondary requires an explicit hold gesture.</p>
+</div>
+
+<div class="principle">
+<h3>Cross-family consistency</h3>
+<p>Cadence and Sonata share this exact L4 specification. A user who switches between the Sweep and the 28-key Sonata maintains identical symbol muscle memory. Cadenza is treated as heritage and retains its v1.0.0 layout.</p>
+</div>
+</section>
+
+<section>
+<h2>3. Layout</h2>
+
+<div class="kb-wrap">
+<div class="kb">
+
+<!-- Left half -->
+<div class="kb-half">
+  <!-- Row 1 (top) -->
+  <div class="key" style="grid-row: 1; grid-column: 1;">~<span class="pos">Q</span></div>
+  <div class="key" style="grid-row: 1; grid-column: 2;">?<span class="pos">W</span></div>
+  <div class="key" style="grid-row: 1; grid-column: 3;">#<span class="pos">F</span></div>
+  <div class="key" style="grid-row: 1; grid-column: 4;">$<span class="pos">P</span></div>
+  <div class="key empty" style="grid-row: 1; grid-column: 5;">—<span class="pos">B</span></div>
+  <!-- Row 2 (home) -->
+  <div class="key" style="grid-row: 2; grid-column: 1;">%<span class="pos">A</span></div>
+  <div class="key" style="grid-row: 2; grid-column: 2;">+<span class="pos">R</span></div>
+  <div class="key td" style="grid-row: 2; grid-column: 3;"><span class="td-badge">TD</span><span class="label">!&middot;&amp;</span><span class="pos">S</span></div>
+  <div class="key td" style="grid-row: 2; grid-column: 4;"><span class="td-badge">TD</span><span class="label">*&middot;@</span><span class="pos">T</span></div>
+  <div class="key empty" style="grid-row: 2; grid-column: 5;">—<span class="pos">G</span></div>
+  <!-- Row 3 (bottom) -->
+  <div class="key trans" style="grid-row: 3; grid-column: 1;">trns<span class="pos">Z</span></div>
+  <div class="key" style="grid-row: 3; grid-column: 2;">:<span class="pos">X</span></div>
+  <div class="key" style="grid-row: 3; grid-column: 3;">_<span class="pos">C</span></div>
+  <div class="key td" style="grid-row: 3; grid-column: 4;"><span class="td-badge">TD</span><span class="label">/&middot;\</span><span class="pos">D</span></div>
+  <div class="key empty" style="grid-row: 3; grid-column: 5;">—<span class="pos">V</span></div>
+  <!-- Row 4 (thumbs) -->
+  <div class="key" style="grid-row: 4; grid-column: 5;">-<span class="pos">Spc</span></div>
+  <div class="key" style="grid-row: 4; grid-column: 6;">=<span class="pos">Tab</span></div>
+</div>
+
+<!-- Right half -->
+<div class="kb-half">
+  <!-- Row 1 (top) -->
+  <div class="key empty" style="grid-row: 1; grid-column: 1;">—<span class="pos">J</span></div>
+  <div class="key td" style="grid-row: 1; grid-column: 2;"><span class="td-badge">TD</span><span class="label">(&middot;)</span><span class="pos">L</span></div>
+  <div class="key td" style="grid-row: 1; grid-column: 3;"><span class="td-badge">TD</span><span class="label">[&middot;]</span><span class="pos">U</span></div>
+  <div class="key td" style="grid-row: 1; grid-column: 4;"><span class="td-badge">TD</span><span class="label">&lt;&middot;&gt;</span><span class="pos">Y</span></div>
+  <div class="key td" style="grid-row: 1; grid-column: 5;"><span class="td-badge">TD</span><span class="label">{&middot;}</span><span class="pos">'</span></div>
+  <!-- Row 2 (home) -->
+  <div class="key empty" style="grid-row: 2; grid-column: 1;">—<span class="pos">M</span></div>
+  <div class="key td" style="grid-row: 2; grid-column: 2;"><span class="td-badge">TD</span><span class="label">.&middot;(</span><span class="pos">N</span></div>
+  <div class="key td" style="grid-row: 2; grid-column: 3;"><span class="td-badge">TD</span><span class="label">,&middot;)</span><span class="pos">E</span></div>
+  <div class="key td" style="grid-row: 2; grid-column: 4;"><span class="td-badge">TD</span><span class="label">'&middot;^</span><span class="pos">I</span></div>
+  <div class="key" style="grid-row: 2; grid-column: 5;">;<span class="pos">O</span></div>
+  <!-- Row 3 (bottom) -->
+  <div class="key empty" style="grid-row: 3; grid-column: 1;">—<span class="pos">K</span></div>
+  <div class="key trans" style="grid-row: 3; grid-column: 2;">trns<span class="pos">H</span></div>
+  <div class="key trans" style="grid-row: 3; grid-column: 3;">trns<span class="pos">,</span></div>
+  <div class="key trans" style="grid-row: 3; grid-column: 4;">trns<span class="pos">.</span></div>
+  <div class="key trans" style="grid-row: 3; grid-column: 5;">trns<span class="pos">/</span></div>
+  <!-- Row 4 (thumbs) -->
+  <div class="key trans" style="grid-row: 4; grid-column: 1;">trns<span class="pos">Ent</span></div>
+  <div class="key activator" style="grid-row: 4; grid-column: 2;">★<span class="pos">Bsp</span></div>
+</div>
+
+</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-swatch solid"></span>Direct binding</div>
+  <div class="legend-item"><span class="legend-swatch td"></span>Tap dance (tap &middot; hold)</div>
+  <div class="legend-item"><span class="legend-swatch trans"></span>Transparent &middot; falls through</div>
+  <div class="legend-item"><span class="legend-swatch empty"></span>Inner column &middot; empty by rule</div>
+  <div class="legend-item"><span class="legend-swatch activator"></span>Layer activator &middot; held</div>
+</div>
+</section>
+
+<section>
+<h2>4. Per-key rationale</h2>
+
+<h3>Left hand</h3>
+<table>
+<thead>
+<tr><th>Position</th><th>Symbol</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td class="pos-cell">Q · pinky top</td><td class="sym-cell">~</td><td>Tilde — bitwise NOT, shell home paths (<code>~/...</code>), approximation, Markdown strikethrough. Low frequency justifies pinky-top placement on the free hand.</td></tr>
+<tr><td class="pos-cell">W · ring top</td><td class="sym-cell">?</td><td>Question mark, mid-frequency in prose and code. Ring top with the free hand is a solid mid-tier slot.</td></tr>
+<tr><td class="pos-cell">F · middle top</td><td class="sym-cell">#</td><td>Comments, hashtags, Markdown headings. Middle finger has a long reach.</td></tr>
+<tr><td class="pos-cell">P · index top</td><td class="sym-cell">$</td><td>Shell variables, regex anchor, jQuery. Index top is strong.</td></tr>
+<tr><td class="pos-cell">A · pinky home</td><td class="sym-cell">%</td><td>Modulo, format specifiers, percent. Pinky is the weakest finger but home row + free hand is sufficient for a low-frequency symbol; substantially better than the previous anchor-zone position.</td></tr>
+<tr><td class="pos-cell">R · ring home</td><td class="sym-cell">+</td><td>Addition, concatenation, regex. Ring home is solid.</td></tr>
+<tr><td class="pos-cell">S · middle home</td><td class="sym-cell">! / &amp;</td><td>Tap dance. Tap = <code>!</code> (negation, exclamation, factorial) on the second-strongest left position. Hold = <code>&amp;</code> (bitwise AND, shell background, HTML entity) — low frequency, hold-only access acceptable. Added during the symbol-completeness check (see §5).</td></tr>
+<tr><td class="pos-cell">T · index home</td><td class="sym-cell">* / @</td><td>Tap dance. Tap = <code>*</code> (multiplication, glob, pointer, Markdown bold) on the strongest left index. Hold = <code>@</code> (email, decorators) — low frequency, hold-only access acceptable.</td></tr>
+<tr><td class="pos-cell">Z · pinky bot</td><td class="sym-cell">trns</td><td>Reserved (free slot).</td></tr>
+<tr><td class="pos-cell">X · ring bot</td><td class="sym-cell">:</td><td>Colon — high frequency in code (Python type hints, YAML, CSS, JSON). Ring bottom on the free hand is well above any anchor-zone position.</td></tr>
+<tr><td class="pos-cell">C · middle bot</td><td class="sym-cell">_</td><td>Underscore for snake_case identifiers. Middle finger has the longest reach to the bottom row, making it the strongest non-home position.</td></tr>
+<tr><td class="pos-cell">D · index bot</td><td class="sym-cell">/ / \</td><td>Tap dance. Tap = <code>/</code> (division, paths). Hold = <code>\</code> (escape, Windows paths) — also reachable on L9, redundancy intentional for evaluation.</td></tr>
+</tbody>
+</table>
+
+<h3>Right hand</h3>
+<table>
+<thead>
+<tr><th>Position</th><th>Symbol</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td class="pos-cell">L · index top</td><td class="sym-cell">( / )</td><td>Tap dance. Tap = <code>(</code>, hold = <code>)</code>, double-tap = <code>)</code>. Inherited from existing bracket TD set.</td></tr>
+<tr><td class="pos-cell">U · middle top</td><td class="sym-cell">[ / ]</td><td>Tap dance. Tap = <code>[</code>, hold = <code>]</code>, double-tap = <code>]</code>.</td></tr>
+<tr><td class="pos-cell">Y · ring top</td><td class="sym-cell">&lt; / &gt;</td><td>Tap dance. Tap = <code>&lt;</code>, hold = <code>&gt;</code>, double-tap = <code>&gt;</code>.</td></tr>
+<tr><td class="pos-cell">' · pinky top</td><td class="sym-cell">{ / }</td><td>Tap dance. Tap = <code>{</code>, hold = <code>}</code>, double-tap = <code>}</code>.</td></tr>
+<tr><td class="pos-cell">N · index home</td><td class="sym-cell">. / (</td><td>Tap dance. Tap = <code>.</code> (period, primary on Sonata-compatible layouts where period is not on base). Hold = <code>(</code> — most common opening parenthesis, redundant with L-position TD but ergonomically better in flowing typing.</td></tr>
+<tr><td class="pos-cell">E · middle home</td><td class="sym-cell">, / )</td><td>Tap dance. Tap = <code>,</code>, hold = <code>)</code>. Mirror of N-position. Pair-mapping rationale: N is left of E on Cadence's right home row, hence N gets the opener and E the closer.</td></tr>
+<tr><td class="pos-cell">I · ring home</td><td class="sym-cell">' / ^</td><td>Tap dance. Tap = <code>'</code> (apostrophe, frequent in English contractions and code identifiers). Hold = <code>^</code> (XOR, regex anchor, exponent in some languages) — low frequency, hold-only access acceptable. Added during the symbol-completeness check (see §5). Note: <code>"</code> is no longer paired here (see §6).</td></tr>
+<tr><td class="pos-cell">O · pinky home</td><td class="sym-cell">;</td><td>Semicolon — code statement terminators.</td></tr>
+<tr><td class="pos-cell">K, H, comma, period, slash · bot row</td><td class="sym-cell">trns</td><td>Right bottom row is deliberately empty. The anchor zone carries no symbol bindings.</td></tr>
+</tbody>
+</table>
+
+<h3>Left thumb cluster</h3>
+<table>
+<thead>
+<tr><th>Position</th><th>Symbol</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td class="pos-cell">Spc · inner thumb</td><td class="sym-cell">-</td><td>Hyphen — German compounds (<code>Anti-X</code>, <code>Daten-Y</code>), CLI flags (<code>--option</code>). Inner thumb is the best thumb position; single-joint action with no finger leaving its home.</td></tr>
+<tr><td class="pos-cell">Tab · outer thumb</td><td class="sym-cell">=</td><td>Equals sign — assignment and comparison, the highest-frequency code symbol. Outer thumb is also strong.</td></tr>
+<tr><td class="pos-cell">Ent · inner thumb (R)</td><td class="sym-cell">trns</td><td>Reserved.</td></tr>
+<tr><td class="pos-cell">Bsp · outer thumb (R)</td><td class="sym-cell">★</td><td>Layer activator. Held to enter L4.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>5. Development process</h2>
+
+<p>The redesign progressed through six conceptual stages. Each stage resolved a problem the previous step had exposed.</p>
+
+<div class="stage">
+<div class="stage-num">1</div>
+<h3>Identifying the access-asymmetry problem</h3>
+<p>The starting point was Cadence v1.5.0 / v1.8.0, which placed <code>?</code>, <code>:</code>, and <code>%</code> on the right bottom row. Daily use revealed these positions as painful: when L4 is activated by holding <code>Bsp</code>, the right thumb is anchored, and the right hand's middle and ring fingers must work against this anchor to reach the bottom row.</p>
+<p>The "Frequency × Strength" principle alone proved insufficient — it ignored a layer-specific access asymmetry created by single-thumb activation. The corrective principle: under an asymmetric layer trigger, the anchored hand's bottom row is the layout's worst region, regardless of which finger reaches it.</p>
+</div>
+
+<div class="stage">
+<div class="stage-num">2</div>
+<h3>Relieving the right bottom row</h3>
+<p>The first move relocated <code>?</code> and <code>:</code> off the anchored bottom row. <code>?</code> went to a top-row position (W, ring top), <code>:</code> to ring bottom on the free left hand (X). Both gained unanchored-hand access. Ring finger is strong enough for mid-frequency symbols. <code>%</code> remained on the right side temporarily, awaiting a better destination.</p>
+</div>
+
+<div class="stage">
+<div class="stage-num">3</div>
+<h3>Thumb cluster freed for symbol use</h3>
+<p>A subsequent layer-architecture refactor freed the left thumb keys (<code>Spc</code>, <code>Tab</code>) from layer-trigger duties. These positions are first-tier ergonomic real estate: the thumb operates as a single-joint action that does not require any finger to leave its home position.</p>
+<p>They became the natural home for <code>-</code> (Spc, inner thumb) and <code>=</code> (Tab, outer thumb), removing pressure from the left hand letter rows.</p>
+</div>
+
+<div class="stage">
+<div class="stage-num">4</div>
+<h3>Tap dance latency clarified</h3>
+<p>An initial concern was that adding tap dances to high-frequency keys would slow them down. On closer technical review, this proved overly broad: a tap-or-hold tap dance with <em>no double-tap action</em> commits the tap on key release without waiting for a tapping-term-style timeout. Latency only appears when a double-tap action is also assigned, requiring the firmware to wait for a possible second tap before committing the single-tap.</p>
+<p>With this constraint understood, tap dances became viable for low-cost redundancy: pairing a primary high-frequency symbol with a low-frequency secondary on the same strong position. The primary symbol pays no speed penalty; only the secondary requires the explicit hold gesture.</p>
+</div>
+
+<div class="stage">
+<div class="stage-num">5</div>
+<h3>Final optimizations and completeness check</h3>
+<p>Six tap dances and one direct relocation completed the right bottom row's clearance. A subsequent completeness check against the standard US-keyboard symbol set surfaced two missing symbols (<code>&amp;</code>, <code>^</code>); both were added as TD-holds, following the same hold-on-strong-position pattern as the other tap dances:</p>
+<ul>
+<li><strong>T (left index home)</strong> — tap = <code>*</code>, hold = <code>@</code>. Frees the W-position previously held by <code>@</code>, used now for <code>?</code>.</li>
+<li><strong>S (left middle home)</strong> — tap = <code>!</code>, hold = <code>&amp;</code>. Added during the completeness check.</li>
+<li><strong>D (left index bot)</strong> — tap = <code>/</code>, hold = <code>\</code>. <code>\</code> remains primary on L9; the L4 hold is redundant for evaluation.</li>
+<li><strong>A (left pinky home)</strong> — direct keycode <code>%</code>. The last anchor-zone symbol relocates to home row on the free hand.</li>
+<li><strong>N (right index home)</strong> — tap = <code>.</code>, hold = <code>(</code>. Brings the most-used opening parenthesis to home row.</li>
+<li><strong>E (right middle home)</strong> — tap = <code>,</code>, hold = <code>)</code>. Pairs with N for closing parenthesis.</li>
+<li><strong>I (right ring home)</strong> — tap = <code>'</code>, hold = <code>^</code>. Added during the completeness check; preserves the Z-position as a reserve slot rather than spending it on a low-frequency direct binding.</li>
+</ul>
+<p>The right bottom row is entirely free of bindings. All standard US-keyboard symbols are reachable on L4, with two intentionally placed elsewhere (see §6).</p>
+</div>
+
+<div class="stage">
+<div class="stage-num">6</div>
+<h3>Cross-family alignment</h3>
+<p>The resulting specification is adopted as the shared L4 layout across Cadence (Sweep) and Sonata (28-key). Cadenza retains its v1.0.0 heritage layout for muscle-memory continuity with the Corne Choc daily driver.</p>
+<p>This intentional split: Cadence and Sonata are spec-shared sister projects evolving together; Cadenza is heritage, anchored to its earlier design.</p>
+</div>
+</section>
+
+<section>
+<h2>6. Cross-layer notes</h2>
+
+<p>Two symbols are deliberately not exclusive to L4:</p>
+
+<ul>
+<li><strong><code>\</code></strong> — primary placement on <strong>L9 (Code &amp; CLI)</strong>, where it conceptually belongs alongside other code-specific operators (<code>||</code>, <code>&amp;&amp;</code>, <code>=&gt;</code>, etc.). Also reachable on L4 as the hold of the D-position TD (tap = <code>/</code>, hold = <code>\</code>). The redundancy is deliberate; sustained use will reveal whether the L9 access or the L4 hold feels more natural. Either may be removed in a future patch if the other proves unused.</li>
+<li><strong><code>"</code></strong> — placed on <strong>L_INTL (International Layer)</strong>, not on L4. The L_INTL layer carries paired typographic forms together with the umlaut dead keys, keeping all <code>"</code>-related logic in one place. L4's I-position therefore carries only the apostrophe (<code>'</code>).</li>
+</ul>
+</section>
+
+<section>
+<h2>7. Vial implementation</h2>
+
+<h3>7.1 New tap dance slots</h3>
+<p>Six new tap dances are added. Slot numbers below are indicative — verify against current allocation in the <code>.vil</code> configuration before assignment.</p>
+
+<table>
+<thead>
+<tr><th>Slot</th><th>Position</th><th>Tap</th><th>Hold</th><th>Dbl tap</th><th>Tap+hold</th></tr>
+</thead>
+<tbody>
+<tr><td><code>TD51</code></td><td>T (L index home)</td><td><code>KC_ASTR</code></td><td><code>KC_AT</code></td><td>—</td><td>—</td></tr>
+<tr><td><code>TD52</code></td><td>S (L middle home)</td><td><code>KC_EXLM</code></td><td><code>KC_AMPR</code></td><td>—</td><td>—</td></tr>
+<tr><td><code>TD53</code></td><td>D (L index bot)</td><td><code>KC_SLSH</code></td><td><code>KC_BSLS</code></td><td>—</td><td>—</td></tr>
+<tr><td><code>TD54</code></td><td>N (R index home)</td><td><code>KC_DOT</code></td><td><code>KC_LPRN</code></td><td>—</td><td>—</td></tr>
+<tr><td><code>TD55</code></td><td>E (R middle home)</td><td><code>KC_COMM</code></td><td><code>KC_RPRN</code></td><td>—</td><td>—</td></tr>
+<tr><td><code>TD56</code></td><td>I (R ring home)</td><td><code>KC_QUOT</code></td><td><code>KC_CIRC</code></td><td>—</td><td>—</td></tr>
+</tbody>
+</table>
+
+<div class="note">
+<strong>Critical:</strong> Double-tap and Tap+hold must remain <em>empty</em>. Assigning any value to Double-tap forces the firmware to wait for a possible second tap before committing the single-tap, which reintroduces tap latency on what should be unambiguous single-tap input. This defeats the purpose of using tap dances on high-frequency keys.
+</div>
+
+<h3>7.2 Direct keycodes</h3>
+
+<table>
+<thead>
+<tr><th>Position</th><th>Keycode</th><th>Symbol</th></tr>
+</thead>
+<tbody>
+<tr><td>Q · L pinky top</td><td><code>KC_TILD</code></td><td>~</td></tr>
+<tr><td>W · L ring top</td><td><code>KC_QUES</code></td><td>?</td></tr>
+<tr><td>F · L middle top</td><td><code>KC_HASH</code></td><td>#</td></tr>
+<tr><td>P · L index top</td><td><code>KC_DLR</code></td><td>$</td></tr>
+<tr><td>A · L pinky home</td><td><code>KC_PERC</code></td><td>%</td></tr>
+<tr><td>R · L ring home</td><td><code>KC_PLUS</code></td><td>+</td></tr>
+<tr><td>Z · L pinky bot</td><td><code>KC_TRNS</code></td><td>reserved</td></tr>
+<tr><td>X · L ring bot</td><td><code>KC_COLN</code></td><td>:</td></tr>
+<tr><td>C · L middle bot</td><td><code>KC_UNDS</code></td><td>_</td></tr>
+<tr><td>Spc · L thumb inner</td><td><code>KC_MINS</code></td><td>-</td></tr>
+<tr><td>Tab · L thumb outer</td><td><code>KC_EQL</code></td><td>=</td></tr>
+<tr><td>O · R pinky home</td><td><code>KC_SCLN</code></td><td>;</td></tr>
+<tr><td>T, S, D · L (home/bot)</td><td>TD51–53 (see §7.1)</td><td>tap dance bindings</td></tr>
+<tr><td>L, U, Y, ' · R top</td><td>TD25–28 (existing)</td><td>bracket pairs</td></tr>
+<tr><td>N, E, I · R home</td><td>TD54–56 (see §7.1)</td><td>tap dance bindings</td></tr>
+<tr><td>All other R-hand positions</td><td><code>KC_TRNS</code></td><td>passthrough</td></tr>
+</tbody>
+</table>
+</section>
+
+<footer>
+Cadence v1.9 · Sonata v2.0 · L4 Symbol Layer specification · 2026-05
+</footer>
+
+</div>
+</body>
+</html>
