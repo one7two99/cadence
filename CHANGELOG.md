@@ -2,6 +2,57 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.11.1] — 2026-05-03
+
+App/Menu relocation. No layout structure changes, no muscle memory impact
+for the user — the App/Menu hold-action on G and M was never used in
+practice and is reassigned to L9 Brackets thumbs where it occupies
+otherwise-transparent slots.
+
+### Changed
+
+**App/Menu moved from Base-layer G/M hold to L9 Brackets thumbs**
+
+- TD(4) (G → App on hold) deleted — G is now a plain `KC_G`
+- TD(5) (M → App on hold) deleted — M is now a plain `KC_M`
+- L9 Brackets left-thumb outer (Spc-position): `KC_APPLICATION`
+- L9 Brackets right-thumb outer (Bsp-position): `KC_APPLICATION`
+- The two inner thumb positions on L9 (Tab-position, Ent-position)
+  remain `KC_NO` (unallocated)
+
+Rationale: the Base-layer G/M hold-action for Application Menu was
+inherited from Cadenza but never used in daily work. Removing it
+simplifies G and M to plain letters and frees two TD slots. L9
+Brackets had four unallocated thumb positions; placing App/Menu on
+the two outer positions makes it reachable from either hand while
+on the Brackets layer, where modifier-like utility keys fit
+contextually (App/Menu is conceptually similar to bracket-pair
+operations: punctuation around a selection or word).
+
+### Classification
+
+PATCH per Cadence's versioning policy: no key behaviour changes for
+any function the user actively uses. The G/M tap action is unchanged
+(plain letters). The App/Menu function is preserved, only relocated
+to a slot that wasn't carrying any other meaning.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 52 | 64 |
+| Macro | 19 | 32 |
+| Layers | 13 in firmware (11 reachable) | 16 |
+| Combos | 0 | 32 |
+| Key Overrides | 0 | 32 |
+
+### Configuration file
+
+`Cadence-FerrisSweep_v1_11_1.vil` — preserves the 1:1 alignment between
+published version number and configuration file name.
+
+---
+
 ## [1.11.0] — 2026-05-03
 
 Mouse-on-thumb redesign solves the v1.9.0 HRM-blocking issue, plus a

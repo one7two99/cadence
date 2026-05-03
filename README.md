@@ -1,11 +1,11 @@
 <div align="center">
   <h1>Cadence</h1>
   <p>
-    <img src="https://img.shields.io/badge/version-1.11.0-brightgreen?style=flat-square" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.11.1-brightgreen?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/keyboard-Ferris%20Sweep-blue?style=flat-square" alt="Keyboard">
     <img src="https://img.shields.io/badge/firmware-Vial%20%2F%20QMK-orange?style=flat-square" alt="Firmware">
     <img src="https://img.shields.io/badge/base-Colemak--DH-purple?style=flat-square" alt="Base">
-    <img src="https://img.shields.io/badge/tap%20dances-54%20%2F%2064-yellow?style=flat-square" alt="Tap Dances">
+    <img src="https://img.shields.io/badge/tap%20dances-52%20%2F%2064-yellow?style=flat-square" alt="Tap Dances">
     <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License">
   </p>
 </div>
@@ -85,7 +85,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 | L6 | Function Keys + Media | Hold **F** *or* Hold **U** | F1–F12 (left, numpad-spatial) · media controls (right hand) |
 | L7 | Code & CLI | Hold **W** *or* Hold **Y** | Shell operators · path navigation TD · `\|` (tap) / ` \| ` (hold) · `` ` `` · `~` · `\` · Tab/Esc on thumbs |
 | L8 | Tiling WM | Hold **Z** *or* Hold **/** | WS 1–10 (numpad memory) · focus · window move · Kill / Float / Fullscreen |
-| L9 | Brackets | Hold **X** *or* Hold **.** | `(` `)` `[` `]` `<` `>` `{` `}` — bilateral mirror |
+| L9 | Brackets | Hold **X** *or* Hold **.** | `(` `)` `[` `]` `<` `>` `{` `}` — bilateral mirror · `App/Menu` on Spc/Bsp thumbs |
 | L10 | Clipboard | — | layer present, no trigger by user choice |
 | L11 | Firmware Control | **Long-hold (500 ms) Q** *or* Long-hold **'** | `QK_BOOT` (bootloader) · `QK_REBOOT` |
 | L12 | Symbols (NEW) | Hold **Bsp** | redesigned symbol layout — see [`L4-Symbol-Layer.html`](docs/L4-Symbol-Layer.html) |
@@ -122,7 +122,9 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **Backtick reachability:** Backtick is reachable on L12 (right ring top via TD) and within L7 Code & CLI. Sufficient access for Markdown code-fences, JS template literals, and shell command substitution.
 
-**No inner column for layer content:** G and M require a lateral inward index stretch — the same problem Colemak-DH solves for B and H. Cadence preserves Cadenza's extension: G/M only carry their letters and `App/Menu` on hold, never layer content.
+**No inner column for layer content:** G and M require a lateral inward index stretch — the same problem Colemak-DH solves for B and H. Cadence preserves Cadenza's extension: G/M only carry their letters, never layer content. The Application Menu key (formerly on G/M hold in v1.11.0 and earlier) was never used in daily work and was relocated to L9 Brackets in v1.11.1 — see Design Decisions below.
+
+**App/Menu on L9 Brackets thumbs (v1.11.1):** Application Menu is reachable on the L9 Spc-thumb and Bsp-thumb, available from either hand while holding X or . to access Brackets. The Tab and Ent thumb positions remain unallocated on L9. Rationale: G and M hold-actions for App/Menu were inherited from Cadenza but never used in practice; freeing them simplifies the base layer to plain letters and reclaims two TD slots without any functional loss.
 
 ---
 
@@ -131,12 +133,12 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 ### Requirements
 
 - Ferris Sweep (any RP2040-compatible variant)
-- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.11 uses TD(57); the default Vial-Sweep build ships with 48)
+- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.11.1 uses TD(57); the default Vial-Sweep build ships with 48)
 - OS keyboard layout set to **US International** (required for dead keys and `RAlt` combinations)
 
 ### Step 1 — Flash Vial firmware
 
-Cadence v1.11 uses 54 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
+Cadence v1.11.1 uses 52 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
 
 ```bash
 # Clone Vial-QMK
@@ -159,7 +161,7 @@ Flash via RP2040 drag-and-drop:
 ### Step 2 — Load the layout
 
 1. Open Vial desktop app, connect keyboard via USB
-2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_11_0.vil`
+2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_11_1.vil`
 3. Confirm all layers loaded correctly
 
 ### Step 3 — Verify OS layout
@@ -177,7 +179,7 @@ Set your OS keyboard layout to **US International**. This is required for:
 
 | Resource | Used | Available | Free |
 |---|---|---|---|
-| Tap Dance slots | 54 | 64 | 10 |
+| Tap Dance slots | 52 | 64 | 12 |
 | Macro slots | 19 | 32 | 13 |
 | Key Overrides | 0 | 32 | 32 |
 | Combos | 0 | 32 | 32 |
@@ -207,7 +209,7 @@ Cadence follows [Semantic Versioning](https://semver.org/) — `vMAJOR.MINOR.PAT
 | **MINOR** | New layer, macro, or Tap Dance added |
 | **MAJOR** | Existing key behaviour changes — muscle memory impact |
 
-Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.11.0` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_11_0.vil`.
+Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.11.1` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_11_1.vil`.
 
 Full versioning policy and change log: [VERSIONING.md](VERSIONING.md)
 
