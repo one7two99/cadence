@@ -2,6 +2,195 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.11.0] — 2026-05-03
+
+Mouse-on-thumb redesign solves the v1.9.0 HRM-blocking issue, plus a
+fully redesigned Symbol layer (L12). Tab and Spc become Tap-Dance
+carriers handling multiple layer functions on single thumb positions.
+
+### Why v1.11.0 and not v1.10.0?
+
+A v1.10.0 internal Vial revision was created during the redesign of
+the Mouse and Symbol layers. v1.10 surfaced configuration anomalies
+during verification (a dead `MO(14)` trigger on F, three concurrent
+L1 triggers, single-handed L6 access) that did not justify a public
+release. v1.11 is the first revision in this series that resolves all
+of these issues and matches the user's intended design cleanly.
+
+Publishing only v1.11 (and not the intermediate v1.10 test revision)
+preserves the 1:1 alignment between the published version number and
+the configuration file name — analogous to v1.8 itself being the
+first public release in its series rather than v1.6.
+
+### Changed
+
+**Thumb trigger redesign — Spc and Tab become Tap-Dance carriers**
+
+| Thumb | v1.9 behaviour | v1.11 behaviour |
+|---|---|---|
+| Spc (L outer) | tap = Space, hold = L1 International | tap = Space, hold = L4 Navigation, **tap+hold = L5 Mouse** (TD(21)) |
+| Tab (L inner) | tap = Tab, hold = L4 Navigation | tap = Tab, **hold = L1 International** (TD(10)) |
+| Bsp (R outer) | tap = Bsp, hold = L2 Symbols | tap = Bsp, **hold = L12 Symbols** (LT(12)) |
+| Ent (R inner) | tap = Ent, hold = L3 Numbers | unchanged |
+
+The Spc tap+hold pattern is the central innovation: tap Spc, then
+immediately press Spc again and hold to activate L5 Mouse. This
+two-step trigger differentiates Mouse from Navigation while keeping
+both layers on the same thumb position — and crucially, it frees both
+hands for Home Row Mods during mouse use, which solves the v1.9
+problem where the bilateral F+U trigger blocked Ctrl on the active
+hand during multi-select operations.
+
+**L5 Mouse — moved from F+U bilateral to Spc tap+hold**
+
+The most important ergonomic fix. In v1.9, holding F to activate
+Mouse made the left middle finger unavailable, so the Ctrl HRM on S
+could not be tapped — making `Ctrl+Click` for multi-select impossible
+to perform with one hand on the keyboard. Symmetrical problem on the
+right with U blocking E (Ctrl). Spc tap+hold puts Mouse on the left
+thumb only, leaving every finger HRM available.
+
+**L9 Brackets — moved from D+H to X+. bilateral**
+
+D and H are common letters (~5% frequency each in DE+EN), which made
+the Brackets layer prone to false-positive hold-detection during
+normal typing. X and . are far less frequent — cleaner hold-detection
+without per-key tapping-term tuning. The bracket pairs and behaviour
+inside the layer are unchanged.
+
+**L1 International — access moved from Spc-hold to Tab-hold**
+
+Tab is now a Tap-Dance with `tap = Tab, hold = MO(1)` (TD(10)). This
+frees Spc for the Navigation+Mouse combined role described above.
+Tab as a regular character is now reachable inside L4 Navigation and
+L7 Code & CLI on the Ent-thumb position, so repeated Tab sequences
+(form navigation, shell auto-complete, code indentation) work without
+leaving the active layer.
+
+**L6 Function Keys + Media — access moved from C/, to F+U bilateral**
+
+Since F and U are no longer the Mouse trigger, they take over L6 Fn
++Media access. C and , become plain letter keys with no Tap Dance.
+Layer content is unchanged from v1.9.
+
+### Added
+
+**L12 Symbols (NEW) — completely redesigned symbol layer**
+
+Replaces the deprecated L2 Symbols. Activated by holding Bsp
+(`LT(12, KC_BSPACE)`). Designed under the principle of access
+asymmetry: since the right thumb anchors the layer trigger, high-
+frequency symbols are placed on the freer left hand and on the top
+rows of the right hand; the right bottom row is intentionally left
+transparent (worst region during right-thumb anchoring).
+
+The full design rationale and position assignments are documented in
+the dedicated `L4-Symbol-Layer.html` specification, which is shared
+across the Cadence (Sweep) and Sonata (28-key) sister projects. The
+"L4" in the filename refers to the abstract Symbol-Layer concept; in
+Cadence v1.11 it is implemented as L12.
+
+Key positions:
+
+- **Left home (high-frequency operators)** — `%` on A, `+` on R,
+  `! / &` TD on S, `* / @` TD on T
+- **Right top (bracket pairs)** — `( / )` TD on L, `[ / ]` TD on U,
+  `< / >` TD on Y, `{ / }` TD on '
+- **Right home (prose punctuation)** — `, / (` TD on N,
+  `. / }` TD on E, `' / ^` TD on I, `;` on O
+- **Thumbs** — `-` on Spc-thumb, `=` on Tab-thumb (most-frequent
+  operators on strongest positions)
+- **Various** — `~`, `?`, `#`, `$` on left top; `:`, `_`,
+  `/ \` TD on left bottom
+
+**New Tap Dances on L12** — TD(52)–TD(57) implement the symbol pairs
+listed above.
+
+### Deprecated
+
+**L2 Symbols** — retained in firmware for cleanup later, no longer
+reachable. The Bsp-thumb now triggers L12 instead. Users with v1.9
+muscle memory for L2 symbols should retrain on the L12 layout, which
+is intentionally different.
+
+### Removed
+
+**Tap Dance MO holds on C, D, H, and ,** — these positions are now
+plain letter keys. C and , no longer trigger L6 (replaced by F+U); D
+and H no longer trigger L9 Brackets (replaced by X+.).
+
+### Firmware
+
+`TAP_DANCE_ENTRIES` remains 64 (unchanged from v1.8). v1.11 uses 54
+of 64 TD slots — 4 more than v1.9.0 due to the L12 Symbols layer
+additions and the new Spc/Tab Tap Dances.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 54 | 64 |
+| Macro | 19 | 32 |
+| Layers | 13 in firmware (11 reachable) | 16 |
+| Combos | 0 | 32 |
+| Key Overrides | 0 | 32 |
+
+---
+
+## [1.9.0] — 2026-05-02
+
+Sonata-aligned release. Cadence's layer system is reorganised so that
+L1–L9 mirror Sonata v3.0's numbering, simplifying any future migration
+to Sonata hardware.
+
+### Changed
+
+**Layer renumbering** — twelve layers re-mapped:
+
+| v1.8.0 layer | v1.9.0 layer | Note |
+|---|---|---|
+| L1 Media | merged into L6 | Combined with F-Keys |
+| L2 Navigation | L4 Navigation | Sonata position |
+| L3 Mouse | L5 Mouse | Renumbered |
+| L4 Symbols | L2 Symbols | Renumbered |
+| L5 Numbers | L3 Numbers | Renumbered |
+| L6 F-Keys | merged into L6 | Combined with Media; chord trigger eliminated |
+| L7 Clipboard | L10 Clipboard | Cadence-extra range; trigger removed |
+| L8 Brackets | L9 Brackets | Cadence-extra range |
+| L9 Code & CLI | L7 Code & CLI | Sonata position |
+| L10 International | L1 Overflow + International | Renumbered + renamed |
+| L11 Workspaces | L8 Tiling WM | Renumbered + renamed |
+| L12 Firmware Control | L11 Firmware Control | Cadence-extra range |
+
+**Access key reassignment by frequency × ergonomic strength** — the
+Bsp+Spc chord trigger for F-Keys is eliminated; L6 Fn+Media gets
+direct bilateral access via C+, instead. All access keys remain
+configured as Tap Dance for per-key tapping-term control.
+
+**L6 Fn+Media merged from former L1 + L6** — F1–F12 on left in
+numpad-spatial layout, media controls on right hand. Single layer,
+single bilateral access pair.
+
+**L10 Clipboard intentionally has no access key** — user opts out;
+layer remains in firmware for future activation.
+
+### Removed
+
+**X and . MO holds** — both were L9 Code & CLI triggers in v1.8.0;
+in v1.9 they become pure letter keys.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 50 | 64 |
+| Macro | 19 | 32 |
+| Layers | 13 in firmware (11 reachable) | 16 |
+| Combos | 1 | 32 |
+| Key Overrides | 0 | 32 |
+
+---
+
 ## [1.8.0] — 2026-05-02
 
 Direct AltGr-based umlaut access on L10 International. The previous
