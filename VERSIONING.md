@@ -173,7 +173,7 @@ signalling a breaking change — it pairs naturally with MAJOR semver increments
 
 ## Configuration file naming convention
 
-Configuration files follow the version number directly:
+Configuration files follow the version number directly, for example:
 
 ```
 Cadence-FerrisSweep_v1_5_0.vil
