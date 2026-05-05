@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Cadence</h1>
   <p>
-    <img src="https://img.shields.io/badge/version-1.12.0-brightgreen?style=flat-square" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.12.1-brightgreen?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/keyboard-Ferris%20Sweep-blue?style=flat-square" alt="Keyboard">
     <img src="https://img.shields.io/badge/firmware-Vial%20%2F%20QMK-orange?style=flat-square" alt="Firmware">
     <img src="https://img.shields.io/badge/base-Colemak--DH-purple?style=flat-square" alt="Base">
@@ -48,7 +48,7 @@ The Ferris Sweep has **34 keys** (30 alpha + 4 thumb) versus the Corne Choc's 36
 | L11 (WS Quick) + L12 (WS Full) | **L8 Tiling WM** (consolidated) | Single unified WM layer |
 | (no firmware control layer) | **L11 Firmware Control** | Bootloader + reboot via long pinky-top hold (500 ms) |
 | (separate International layer) | **L1 Overflow + International** via Hold Tab | Tab on the inner left thumb makes umlauts maximally accessible |
-| (separate Symbol layer) | **L12 Symbols** (NEW in v1.11) via Hold Bsp | Redesigned with right-thumb access asymmetry |
+| (separate Symbol layer) | **L2 Symbols** (NEW in v1.11 as L12, consolidated to L2 in v1.12.1) via Hold Bsp | Redesigned with right-thumb access asymmetry |
 
 Everything else — Colemak-DH base, Tap Dance HRM, frequency-driven symbol placement, bilateral layer access, the Code & CLI macros, the dead-key fallbacks — is identical or preserved.
 
@@ -67,7 +67,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 - **L1 Overflow + International — *Dead Key Hub*** — direct umlaut TDs (ä/ö/ü on A/O/U positions, hold = capital), plus all five US-International dead keys centralised: `` ` `` (P, L bilateral), `'` (D, H), `"` (T, N), `^` (.), `~` (,). Also: ß (`RAlt+S`), € (`RAlt+5`), Esc on Bsp-thumb. Q and X mirrored from Base for forward-compatibility with Sonata.
 - **L8 Tiling WM** — WS 1–10 tap=go / hold=move (numpad memory) · focus and window-move on right hand · Kill / Float / Fullscreen on thumbs
 - **L11 Firmware Control** — `QK_BOOT` and `QK_REBOOT` symmetrically placed, accessible only via deliberate long-hold (500 ms) pinky-top combination
-- **L12 Symbols (NEW in v1.11)** — redesigned symbol layer with right-thumb access asymmetry, sharing the design specification with Sonata v3.x
+- **L2 Symbols (NEW in v1.11 as L12, consolidated to L2 in v1.12.1)** — redesigned symbol layer with right-thumb access asymmetry, sharing the design specification with Sonata v3.x
 - **Mouse settings tuned** — QMK mouse acceleration / scroll behaviour configured in the `.vil`
 
 ---
@@ -78,7 +78,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 |---|---|---|---|
 | L0 | Base | — | Colemak-DH + Tap Dance HRM |
 | L1 | Overflow + International (*Dead Key Hub*) | Hold **Tab** | direct **ä/ö/ü** TDs (tap=lower, hold=capital) · all five dead keys (`` ` ``, `'`, `"`, `^`, `~`) · ß · € · Q/X overflow for Sonata-compat |
-| L2 | (Symbols, deprecated — emptied) | — | content cleared in v1.12; slot retained for firmware compatibility |
+| L2 | Symbols | Hold **Bsp** | redesigned symbol layout — see [`L4-Symbol-Layer.html`](docs/L4-Symbol-Layer.html). Slot reused in v1.12.1 (was the redesigned L12 slot in v1.11–v1.12.0) |
 | L3 | Numbers | Hold **Ent** | Numpad on left · operators · `0` on Spc-thumb · `-` on Tab-thumb |
 | L4 | Navigation | Hold **Spc** | Arrows · Home/End/PgUp/PgDn · Word-skip · Tab on Ent-thumb for repeated Tab · ScrollLock (Q) · Pause/Break (X) |
 | L5 | Mouse | **Spc tap + hold** | Pointer · Scroll · Buttons — tap then hold Spc to activate |
@@ -88,7 +88,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 | L9 | Brackets | Hold **X** *or* Hold **.** | `(` `)` `[` `]` `<` `>` `{` `}` — bilateral mirror · `App/Menu` on Spc/Bsp thumbs |
 | L10 | Clipboard | — | layer present, no trigger by user choice |
 | L11 | Firmware Control | **Long-hold (500 ms) Q** *or* Long-hold **'** | `QK_BOOT` (bootloader) · `QK_REBOOT` |
-| L12 | Symbols (NEW) | Hold **Bsp** | redesigned symbol layout — see [`L4-Symbol-Layer.html`](docs/L4-Symbol-Layer.html) |
+| L12 | (empty) | — | retained as empty firmware slot (was the Symbols layer in v1.11–v1.12.0; consolidated to L2 in v1.12.1) |
 
 ### Access key principle
 
@@ -104,7 +104,7 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **Tab as Tap-Dance carrier (TD(10)):** `tap = Tab, hold = International`. International is one of the most frequently used layers when writing German prose; placing it on a single thumb hold makes it maximally accessible. Tab as a character remains directly available (tap), and inside L4 Navigation and L7 Code & CLI it is also placed on the Ent-thumb for repeated Tab sequences (form navigation, shell auto-complete, code indentation).
 
-**Frequency + Strength (L12 Symbols):** Symbols ranked by daily usage frequency in German IT writing, then assigned to fingers in strength order, weighted by the position-quality penalty for the right-thumb-anchored hand. `=` and `-` on thumbs (most-frequent operators on strongest positions). Bracket pairs as Tap Dance on right top. Identical specification shared with Sonata v3.x.
+**Frequency + Strength (L2 Symbols):** Symbols ranked by daily usage frequency in German IT writing, then assigned to fingers in strength order, weighted by the position-quality penalty for the right-thumb-anchored hand. `=` and `-` on thumbs (most-frequent operators on strongest positions). Bracket pairs as Tap Dance on right top. Identical specification shared with Sonata v3.x.
 
 **F/U for Fn+Media (L6):** Middle fingers, top row. Strong fingers, low-frequency letters for safe hold-detection. F1–F12 in numpad-spatial layout on the left (matches L_NUM and L_WM positions for muscle-memory transfer); media controls on the right.
 
@@ -126,7 +126,7 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **App/Menu on L9 Brackets thumbs (v1.11.1):** Application Menu is reachable on the L9 Spc-thumb and Bsp-thumb, available from either hand while holding X or . to access Brackets. The Tab and Ent thumb positions remain unallocated on L9. Rationale: G and M hold-actions for App/Menu were inherited from Cadenza but never used in practice; freeing them simplifies the base layer to plain letters and reclaims two TD slots without any functional loss.
 
-**Dead Key Hub on L1 (v1.12):** L1 Overflow + International is treated as the centralised access point for *all five* US-International dead keys. ä/ö/ü retain their direct Tap Dances (TD48/49/50). The five raw dead-key glyphs sit on positions chosen for finger-symmetry and minimum interference with the Q/X overflow letters: `` ` `` on P and L (bilateral), `'` on D and H (bilateral, via TD34), `"` on T and N (bilateral, via TD33), `^` on the dot position, `~` on the comma position. The dead keys feed into vowels typed afterwards on L0 Base — L1 does not need to remain held during the second keystroke. This consolidation gives the user a single mental model: *if I want a diacritic, I go to L1*. Mixing dead-key access between L1 and L12 (which had been the case before v1.12 with `^` and `~` on L12) is eliminated.
+**Dead Key Hub on L1 (v1.12):** L1 Overflow + International is treated as the centralised access point for *all five* US-International dead keys. ä/ö/ü retain their direct Tap Dances (TD48/49/50). The five raw dead-key glyphs sit on positions chosen for finger-symmetry and minimum interference with the Q/X overflow letters: `` ` `` on P and L (bilateral), `'` on D and H (bilateral, via TD34), `"` on T and N (bilateral, via TD33), `^` on the dot position, `~` on the comma position. The dead keys feed into vowels typed afterwards on L0 Base — L1 does not need to remain held during the second keystroke. This consolidation gives the user a single mental model: *if I want a diacritic, I go to L1*. Mixing dead-key access between L1 and the Symbols layer (which had been the case before v1.12 with `^` and `~` on the Symbols layer) is eliminated.
 
 **Sonata-overflow letters on L1 (Q, X) — design rationale:** Sonata, the 28-key sister project, drops the inner column entirely on its base layer. To make muscle-memory transferable between Cadence and Sonata without retraining, Q (left pinky-top) and X (left ring-bottom) — both already on Cadence Base — are *also* placed on L1 (right home E-position and I-position respectively). On Cadence the L1 placement is redundant; on Sonata it will be the only access point for those letters. Typing Q or X via L1 on Cadence requires Hold-Tab → tap E or I, which produces the letter without releasing L1. The placement does not interfere with the Dead Key Hub additions because dead-key-then-vowel always involves an L1 release between the two keystrokes.
 
@@ -136,6 +136,8 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **L7 thumb quote cluster (v1.12):** The four L7 thumb positions previously held `KC_NO`. v1.12 fills three of them with `'`, `"`, `` ` `` for direct access during code and shell work, plus `Tab` on the right Ent-thumb (mirroring the L4 convention for repeated-Tab workflows like shell auto-complete). Mnemonic: *thumbs = quoting* during Code & CLI. Note that in US-International (Dead Keys) OS mode, these characters remain dead keys at the OS level — what makes them feel literal during code writing is that code identifiers usually start with consonants, which the OS treats as non-combining and emits as two literal characters. The C-position `` ` `` from earlier versions is retained as a redundant access point and as muscle-memory continuity.
 
+**Symbols layer slot consolidation L12 → L2 (v1.12.1):** v1.11 introduced the redesigned Symbols layer on L12, leaving the deprecated former Symbols layout in L2 as an empty placeholder. v1.12.0 cleared L2's residual content. v1.12.1 takes the natural next step and moves the Symbols content from L12 down into the now-empty L2 slot, so the active reachable layers occupy a contiguous L0–L9, L11 range with L10 (Clipboard, no trigger by user choice) and L12 (now empty) as the only non-active slots in firmware. From the user's perspective nothing changes: Hold Bsp still activates the Symbols layer with the identical layout. The change is implemented purely via the layer-tap encoding on the Bsp-thumb (`LT12(KC_BSPACE)` → `LT2(KC_BSPACE)`) and the array swap. This consolidation also prepares the layout for the planned Layer Indicator feature, where each non-base layer will surface a single-digit identifier on the inner-column B-position for diagnostic and UAT use.
+
 ---
 
 ## ✦ Installation
@@ -143,12 +145,12 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 ### Requirements
 
 - Ferris Sweep (any RP2040-compatible variant)
-- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.12.0 uses TD(57); the default Vial-Sweep build ships with 48)
+- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.12.1 uses TD(57); the default Vial-Sweep build ships with 48)
 - OS keyboard layout set to **US International** (required for dead keys and `RAlt` combinations)
 
 ### Step 1 — Flash Vial firmware
 
-Cadence v1.12.0 uses 51 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
+Cadence v1.12.1 uses 51 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
 
 ```bash
 # Clone Vial-QMK
@@ -171,7 +173,7 @@ Flash via RP2040 drag-and-drop:
 ### Step 2 — Load the layout
 
 1. Open Vial desktop app, connect keyboard via USB
-2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_12_0.vil`
+2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_12_1.vil`
 3. Confirm all layers loaded correctly
 
 ### Step 3 — Verify OS layout
@@ -202,7 +204,7 @@ Set your OS keyboard layout to **US International**. This is required for:
 | Document | Description |
 |---|---|
 | **[docs/index.html](docs/index.html)** | Full design documentation and layer reference — keyboard visualisations for all 13 layers, design decisions, design principles, complete Tap Dance and Macro tables, firmware notes |
-| **[docs/L4-Symbol-Layer.html](docs/L4-Symbol-Layer.html)** | Dedicated specification for the L12 Symbol layer — design rationale, position assignments, shared with Sonata v3.x |
+| **[docs/L4-Symbol-Layer.html](docs/L4-Symbol-Layer.html)** | Dedicated specification for the Symbol layer (L2 in v1.12.1+, was L12 in v1.11–v1.12.0) — design rationale, position assignments, shared with Sonata v3.x |
 | **[VERSIONING.md](VERSIONING.md)** | Semantic versioning policy and version history |
 | **[CHANGELOG.md](CHANGELOG.md)** | Detailed change log including the Cadenza heritage |
 | **[ROADMAP.md](ROADMAP.md)** | Planned milestones — patches, features, QMK migration |
@@ -219,7 +221,7 @@ Cadence follows [Semantic Versioning](https://semver.org/) — `vMAJOR.MINOR.PAT
 | **MINOR** | New layer, macro, or Tap Dance added |
 | **MAJOR** | Existing key behaviour changes — muscle memory impact |
 
-Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.12.0` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_12_0.vil`.
+Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.12.1` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_12_1.vil`.
 
 Full versioning policy and change log: [VERSIONING.md](VERSIONING.md)
 

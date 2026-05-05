@@ -2,6 +2,77 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.12.1] — 2026-05-05
+
+Layer slot housekeeping. The Symbols layer that was redesigned and placed
+on L12 in v1.11.0 is consolidated into the L2 slot, which has been an
+empty placeholder since v1.9.0. From the user's perspective nothing
+changes: Hold Bsp still activates the Symbols layer with identical
+content. The change is purely an internal renumbering — every other
+aspect of the layout, all Tap Dances, all macros, all settings remain
+untouched.
+
+### Changed
+
+**Symbols layer slot consolidated L12 → L2.** Three coordinated changes
+to the `.vil`:
+
+| Change | v1.12.0 | v1.12.1 |
+|---|---|---|
+| L0 Base Bsp-thumb keycode | `LT12(KC_BSPACE)` | `LT2(KC_BSPACE)` |
+| L2 array | empty (cleared in v1.12.0) | full Symbols content |
+| L12 array | full Symbols content | empty |
+
+The slot consolidation gives the layout a contiguous L0–L9 + L11 range
+of active reachable layers, with L10 (Clipboard, no trigger by user
+choice) and L12 (now empty) as the only non-active slots in firmware.
+
+### Verified
+
+The configuration was verified against v1.12.0 with `tools/vial-diff.py`:
+exactly 45 layout-cell changes (1 reassigned on L0, 22 filled on L2, 22
+cleared on L12). Tap Dance, Macro, Combo, Key Override, Settings, and
+Encoder sections are bit-identical to v1.12.0. No reference to MO(12) or
+LT12 remains anywhere in the configuration.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 51 | 64 |
+| Macro | 19 | 32 |
+| Layers with content | 12 in firmware (11 reachable) | 16 |
+| Combos | 0 | 32 |
+| Key Overrides | 0 | 32 |
+
+Counts are unchanged from v1.12.0; only the layer slot indices shifted.
+
+### Classification
+
+PATCH per Cadence's versioning policy: no behavioural change for the
+user, no new functionality, no removed functionality. The change is a
+pure refactoring of the firmware layer numbering. No muscle memory from
+v1.12.0 is invalidated; the Symbols layer is reached identically via
+Hold Bsp.
+
+### Configuration file
+
+`Cadence-FerrisSweep_v1_12_1.vil` — preserves the 1:1 alignment between
+published version number and configuration file name.
+
+### Motivation
+
+Beyond the cosmetic improvement of consolidating layer numbering, this
+change prepares the layout for the planned Layer Indicator feature. The
+indicator strategy assigns a single-digit glyph to the inner-column
+B-position of each non-base layer, allowing the user to verify which
+layer is active by tapping B in the editor — a useful diagnostic for
+both daily-driver troubleshooting and UAT runs. With Symbols on L2 the
+layer numbering becomes a contiguous run that single-digit indicators
+1–9 can cover cleanly.
+
+---
+
 ## [1.12.0] — 2026-05-05
 
 Layout completeness release. Three orthogonal additions: a Dead Key Hub on
