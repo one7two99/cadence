@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Cadence</h1>
   <p>
-    <img src="https://img.shields.io/badge/version-1.12.1-brightgreen?style=flat-square" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.12.2-brightgreen?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/keyboard-Ferris%20Sweep-blue?style=flat-square" alt="Keyboard">
     <img src="https://img.shields.io/badge/firmware-Vial%20%2F%20QMK-orange?style=flat-square" alt="Firmware">
     <img src="https://img.shields.io/badge/base-Colemak--DH-purple?style=flat-square" alt="Base">
@@ -79,9 +79,9 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 | L0 | Base | — | Colemak-DH + Tap Dance HRM |
 | L1 | Overflow + International (*Dead Key Hub*) | Hold **Tab** | direct **ä/ö/ü** TDs (tap=lower, hold=capital) · all five dead keys (`` ` ``, `'`, `"`, `^`, `~`) · ß · € · Q/X overflow for Sonata-compat |
 | L2 | Symbols | Hold **Bsp** | redesigned symbol layout — see [`L4-Symbol-Layer.html`](docs/L4-Symbol-Layer.html). Slot reused in v1.12.1 (was the redesigned L12 slot in v1.11–v1.12.0) |
-| L3 | Numbers | Hold **Ent** | Numpad on left · operators · `0` on Spc-thumb · `-` on Tab-thumb |
+| L3 | Numbers | Hold **Ent** | Numpad on left (1–9, 0 on Spc-thumb) · ASCII operators on right (`+ - * = , . /`) · brackets `(` Q · `)` Z · Tab on Tab-thumb (Excel cell navigation) |
 | L4 | Navigation | Hold **Spc** | Arrows · Home/End/PgUp/PgDn · Word-skip · Tab on Ent-thumb for repeated Tab · ScrollLock (Q) · Pause/Break (X) |
-| L5 | Mouse | **Spc tap + hold** | Pointer · Scroll · Buttons — tap then hold Spc to activate |
+| L5 | Mouse | **Spc tap + hold** | Pointer (NEIO) · Scroll (right bot) · BTN1/BTN2 on right thumbs · BTN3 on U · `DF(5)` on F (persistent mode) · `DF(0)` on Spc-thumb (exit persistent) |
 | L6 | Function Keys + Media | Hold **F** *or* Hold **U** | F1–F12 (left, numpad-spatial) · media controls (right hand) · **PrintScreen** on left Spc-thumb |
 | L7 | Code & CLI | Hold **W** *or* Hold **Y** | Shell operators · path navigation TD · `\|` (tap) / ` \| ` (hold) · `` ` `` · `~` · `\` · `'` / `"` / `` ` `` on thumbs (literal) · Tab on Ent-thumb |
 | L8 | Tiling WM | Hold **Z** *or* Hold **/** | WS 1–10 (numpad memory) · focus · window move · Kill / Float / Fullscreen |
@@ -138,6 +138,10 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **Symbols layer slot consolidation L12 → L2 (v1.12.1):** v1.11 introduced the redesigned Symbols layer on L12, leaving the deprecated former Symbols layout in L2 as an empty placeholder. v1.12.0 cleared L2's residual content. v1.12.1 takes the natural next step and moves the Symbols content from L12 down into the now-empty L2 slot, so the active reachable layers occupy a contiguous L0–L9, L11 range with L10 (Clipboard, no trigger by user choice) and L12 (now empty) as the only non-active slots in firmware. From the user's perspective nothing changes: Hold Bsp still activates the Symbols layer with the identical layout. The change is implemented purely via the layer-tap encoding on the Bsp-thumb (`LT12(KC_BSPACE)` → `LT2(KC_BSPACE)`) and the array swap. This consolidation also prepares the layout for the planned Layer Indicator feature, where each non-base layer will surface a single-digit identifier on the inner-column B-position for diagnostic and UAT use.
 
+**L5 Mouse Mode — momentary plus persistent (v1.12.2):** L5 Mouse is reachable two ways. The momentary path is unchanged: Spc tap+hold activates L5 for as long as Spc is held, releasing returns to Base. The new persistent path uses `DF()` (set default layer) to make L5 the base for sustained mouse work without keeping a thumb anchored. Workflow: Spc tap+hold to enter L5 momentary → tap **F** which fires `DF(5)` → release Spc → L5 remains active because it is now the default layer → both hands free, Tab-thumb works as a third BTN3 surface, U remains the primary BTN3 click → tap Spc which fires `DF(0)` to return to Base. The mechanism uses `DF()` rather than a Tap-Dance double-tap on Spc (which would collide with double-spaces in normal text) and rather than `TG()` toggle (whose direction is implicit and confusing) — `DF()` makes the intent explicit and the Spc thumb works symmetrically as both entry and exit. `DF()` does not persist across reboots, so a fresh power-cycle always returns to Base regardless of mode at shutdown. Mouse Button 3 is reachable on three surfaces: U (primary, available in both modes), left Tab-thumb (only useful in persistent mode where the left thumb is free), and as drag-friendly via Hold-U for click-and-hold operations.
+
+**L3 Numbers — calculator-friendly redesign (v1.12.2):** Three coordinated changes turn L3 from a strict numpad replica into a self-contained calculator workflow. First, the numpad-namespace operators (`KC_KP_PLUS`, `KC_KP_MINUS`, `KC_KP_ASTERISK`, `KC_KP_EQUAL`, `KC_KP_COMMA`, `KC_KP_DOT`, `KC_KP_SLASH`) are replaced by their plain ASCII counterparts (`+`, `-`, `*`, `=`, `,`, `.`, `/`). This removes a real-world friction point: numpad keycodes require a Num-Lock state which is unreliable across laptop hardware, macOS does not have a Num-Lock concept, `KC_KP_COMMA` produces locale-dependent output (decimal separator on German systems, thousands separator on others) when crossing app boundaries. ASCII operators are universally compatible. Second, round brackets are added on Q and Z (left pinky vertical pair) — `(` on Q, `)` on Z — so calculations like `(2+3)*4` complete on L3 without escaping to L9 Brackets. Third, Tab is placed on the Tab-thumb (was `-`) — minus is now reachable on U, and Tab-thumb regains its mnemonic identity for fast cell navigation in spreadsheets while staying inside the Numbers layer.
+
 ---
 
 ## ✦ Installation
@@ -145,12 +149,12 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 ### Requirements
 
 - Ferris Sweep (any RP2040-compatible variant)
-- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.12.1 uses TD(57); the default Vial-Sweep build ships with 48)
+- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.12.2 uses TD(57); the default Vial-Sweep build ships with 48)
 - OS keyboard layout set to **US International** (required for dead keys and `RAlt` combinations)
 
 ### Step 1 — Flash Vial firmware
 
-Cadence v1.12.1 uses 51 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
+Cadence v1.12.2 uses 51 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
 
 ```bash
 # Clone Vial-QMK
@@ -173,7 +177,7 @@ Flash via RP2040 drag-and-drop:
 ### Step 2 — Load the layout
 
 1. Open Vial desktop app, connect keyboard via USB
-2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_12_1.vil`
+2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_12_2.vil`
 3. Confirm all layers loaded correctly
 
 ### Step 3 — Verify OS layout
@@ -221,7 +225,7 @@ Cadence follows [Semantic Versioning](https://semver.org/) — `vMAJOR.MINOR.PAT
 | **MINOR** | New layer, macro, or Tap Dance added |
 | **MAJOR** | Existing key behaviour changes — muscle memory impact |
 
-Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.12.1` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_12_1.vil`.
+Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.12.2` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_12_2.vil`.
 
 Full versioning policy and change log: [VERSIONING.md](VERSIONING.md)
 
