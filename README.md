@@ -1,11 +1,11 @@
 <div align="center">
   <h1>Cadence</h1>
   <p>
-    <img src="https://img.shields.io/badge/version-1.11.1-brightgreen?style=flat-square" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.12.0-brightgreen?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/keyboard-Ferris%20Sweep-blue?style=flat-square" alt="Keyboard">
     <img src="https://img.shields.io/badge/firmware-Vial%20%2F%20QMK-orange?style=flat-square" alt="Firmware">
     <img src="https://img.shields.io/badge/base-Colemak--DH-purple?style=flat-square" alt="Base">
-    <img src="https://img.shields.io/badge/tap%20dances-52%20%2F%2064-yellow?style=flat-square" alt="Tap Dances">
+    <img src="https://img.shields.io/badge/tap%20dances-51%20%2F%2064-yellow?style=flat-square" alt="Tap Dances">
     <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License">
   </p>
 </div>
@@ -64,7 +64,7 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 - **Tab Tap-Hold (TD(10))** — `tap = Tab`, `hold = International` — Tab remains a normal character; umlauts via thumb hold
 - **Bilateral layer access** — Fn+Media (F+U), Code & CLI (W+Y), Tiling WM (Z+/), Brackets (X+.) — same finger on both hands, same row
 - **L7 Code & CLI** — `||` · `2>&1` · `&&` · `|` (tap) / ` | ` (hold) · `/` / `~/` / `../` · `$()` / `${}` · `!=` / `==` · `=>` / `->` · `$?` · `` ` `` · `~` · `\`
-- **L1 Overflow + International** — direct umlaut TDs (ä/ö/ü on A/O/U positions, hold = capital), `"` dead key fallback, ß (`RAlt+S`), € (`RAlt+5`), `'` literal
+- **L1 Overflow + International — *Dead Key Hub*** — direct umlaut TDs (ä/ö/ü on A/O/U positions, hold = capital), plus all five US-International dead keys centralised: `` ` `` (P, L bilateral), `'` (D, H), `"` (T, N), `^` (.), `~` (,). Also: ß (`RAlt+S`), € (`RAlt+5`), Esc on Bsp-thumb. Q and X mirrored from Base for forward-compatibility with Sonata.
 - **L8 Tiling WM** — WS 1–10 tap=go / hold=move (numpad memory) · focus and window-move on right hand · Kill / Float / Fullscreen on thumbs
 - **L11 Firmware Control** — `QK_BOOT` and `QK_REBOOT` symmetrically placed, accessible only via deliberate long-hold (500 ms) pinky-top combination
 - **L12 Symbols (NEW in v1.11)** — redesigned symbol layer with right-thumb access asymmetry, sharing the design specification with Sonata v3.x
@@ -77,13 +77,13 @@ The Sweep adaptation is **not a downgrade**: it removes redundant features (RGB 
 | # | Layer | Access | Purpose |
 |---|---|---|---|
 | L0 | Base | — | Colemak-DH + Tap Dance HRM |
-| L1 | Overflow + International | Hold **Tab** | direct **ä/ö/ü** TDs (tap=lower, hold=capital) · `"` dead key · ß · € · `'` |
-| L2 | (Symbols, deprecated) | — | replaced by L12 — kept in firmware for cleanup later |
+| L1 | Overflow + International (*Dead Key Hub*) | Hold **Tab** | direct **ä/ö/ü** TDs (tap=lower, hold=capital) · all five dead keys (`` ` ``, `'`, `"`, `^`, `~`) · ß · € · Q/X overflow for Sonata-compat |
+| L2 | (Symbols, deprecated — emptied) | — | content cleared in v1.12; slot retained for firmware compatibility |
 | L3 | Numbers | Hold **Ent** | Numpad on left · operators · `0` on Spc-thumb · `-` on Tab-thumb |
-| L4 | Navigation | Hold **Spc** | Arrows · Home/End/PgUp/PgDn · Word-skip · Tab on Ent-thumb for repeated Tab |
+| L4 | Navigation | Hold **Spc** | Arrows · Home/End/PgUp/PgDn · Word-skip · Tab on Ent-thumb for repeated Tab · ScrollLock (Q) · Pause/Break (X) |
 | L5 | Mouse | **Spc tap + hold** | Pointer · Scroll · Buttons — tap then hold Spc to activate |
-| L6 | Function Keys + Media | Hold **F** *or* Hold **U** | F1–F12 (left, numpad-spatial) · media controls (right hand) |
-| L7 | Code & CLI | Hold **W** *or* Hold **Y** | Shell operators · path navigation TD · `\|` (tap) / ` \| ` (hold) · `` ` `` · `~` · `\` · Tab/Esc on thumbs |
+| L6 | Function Keys + Media | Hold **F** *or* Hold **U** | F1–F12 (left, numpad-spatial) · media controls (right hand) · **PrintScreen** on left Spc-thumb |
+| L7 | Code & CLI | Hold **W** *or* Hold **Y** | Shell operators · path navigation TD · `\|` (tap) / ` \| ` (hold) · `` ` `` · `~` · `\` · `'` / `"` / `` ` `` on thumbs (literal) · Tab on Ent-thumb |
 | L8 | Tiling WM | Hold **Z** *or* Hold **/** | WS 1–10 (numpad memory) · focus · window move · Kill / Float / Fullscreen |
 | L9 | Brackets | Hold **X** *or* Hold **.** | `(` `)` `[` `]` `<` `>` `{` `}` — bilateral mirror · `App/Menu` on Spc/Bsp thumbs |
 | L10 | Clipboard | — | layer present, no trigger by user choice |
@@ -120,11 +120,21 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 
 **Direct umlaut TDs on L1 (TD48/49/50):** Tap = `ä` / `ü` / `ö`, hold = `Ä` / `Ü` / `Ö`. Mnemonically placed on the A / U / O positions. The `"` dead key (TD33) remains available as a fallback for typing systems where the AltGr-shortcut is not desired (e.g. text fields that consume AltGr modifiers). The hold is implemented as a macro (M16/M17/M18) because Tap Dance hold slots accept only a single Vial keycode, while a capital umlaut requires `RShift+RAlt+letter`.
 
-**Backtick reachability:** Backtick is reachable on L12 (right ring top via TD) and within L7 Code & CLI. Sufficient access for Markdown code-fences, JS template literals, and shell command substitution.
+**Backtick reachability:** Backtick is reachable on L1 (P and L positions, bilateral — as grave-accent dead key feeding into vowels), on L7 Code & CLI (C-position and right Bsp-thumb — for literal use in shell, Markdown, JS template literals), and on the L7 thumb cluster as part of the `'` / `"` / `` ` `` quote group introduced in v1.12. Five access points across two layers — single-point-of-failure eliminated.
 
 **No inner column for layer content:** G and M require a lateral inward index stretch — the same problem Colemak-DH solves for B and H. Cadence preserves Cadenza's extension: G/M only carry their letters, never layer content. The Application Menu key (formerly on G/M hold in v1.11.0 and earlier) was never used in daily work and was relocated to L9 Brackets in v1.11.1 — see Design Decisions below.
 
 **App/Menu on L9 Brackets thumbs (v1.11.1):** Application Menu is reachable on the L9 Spc-thumb and Bsp-thumb, available from either hand while holding X or . to access Brackets. The Tab and Ent thumb positions remain unallocated on L9. Rationale: G and M hold-actions for App/Menu were inherited from Cadenza but never used in practice; freeing them simplifies the base layer to plain letters and reclaims two TD slots without any functional loss.
+
+**Dead Key Hub on L1 (v1.12):** L1 Overflow + International is treated as the centralised access point for *all five* US-International dead keys. ä/ö/ü retain their direct Tap Dances (TD48/49/50). The five raw dead-key glyphs sit on positions chosen for finger-symmetry and minimum interference with the Q/X overflow letters: `` ` `` on P and L (bilateral), `'` on D and H (bilateral, via TD34), `"` on T and N (bilateral, via TD33), `^` on the dot position, `~` on the comma position. The dead keys feed into vowels typed afterwards on L0 Base — L1 does not need to remain held during the second keystroke. This consolidation gives the user a single mental model: *if I want a diacritic, I go to L1*. Mixing dead-key access between L1 and L12 (which had been the case before v1.12 with `^` and `~` on L12) is eliminated.
+
+**Sonata-overflow letters on L1 (Q, X) — design rationale:** Sonata, the 28-key sister project, drops the inner column entirely on its base layer. To make muscle-memory transferable between Cadence and Sonata without retraining, Q (left pinky-top) and X (left ring-bottom) — both already on Cadence Base — are *also* placed on L1 (right home E-position and I-position respectively). On Cadence the L1 placement is redundant; on Sonata it will be the only access point for those letters. Typing Q or X via L1 on Cadence requires Hold-Tab → tap E or I, which produces the letter without releasing L1. The placement does not interfere with the Dead Key Hub additions because dead-key-then-vowel always involves an L1 release between the two keystrokes.
+
+**ScrollLock and Pause/Break on L4 (v1.12):** Two completeness-driven additions on the Navigation top-row left side. ScrollLock on Q (left pinky-top), Pause/Break on X (left ring-bottom) — Pause and Break are the same physical PC key (`KC_PAUSE` produces Pause; `Ctrl+KC_PAUSE` produces Break interrupt). Both are rarely used in daily driver work but belong in a complete keyboard layout. Q and X were chosen because they are otherwise unused on L4 and stay out of the way of frequently-used Navigation keys; X also visually parallels P (CapsLock) on the same row.
+
+**PrintScreen on L6 left Spc-thumb (v1.12):** PrintScreen is conceptually a media/system-output function (capture screen → output buffer), grouping it with Mute, Volume, and Brightness on L6 Fn+Media. The left Spc-thumb position is reachable from both bilateral access modes (Hold F or Hold U) without finger conflict, since the left thumb is unanchored in both cases. Single prominent access point matches the user's frequent-use pattern.
+
+**L7 thumb quote cluster (v1.12):** The four L7 thumb positions previously held `KC_NO`. v1.12 fills three of them with `'`, `"`, `` ` `` for direct access during code and shell work, plus `Tab` on the right Ent-thumb (mirroring the L4 convention for repeated-Tab workflows like shell auto-complete). Mnemonic: *thumbs = quoting* during Code & CLI. Note that in US-International (Dead Keys) OS mode, these characters remain dead keys at the OS level — what makes them feel literal during code writing is that code identifiers usually start with consonants, which the OS treats as non-combining and emits as two literal characters. The C-position `` ` `` from earlier versions is retained as a redundant access point and as muscle-memory continuity.
 
 ---
 
@@ -133,12 +143,12 @@ The remaining bilateral letter pairs use **finger-symmetric** triggers — same 
 ### Requirements
 
 - Ferris Sweep (any RP2040-compatible variant)
-- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.11.1 uses TD(57); the default Vial-Sweep build ships with 48)
+- Vial-compatible firmware **with `TAP_DANCE_ENTRIES = 64`** (Cadence v1.12.0 uses TD(57); the default Vial-Sweep build ships with 48)
 - OS keyboard layout set to **US International** (required for dead keys and `RAlt` combinations)
 
 ### Step 1 — Flash Vial firmware
 
-Cadence v1.11.1 uses 52 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
+Cadence v1.12.0 uses 51 Tap Dance slots and requires a firmware build with at least 58 entries. The default Vial-Sweep firmware ships with 48 slots, so a custom build with `TAP_DANCE_ENTRIES = 64` is required:
 
 ```bash
 # Clone Vial-QMK
@@ -161,7 +171,7 @@ Flash via RP2040 drag-and-drop:
 ### Step 2 — Load the layout
 
 1. Open Vial desktop app, connect keyboard via USB
-2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_11_1.vil`
+2. **File → Load saved layout** → select `configuration/Cadence-FerrisSweep_v1_12_0.vil`
 3. Confirm all layers loaded correctly
 
 ### Step 3 — Verify OS layout
@@ -179,7 +189,7 @@ Set your OS keyboard layout to **US International**. This is required for:
 
 | Resource | Used | Available | Free |
 |---|---|---|---|
-| Tap Dance slots | 52 | 64 | 12 |
+| Tap Dance slots | 51 | 64 | 13 |
 | Macro slots | 19 | 32 | 13 |
 | Key Overrides | 0 | 32 | 32 |
 | Combos | 0 | 32 | 32 |
@@ -209,7 +219,7 @@ Cadence follows [Semantic Versioning](https://semver.org/) — `vMAJOR.MINOR.PAT
 | **MINOR** | New layer, macro, or Tap Dance added |
 | **MAJOR** | Existing key behaviour changes — muscle memory impact |
 
-Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.11.1` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_11_1.vil`.
+Cadence's version numbers track the underlying Ferris Sweep configuration version 1:1 — `v1.12.0` of the layout corresponds to Vial config `Cadence-FerrisSweep_v1_12_0.vil`.
 
 Full versioning policy and change log: [VERSIONING.md](VERSIONING.md)
 

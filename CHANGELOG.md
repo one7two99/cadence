@@ -2,6 +2,132 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.12.0] — 2026-05-05
+
+Layout completeness release. Three orthogonal additions: a Dead Key Hub on
+L1 collecting all five US-International dead keys in one place, ScrollLock
+and Pause/Break on L4 Navigation for keyboard completeness, and PrintScreen
+on L6 Fn+Media for daily-driver use. L7 Code & CLI gains a literal-quote
+thumb cluster (`'`, `"`, `` ` ``). Housekeeping: TD(51) deleted, deprecated
+L2 layer cleared.
+
+### Added
+
+**L1 Overflow + International — Dead Key Hub**
+
+L1 is consolidated as the single mental model for diacritic input. The
+five US-International dead keys are now all reachable from L1:
+
+| Position | Keycode | Dead key for |
+|---|---|---|
+| L1 P-pos (left index outer top) | `KC_GRAVE` | grave: à è ì ò ù |
+| L1 L-pos (right index outer top) | `KC_GRAVE` | grave (bilateral mirror) |
+| L1 ,-pos (right middle bot) | `LSFT(KC_GRAVE)` | tilde: ã ñ õ |
+| L1 .-pos (right ring bot) | `LSFT(KC_6)` | circumflex: â ê î ô û |
+
+The `'` (TD34, D + H bilateral) and `"` (TD33, T + N bilateral) dead keys
+were already present from v1.5.0 — combined with the four new positions
+above, the Dead Key Hub now covers the complete US-International set.
+Dead-key-then-vowel always uses an L1 release between the two keystrokes
+(L1 dead key tap → release Tab → L0 vowel tap), so the Q/X Sonata-overflow
+slots on L1 right home (E and I positions) do not interfere.
+
+**L4 Navigation — ScrollLock and Pause/Break**
+
+| Position | Keycode | Function |
+|---|---|---|
+| L4 Q-pos (left pinky top) | `KC_SCRL` | ScrollLock |
+| L4 X-pos (left ring bot) | `KC_PAUSE` | Pause; `Ctrl+KC_PAUSE` produces Break |
+
+PC keyboards group PrintScreen / ScrollLock / Pause/Break together, but
+Cadence v1.12 separates them by usage frequency: PrintScreen lives on L6
+Fn+Media (frequent), ScrollLock and Pause on L4 Navigation (rare, but
+required for layout completeness). `Pause` and `Break` share a single
+physical key on a PC keyboard and the same QMK keycode (`KC_PAUSE` /
+`KC_BRK` / `KC_BREAK` are aliases).
+
+**L6 Fn+Media — PrintScreen on left Spc-thumb**
+
+| Position | Keycode | Function |
+|---|---|---|
+| L6 Spc-thumb (left) | `KC_PSCR` | PrintScreen |
+
+PrintScreen is grouped with Mute / Volume / Brightness on L6 because it
+captures screen output (a system-output function). The left Spc-thumb is
+reachable from both L6 access modes (Hold F or Hold U) without
+finger-conflict.
+
+**L7 Code & CLI — literal quote thumb cluster**
+
+| Position | Keycode | Function |
+|---|---|---|
+| L7 Spc-thumb (left) | `KC_QUOTE` | `'` |
+| L7 Tab-thumb (left) | `LSFT(KC_QUOTE)` | `"` |
+| L7 Bsp-thumb (right) | `KC_GRAVE` | `` ` `` (also retained on C) |
+| L7 Ent-thumb (right) | `KC_TAB` | Tab — for shell auto-complete sequences |
+
+Mnemonic: *thumbs = quoting* while in Code & CLI. The C-position `` ` ``
+from earlier versions is retained as redundancy and muscle-memory
+continuity. Note: in US-International (Dead Keys) OS mode these
+characters remain dead keys at the OS level — they feel literal in code
+writing because identifiers usually start with consonants, which the
+OS emits as two non-combining literals.
+
+### Changed
+
+**Documentation — Backtick reachability paragraph corrected.** Previous
+README claimed backtick was reachable on L12 right ring top; this never
+matched the `.vil` (which has the `<` / `>` Tap Dance there). The
+paragraph now states the actual reachability: L1 (P, L bilateral), L7
+(C-position and right Bsp-thumb), and L7 thumb cluster from v1.12.
+
+### Removed
+
+**TD(51) cleared.** TD(51) was defined as `tap = '`, `hold = "` but was
+only placed on the deprecated L2 layer. Redundant with the existing
+TD(33) (`"` dead key) and TD(34) (`'` dead key) on L1, which already
+provide bilateral access. Cleared to all `KC_NO`.
+
+**L2 deprecated layer — content cleared.** L2 (former Symbols layer
+from v1.5–v1.9) was unreachable since v1.11.0. The 23 occupied
+positions are cleared to `KC_NO`. The slot remains in the firmware
+keymap (Vial format requires all 16 layer slots) but carries no content.
+
+### Documented
+
+**L1 Q/X Sonata-overflow rationale.** Q on L1 right home E-position and X
+on L1 right home I-position are intentional, not a bug from earlier
+iterations. Sonata (28-key sister project) drops the inner column on its
+base layer; placing Q and X on L1 in Cadence preserves Sonata muscle
+memory for users who later migrate hardware. The Cadence base layer
+keeps Q and X in their natural Colemak-DH positions, so the L1 placement
+is redundant on Cadence and primary on Sonata.
+
+### Resource Budget
+
+| Resource | Used | Available |
+|---|---|---|
+| Tap Dance | 51 | 64 |
+| Macro | 19 | 32 |
+| Layers | 12 in firmware (11 reachable) | 16 |
+| Combos | 0 | 32 |
+| Key Overrides | 0 | 32 |
+
+### Classification
+
+MINOR per Cadence's versioning policy: new keys assigned to previously
+empty positions; no change to the behaviour of any actively-used key. The
+L7 right Bsp-thumb gaining `KC_GRAVE` does not conflict with the L0 Base
+LT12 trigger on the same physical key — the Bsp-thumb on L0 is the L12
+trigger, on L7 it is `KC_GRAVE`; layer-specific behaviour is independent.
+
+### Configuration file
+
+`Cadence-FerrisSweep_v1_12_0.vil` — preserves the 1:1 alignment between
+published version number and configuration file name.
+
+---
+
 ## [1.11.1] — 2026-05-03
 
 App/Menu relocation. No layout structure changes, no muscle memory impact
