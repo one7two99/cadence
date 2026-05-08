@@ -1,6 +1,8 @@
-# Cadence
+<div align="center">
+  <img src="assets/cadence-logo.svg" alt="Cadence" width="320">
+</div>
 
-**A 32-key Colemak-DH layout for the Ferris Sweep, designed around per-key Tap Dance Home Row Mods, frequency-ranked symbols, and a Dead Key Hub for German + US-International completeness.**
+**A 34-key Colemak-DH layout for the Ferris Sweep, designed around per-key Tap Dance Home Row Mods, frequency-ranked symbols, and a Dead Key Hub for German + US-International completeness.**
 
 Cadence is a daily-driver keyboard layout for [Ferris Sweep](https://github.com/davidphilipbarr/Sweep) hardware running [Vial](https://get.vial.today/) firmware. It is the descendant of [Cadenza](https://github.com/one7two99/cadenza) (36-key Corne) — adapted to the Sweep's four-thumb form by encoding layer access as Tap Dance triggers on the alpha keys rather than dedicated thumb keys.
 
@@ -100,7 +102,7 @@ Combos and Key Overrides are unallocated — reserve capacity for future iterati
 
 Cadence is one of four related layouts maintained by the same author:
 
-- **Cadence** (32 keys, Ferris Sweep) — this layout, the daily driver
+- **Cadence** (34 keys, Ferris Sweep) — this layout, the daily driver
 - **Cadenza** (36 keys, Corne) — the parent layout, frozen at v1.0
 - **Sonata** (28 keys, no inner column) — sister project, shares the L2 Symbols specification
 - **Coda** (22 keys, three columns per hand) — minimal concept
