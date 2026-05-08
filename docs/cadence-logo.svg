@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-labelledby="cadence-title cadence-desc">
+  <title id="cadence-title">Cadence</title>
+  <desc id="cadence-desc">A 32-key Colemak-DH layout for the Ferris Sweep. The mark shows the Sweep keyboard geometry as a dot grid: three rows of five keys per hand plus two thumb keys offset inward, with amber accents on the T and N positions marking the Shift home-row mods.</desc>
+
+  <style>
+    .ink   { fill: #2A2520; }
+    .amber { fill: #EF9F27; }
+    .wm    { font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 28px; font-weight: 500; fill: #2A2520; letter-spacing: -0.01em; }
+    .meta  { font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 10px; fill: #4A4540; letter-spacing: 0.04em; }
+    @media (prefers-color-scheme: dark) {
+      .ink  { fill: #F0EDE5; }
+      .wm   { fill: #F0EDE5; }
+      .meta { fill: #B5AEA0; }
+    }
+  </style>
+
+  <!-- The keyboard mark: 30 alpha keys + 4 thumb keys.
+       Layout uses the v1.12.3 Ferris Sweep geometry —
+       Spc under V, Tab right of Spc, 1-keywidth gap, Ent left of Bsp, Bsp under K.
+       Amber accents on T (left index home, Shift HRM) and N (right index home, Shift HRM). -->
+  <g transform="translate(20 22)">
+    <!-- Left half alphas -->
+    <circle cx="0"  cy="0"  r="2.5" class="ink"/>
+    <circle cx="8"  cy="0"  r="2.5" class="ink"/>
+    <circle cx="16" cy="0"  r="2.5" class="ink"/>
+    <circle cx="24" cy="0"  r="2.5" class="ink"/>
+    <circle cx="32" cy="0"  r="2.5" class="ink"/>
+
+    <circle cx="0"  cy="8"  r="2.5" class="ink"/>
+    <circle cx="8"  cy="8"  r="2.5" class="ink"/>
+    <circle cx="16" cy="8"  r="2.5" class="ink"/>
+    <circle cx="24" cy="8"  r="3.5" class="amber"/>
+    <circle cx="32" cy="8"  r="2.5" class="ink"/>
+
+    <circle cx="0"  cy="16" r="2.5" class="ink"/>
+    <circle cx="8"  cy="16" r="2.5" class="ink"/>
+    <circle cx="16" cy="16" r="2.5" class="ink"/>
+    <circle cx="24" cy="16" r="2.5" class="ink"/>
+    <circle cx="32" cy="16" r="2.5" class="ink"/>
+
+    <!-- Left thumbs: Spc under V (col 5), Tab one keywidth right -->
+    <circle cx="32" cy="26" r="2.5" class="ink"/>
+    <circle cx="40" cy="26" r="2.5" class="ink"/>
+
+    <!-- Right half alphas (3-keywidth alpha gap so K column aligns under Bsp) -->
+    <circle cx="64" cy="0"  r="2.5" class="ink"/>
+    <circle cx="72" cy="0"  r="2.5" class="ink"/>
+    <circle cx="80" cy="0"  r="2.5" class="ink"/>
+    <circle cx="88" cy="0"  r="2.5" class="ink"/>
+    <circle cx="96" cy="0"  r="2.5" class="ink"/>
+
+    <circle cx="64" cy="8"  r="2.5" class="ink"/>
+    <circle cx="72" cy="8"  r="3.5" class="amber"/>
+    <circle cx="80" cy="8"  r="2.5" class="ink"/>
+    <circle cx="88" cy="8"  r="2.5" class="ink"/>
+    <circle cx="96" cy="8"  r="2.5" class="ink"/>
+
+    <circle cx="64" cy="16" r="2.5" class="ink"/>
+    <circle cx="72" cy="16" r="2.5" class="ink"/>
+    <circle cx="80" cy="16" r="2.5" class="ink"/>
+    <circle cx="88" cy="16" r="2.5" class="ink"/>
+    <circle cx="96" cy="16" r="2.5" class="ink"/>
+
+    <!-- Right thumbs: Ent left of Bsp, Bsp under K -->
+    <circle cx="56" cy="26" r="2.5" class="ink"/>
+    <circle cx="64" cy="26" r="2.5" class="ink"/>
+  </g>
+
+  <!-- Wordmark and meta line -->
+  <text x="140" y="42" class="wm">Cadence</text>
+  <text x="140" y="60" class="meta">Ferris Sweep · Colemak-DH</text>
+</svg>
