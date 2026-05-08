@@ -10,7 +10,7 @@ The full design specification with per-layer rationale lives in [`docs/index.htm
 
 ## Quick start
 
-1. **Build the Vial-QMK firmware** with `TAP_DANCE_ENTRIES = 64`. The default Vial-Sweep build ships with 48; Cadence uses 51 of 64 slots so a custom build is required.
+1. **Build the Vial-QMK firmware** with `TAP_DANCE_ENTRIES = 64`. The default Vial-Sweep build ships with 48; Cadence uses 52 of 64 slots so a custom build is required.
 
    In `keyboards/ferris/sweep/keymaps/vial/config.h`:
    ```c
@@ -19,7 +19,7 @@ The full design specification with per-layer rationale lives in [`docs/index.htm
 
 2. **Flash the firmware** to your Sweep via QMK Toolbox or `qmk flash`.
 
-3. **Load the layout** from [`configuration/Cadence-FerrisSweep_v1_12_2.vil`](configuration/) into Vial.
+3. **Load the layout** from [`configuration/Cadence-FerrisSweep_v1_12_3.vil`](configuration/) into Vial.
 
 4. **Set your OS keyboard layout to US International** (with dead keys). Cadence's German and other accent support relies on US-International dead-key behaviour at the OS level.
 
@@ -77,8 +77,8 @@ A more thorough comparison lives in [`docs/index.html`](docs/index.html#vs-miryo
 
 | Resource | Used | Available |
 |---|---|---|
-| Tap Dance | 51 | 64 |
-| Macros | 19 | 32 |
+| Tap Dance | 52 | 64 |
+| Macros | 20 | 32 |
 | Layers (firmware) | 12 | 16 |
 | Layers (reachable) | 11 | — |
 | Combos | 0 | 32 |

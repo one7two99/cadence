@@ -2,6 +2,123 @@
 
 All notable changes to Cadence are documented here.
 
+## [1.12.3] — 2026-05-08
+
+Three small but coordinated changes around backtick handling and right-home
+parenthesis access. **L7 Code & CLI** gets a new Tap Dance on the C-position
+that replaces the plain backtick literal with three semantic variants for
+code typing — dead-key tap, committed-literal hold, and Markdown code-fence
+opener on double-tap. **L2 Symbols** repurposes the previously unused E-hold
+to a close-paren so that N+E together produce `(` and `)` on right home
+without an L9 Brackets bridge. **L1 Dead Key Hub** drops the never-used
+tap-hold action on TD(34) since the macro slot it referenced (M3) is now
+the L7 code-fence helper.
+
+### Changed — L7 Code & CLI: TD(58) backtick on C-position
+
+| Position | v1.12.2 | v1.12.3 |
+|---|---|---|
+| L7 C-pos | `KC_GRAVE` (literal backtick) | `TD(58)` (tap = `` ` ``, hold = M19, double = M3) |
+
+The plain backtick literal was a single-purpose key. v1.12.3 promotes the
+position to a Tap Dance with three semantic variants:
+
+- **Tap** — `KC_GRAVE`, the OS-level dead-key behaviour. Composes with a
+  following vowel to produce `̀a` etc.
+- **Hold** — M19 (`` ` `` + Space). Forces an immediate commit of the
+  backtick as a literal. Use before another backtick (avoids accidental
+  composition) or before a vowel that should NOT carry a grave accent.
+- **Double-tap** — M3 (three commit-pairs of `` ` `` + Space). Opens a
+  Markdown fenced code block.
+
+The Bsp-thumb backtick remains as the simple dead-key access path. The
+C-position now carries the richer behaviour for code work.
+
+### Changed — L2 Symbols: TD(54) hold reassigned `}` → `)`
+
+| Position | v1.12.2 | v1.12.3 |
+|---|---|---|
+| L2 E-pos hold | `}` (close-brace) | `)` (close-paren) |
+
+TD(53) on N already held `(` on hold. Pairing TD(54) hold with `)` on the
+adjacent right-middle finger means parentheses can be typed entirely from
+right-home without bridging through L9 Brackets — useful for prose-context
+parens like smileys (`:-)`), footnotes, and inline asides where a layer
+switch would interrupt writing flow.
+
+The displaced `}` remains reachable via L9 Brackets (O-position hold) and
+via L2 right-top `'`-position TD(28) hold. Curly braces are less frequent
+in prose contexts than round parens, justifying the reassignment.
+
+### Changed — L1 Dead Key Hub: TD(34) tap-hold cleared
+
+| Position | v1.12.2 | v1.12.3 |
+|---|---|---|
+| L1 D, H tap-hold | M3 (three apostrophe-space pairs — Markdown italic helper) | `KC_NO` (action removed) |
+
+The TD(34) tap-hold action on D and H invoked M3 to emit a Markdown italic
+delimiter pattern. The macro slot M3 is repurposed in v1.12.3 for the L7
+code-fence helper (see above), and the apostrophe-italic pattern was a
+niche use case that did not justify keeping the tap-hold path. Tap (literal
+`'`), hold (M2 — `'` + Space dead-key commit), and the dead-key behaviour
+itself are unchanged.
+
+### Macros
+
+- **M19 added** — `` ` `` + Space. Dead-key commit helper for backtick.
+  Used as TD(58) hold component.
+- **M3 repurposed** — was `' ' ' ` (three apostrophe-space pairs for the
+  Markdown italic delimiter dance, used by TD(34) tap-hold). Now `` ` ` ` ``
+  (three backtick-space pairs as Markdown code-fence opener, used by
+  TD(58) double-tap). The slot number is the same, the semantic is
+  different — anyone scripting against M3 by ID will need to update.
+
+### Resource Budget
+
+| Resource | Used (v1.12.2) | Used (v1.12.3) | Available |
+|---|---|---|---|
+| Tap Dance | 51 | **52** | 64 |
+| Macro | 19 | **20** | 32 |
+| Layers with content | 12 in firmware (11 reachable) | unchanged | 16 |
+| Combos | 0 | 0 | 32 |
+| Key Overrides | 0 | 0 | 32 |
+
+TD(58) is the lowest unused-now-used slot. Next available are TD(59)–TD(63).
+
+### Classification
+
+PATCH per Cadence's versioning policy, on balance.
+
+The release adds a new Tap Dance (TD(58)) and a new Macro (M19), which by
+the strictest reading of the policy is MINOR territory. It also changes
+existing key behaviour in three places: TD(54) hold (`}` → `)`), TD(34)
+tap-hold (M3 → none), and M3 semantics (italic-helper → code-fence-helper).
+By the strictest reading those are MAJOR changes because they invalidate
+muscle memory for anyone who used those paths.
+
+PATCH was chosen because (a) the changed paths were rarely-used variants,
+not primary key actions; (b) the additions extend functionality on a
+position whose primary action (`KC_GRAVE` tap on C) is unchanged; and
+(c) the daily-driver experience is dominated by additions, not removals.
+A user who has not used TD(34) tap-hold or M3 explicitly will not notice
+the changes; a user who relied on the paren-on-right-home shortcut will
+get a small ergonomic improvement.
+
+### Configuration file
+
+`Cadence-FerrisSweep_v1_12_3.vil` — preserves the 1:1 alignment between
+published version number and configuration file name.
+
+### Verified
+
+The configuration was diffed against v1.12.2 with `tools/vial-diff.py`:
+- 1 layout-cell change (L7 C: `KC_GRAVE` → `TD(58)`)
+- 3 Tap Dance changes (TD(34) tap-hold cleared, TD(54) hold reassigned, TD(58) added)
+- 2 Macro changes (M3 sequence rewritten, M19 added)
+- All other sections (Combos, Key Overrides, Settings, Encoder) bit-identical to v1.12.2.
+
+---
+
 ## [1.12.2] — 2026-05-05
 
 Two unrelated layer refinements bundled into one PATCH release. **L5 Mouse**

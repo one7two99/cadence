@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadence v1.12.2 — Design Specification</title>
+<title>Cadence v1.12.3 — Design Specification</title>
 <style>
 /* =============================================================
    PRESERVE existing aesthetic CSS from the previous index.html.
@@ -344,13 +344,13 @@ li { margin: 4px 0; }
 
 <div class="hero">
   <h1>Cadence</h1>
-  <p class="subtitle">v1.12.2 — Design specification for the Ferris Sweep Colemak-DH layout. All claims verified against <code>configuration/Cadence-FerrisSweep_v1_12_2.vil</code>. Version history lives in <code>CHANGELOG.md</code>; this document describes the current state only.</p>
+  <p class="subtitle">v1.12.3 — Design specification for the Ferris Sweep Colemak-DH layout. All claims verified against <code>configuration/Cadence-FerrisSweep_v1_12_3.vil</code>. Version history lives in <code>CHANGELOG.md</code>; this document describes the current state only.</p>
   <div class="badges">
-    <span class="badge badge-version">v1.12.2</span>
+    <span class="badge badge-version">v1.12.3</span>
     <span class="badge badge-hardware">Ferris Sweep</span>
     <span class="badge badge-firmware">Vial / QMK</span>
     <span class="badge badge-base">Colemak-DH</span>
-    <span class="badge badge-td">51 / 64 TDs</span>
+    <span class="badge badge-td">52 / 64 TDs</span>
     <span class="badge badge-os">US-International</span>
     <span class="badge badge-license">MIT</span>
   </div>
@@ -442,7 +442,7 @@ li { margin: 4px 0; }
     <tr>
       <td>Inner column</td>
       <td>G/M used for layer content</td>
-      <td>G/M never used for layer content (rule holds without exception in v1.12.2)</td>
+      <td>G/M never used for layer content (rule holds without exception in v1.12.3)</td>
     </tr>
     <tr>
       <td>Layer count (reachable)</td>
@@ -460,11 +460,11 @@ li { margin: 4px 0; }
 
 <h2 id="principles">Design principles</h2>
 
-<p>Five rules that hold across every layer in v1.12.2. Individual layer sections reference these but do not repeat them.</p>
+<p>Five rules that hold across every layer in v1.12.3. Individual layer sections reference these but do not repeat them.</p>
 
 <div class="design-box">
 <h4>1. No inner column for layer content</h4>
-<p>The inner column (G and M positions in Colemak-DH) requires a lateral inward index movement and is the weakest column ergonomically. G and M carry only their plain letter values — no hold action, no layer content. The rule holds without exception in v1.12.2. The App/Menu hold on G/M that existed v1.5–v1.11.0 was relocated to L9 Brackets thumbs because it was never invoked in daily use.</p>
+<p>The inner column (G and M positions in Colemak-DH) requires a lateral inward index movement and is the weakest column ergonomically. G and M carry only their plain letter values — no hold action, no layer content. The rule holds without exception in v1.12.3. The App/Menu hold on G/M that existed v1.5–v1.11.0 was relocated to L9 Brackets thumbs because it was never invoked in daily use.</p>
 </div>
 
 <div class="design-box">
@@ -596,7 +596,7 @@ li { margin: 4px 0; }
       <tr><td>U</td><td>TD(49)</td><td>ü (RAlt+Y)</td><td>Ü (M17)</td><td>Direct umlaut, mnemonic U→ü.</td></tr>
       <tr><td>O</td><td>TD(50)</td><td>ö (RAlt+P)</td><td>Ö (M18)</td><td>Direct umlaut, mnemonic O→ö.</td></tr>
       <tr><td>T, N</td><td>TD(33)</td><td>"</td><td>M4 (" + Space)</td><td>Double-quote dead key. Strongest mirror pair. Hold-variant commits the literal " when needed.</td></tr>
-      <tr><td>D, H</td><td>TD(34)</td><td>'</td><td>M2 (' + Space)</td><td>Single-quote dead key. One row down from ". Hold = literal '. Tap-hold = M3 (three apostrophe-spaces, Markdown-italic shortcut).</td></tr>
+      <tr><td>D, H</td><td>TD(34)</td><td>'</td><td>M2 (' + Space)</td><td>Single-quote dead key. One row down from ". Hold = literal '. (Previous tap-hold action removed in v1.12.3 — see CHANGELOG.)</td></tr>
     </tbody>
   </table>
 
@@ -614,7 +614,7 @@ li { margin: 4px 0; }
 
   <h4 class="layer-section">Macros on this layer</h4>
   <p>Capital umlaut macros M16 (Ä), M17 (Ü), M18 (Ö) are invoked from the umlaut Tap Dance hold actions. Each macro holds Shift + AltGr, taps the corresponding base letter (Q, Y, P), then releases the modifiers. Macros are used because Vial Tap Dance hold-slots cannot encode two simultaneous modifiers + a letter as a single keycode.</p>
-  <p>Macros M2 (apostrophe + space), M3 (three apostrophe-spaces), M4 (double-quote + space) provide explicit dead-key commit when the hold-variant is invoked.</p>
+  <p>Macros M2 (apostrophe + space) and M4 (double-quote + space) provide explicit dead-key commit when the hold-variant is invoked.</p>
 
   <h4 class="layer-section">Known limitations &amp; open questions</h4>
   <ul>
@@ -631,7 +631,7 @@ li { margin: 4px 0; }
     <span class="layer-trigger">Hold Bsp</span>
   </div>
 
-  <div class="kb"><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">~</span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">?</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">#</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">$</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">%</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">+</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">! · &</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">* · @</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key"><span class="key-lbl">:</span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">_</span><span class="key-pos">C</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">/ · \</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">-</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">=</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">( · )</span><span class="key-pos">L</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">[ · ]</span><span class="key-pos">U</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">< · ></span><span class="key-pos">Y</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">{ · }</span><span class="key-pos">'</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">, · (</span><span class="key-pos">N</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">. · }</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">' · ^</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">;</span><span class="key-pos">O</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div><div class="key key-active key-trans"><span class="key-lbl">·</span><span class="key-pos">★ Bsp</span></div></div></div></div>
+  <div class="kb"><div class="kb-half"><div class="key-row"><div class="key"><span class="key-lbl">~</span><span class="key-pos">Q</span></div><div class="key"><span class="key-lbl">?</span><span class="key-pos">W</span></div><div class="key"><span class="key-lbl">#</span><span class="key-pos">F</span></div><div class="key"><span class="key-lbl">$</span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-lbl">%</span><span class="key-pos">A</span></div><div class="key"><span class="key-lbl">+</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">! · &</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">* · @</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key"><span class="key-lbl">:</span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">_</span><span class="key-pos">C</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">/ · \</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">-</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">=</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">( · )</span><span class="key-pos">L</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">[ · ]</span><span class="key-pos">U</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">< · ></span><span class="key-pos">Y</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">{ · }</span><span class="key-pos">'</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">, · (</span><span class="key-pos">N</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">. · )</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">' · ^</span><span class="key-pos">I</span></div><div class="key"><span class="key-lbl">;</span><span class="key-pos">O</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">H</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Ent</span></div><div class="key key-active key-trans"><span class="key-lbl">·</span><span class="key-pos">★ Bsp</span></div></div></div></div>
 
   <h4 class="layer-section">Purpose</h4>
   <p>L2 is the symbol layer for prose, code, and Markdown. Every ASCII symbol that does not require AltGr is reachable here. The layer is also shared as a specification with Sonata v3.x — the position assignments and Tap Dance encodings are identical, so muscle memory transfers between the two layouts.</p>
@@ -640,7 +640,7 @@ li { margin: 4px 0; }
   <p><strong>Frequency × ergonomic strength = position.</strong> The most-typed operators land on the strongest fingers. <code>=</code> on Tab-thumb (the strongest left position), <code>-</code> on Spc-thumb. <code>%</code> on A, <code>+</code> on R, <code>!/&amp;</code> Tap Dance on S, <code>*/@</code> Tap Dance on T (the strongest left finger gets the operator-pair with the highest combined frequency). The ranking is informed by code-corpus statistics, not aesthetic preference.</p>
   <p><strong>Right-thumb access asymmetry.</strong> Bsp (right thumb) triggers L2; the right thumb is therefore anchored. Symbol content is loaded onto the freer left hand and the upper rows of the right hand. The right bottom row is intentionally transparent — it would conflict with right-thumb anchoring during Bsp-hold.</p>
   <p><strong>Bracket pairs as Tap Dance on right top.</strong> <code>(/)</code> on L, <code>[/]</code> on U, <code>&lt;/&gt;</code> on Y, <code>{/}</code> on '. Tap = open, Hold = close. The right-top row is reachable while the right thumb anchors at Bsp. This duplicates the L9 Brackets layer's content — the duplication is deliberate, because brackets appear during symbol-typing flows (e.g. after a math operator) and the layer-switch cost would interrupt the flow.</p>
-  <p><strong>Right-home prose punctuation.</strong> <code>,/(</code> on N, <code>./}</code> on E, <code>'/^</code> on I, <code>;</code> on O. These are punctuation marks that appear during prose writing, where the user already has the right hand on home — placing them on right-home avoids hand displacement.</p>
+  <p><strong>Right-home prose punctuation, with paren pair as a bonus.</strong> <code>,/(</code> on N, <code>./)</code> on E, <code>'/^</code> on I, <code>;</code> on O. Tap actions are punctuation marks for prose; hold actions on N and E together produce the <code>(</code>/<code>)</code> pair on right home, so parentheses can be typed without bridging through L9 Brackets. Useful for prose-context parens (smileys like <code>:-)</code>, footnotes, inline asides) where layer-switching would interrupt the writing flow. Hold on I (<code>^</code>) and O (no hold) preserve apostrophe-caret and semicolon for code annotation.</p>
   <p><strong>Tap Dance pairs by semantic kinship.</strong> <code>!/&amp;</code> together because both are common shell/code single-char operators. <code>*/@</code> together because both serve as "annotation" symbols (multiplication, decoration). <code>//\</code> together because both are filesystem-path separators. The pairings are mnemonic: tap and hold of the same key are conceptually related.</p>
   <p><strong>Symbol-layer specification shared with Sonata.</strong> Sonata is a 28-key sister layout without an inner column and with different access keys, but its symbol layer uses the identical position-to-symbol mapping (TD(52)–TD(57) included). A user fluent in Cadence's L2 carries muscle memory into Sonata's symbol layer.</p>
 
@@ -656,7 +656,7 @@ li { margin: 4px 0; }
       <tr><td>Y</td><td>TD(27)</td><td><code>&lt;</code></td><td><code>&gt;</code></td><td>Bracket pair, also on L9.</td></tr>
       <tr><td>'</td><td>TD(28)</td><td><code>{</code></td><td><code>}</code></td><td>Bracket pair, also on L9.</td></tr>
       <tr><td>N</td><td>TD(53)</td><td><code>,</code></td><td><code>(</code></td><td>Comma + redundant open-paren on right index home — combines prose-punctuation tap with operator-flow hold.</td></tr>
-      <tr><td>E</td><td>TD(54)</td><td><code>.</code></td><td><code>}</code></td><td>Period + close-brace. Right middle home.</td></tr>
+      <tr><td>E</td><td>TD(54)</td><td><code>.</code></td><td><code>)</code></td><td>Period + close-paren. Pairs with TD(53) on N (hold = <code>(</code>) to put parentheses on right home — type <code>(...)</code> directly without an L9 bridge, useful for prose-context parens (smileys like <code>:-)</code>, footnotes, inline asides). Curly-close on E was the v1.12.2 placement; <code>}</code> remains reachable via L9 O-position and L2 right-top <code>'</code>.</td></tr>
       <tr><td>I</td><td>TD(57)</td><td><code>'</code></td><td><code>^</code></td><td>Apostrophe + caret. Right ring home.</td></tr>
     </tbody>
   </table>
@@ -825,7 +825,7 @@ li { margin: 4px 0; }
     <span class="layer-trigger">Hold W or Hold Y</span>
   </div>
 
-  <div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">||</span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">2>&1</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">&&</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">| · " | "</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key"><span class="key-lbl">`</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">\</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">'</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">"</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">/ · ~/ · ../</span><span class="key-pos">N</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">$() · ${}</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">!= · ==</span><span class="key-pos">I</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">=> · -></span><span class="key-pos">O</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">$?</span><span class="key-pos">H</span></div><div class="key"><span class="key-lbl">~</span><span class="key-pos">,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">Tab</span><span class="key-pos">Ent</span></div><div class="key"><span class="key-lbl">`</span><span class="key-pos">Bsp</span></div></div></div></div>
+  <div class="kb"><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Q</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ W</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">F</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">P</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">B</span></div></div><div class="key-row"><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">||</span><span class="key-pos">A</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">2>&1</span><span class="key-pos">R</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">&&</span><span class="key-pos">S</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">| · " | "</span><span class="key-pos">T</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">G</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">Z</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">X</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">` · ` · ```</span><span class="key-pos">C</span></div><div class="key"><span class="key-lbl">\</span><span class="key-pos">D</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">V</span></div></div><div class="key-row key-thumbs key-thumbs-l"><div class="key"><span class="key-lbl">'</span><span class="key-pos">Spc</span></div><div class="key"><span class="key-lbl">"</span><span class="key-pos">Tab</span></div></div></div><div class="kb-half"><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">J</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">L</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">U</span></div><div class="key key-empty key-active"><span class="key-lbl">·</span><span class="key-pos">★ Y</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">'</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">M</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">/ · ~/ · ../</span><span class="key-pos">N</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">$() · ${}</span><span class="key-pos">E</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">!= · ==</span><span class="key-pos">I</span></div><div class="key"><span class="key-bdg key-bdg-td">TD</span><span class="key-lbl">=> · -></span><span class="key-pos">O</span></div></div><div class="key-row"><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">K</span></div><div class="key"><span class="key-bdg key-bdg-m">M</span><span class="key-lbl">$?</span><span class="key-pos">H</span></div><div class="key"><span class="key-lbl">~</span><span class="key-pos">,</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">.</span></div><div class="key key-empty"><span class="key-lbl"></span><span class="key-pos">/</span></div></div><div class="key-row key-thumbs key-thumbs-r"><div class="key"><span class="key-lbl">Tab</span><span class="key-pos">Ent</span></div><div class="key"><span class="key-lbl">`</span><span class="key-pos">Bsp</span></div></div></div></div>
 
   <h4 class="layer-section">Purpose</h4>
   <p>L7 is the layer for shell sessions, scripting, and code editing. It carries the operators and patterns that programmers and shell users hit dozens of times per hour — pipes, redirects, logical operators, path navigation, comparisons, expansions — placed so they type without leaving the layer or escaping to L2 Symbols.</p>
@@ -834,8 +834,8 @@ li { margin: 4px 0; }
   <h4 class="layer-section">Design rationale</h4>
   <p><strong>Strongest fingers get the most-frequent operators.</strong> The strongest left index position (T) holds <code>|</code> as a pipe Tap Dance: tap emits <code>|</code>, hold emits <code> | </code> with surrounding spaces (the formatting habit when piping in scripts). The mirror right index position (N) holds the path Tap Dance: tap=<code>/</code>, hold=<code>~/</code>, double=<code>../</code> — three semantic variants of "navigate the filesystem" on a single key.</p>
   <p><strong>Operators cluster by domain.</strong> Left home is shell territory (<code>||</code> on A, <code>2&gt;&amp;1</code> on R, <code>&amp;&amp;</code> on S, pipe on T). Right home is expression territory (path on N, <code>$()</code>/<code>${}</code> on E, <code>!=</code>/<code>==</code> on I, <code>=&gt;</code>/<code>-&gt;</code> on O). The split mirrors how operators tend to group in practice: a redirect on the left, an expansion on the right.</p>
-  <p><strong>Bottom rows carry literals.</strong> Backtick on C, backslash on D, tilde on the comma position, exit-status (<code>$?</code>) on H. These appear less often than the operator pairs above and take the second-tier positions accordingly.</p>
-  <p><strong>Thumbs are the quote cluster.</strong> Single quote on Spc-thumb, double quote on Tab-thumb, backtick redundantly on Bsp-thumb, Tab on Ent-thumb. Mnemonic: <em>thumbs = quoting while in Code &amp; CLI</em>. Tab on Ent-thumb specifically supports shell-autocomplete sequences without leaving the layer. The C-position backtick is retained as redundant access and for muscle-memory continuity from earlier versions.</p>
+  <p><strong>Bottom rows carry literals — except C, which earned a Tap Dance.</strong> Backtick Tap Dance on C (TD(58), see table), backslash on D, tilde on the comma position, exit-status (<code>$?</code>) on H. The C-position backtick became a TD in v1.12.3 because a single key now delivers three semantic variants for code typing: a dead-key tap (composes with the next vowel if any), a committed-literal hold (forces the backtick out as a literal regardless of what follows), and a Markdown code-fence opener on double-tap. The other bottom-row entries appear less often than the operator pairs above and remain second-tier positions.</p>
+  <p><strong>Thumbs are the quote cluster.</strong> Single quote on Spc-thumb, double quote on Tab-thumb, backtick on Bsp-thumb, Tab on Ent-thumb. Mnemonic: <em>thumbs = quoting while in Code &amp; CLI</em>. Tab on Ent-thumb specifically supports shell-autocomplete sequences without leaving the layer. The Bsp-thumb backtick is the simple dead-key access path; the C-position holds the richer TD(58) for explicit-commit and code-fence flows.</p>
   <p><strong>OS dead-key interaction.</strong> In US-International OS mode, the characters <code>'</code> <code>"</code> <code>`</code> <code>~</code> <code>^</code> are dead keys. During code typing this rarely interferes: code identifiers usually start with consonants, which the OS treats as non-combining and emits as two literal characters. The thumb-quote cluster therefore <em>feels</em> literal in practice, even though OS-level dead-key behaviour is technically active.</p>
 
   <h4 class="layer-section">Tap Dances on this layer</h4>
@@ -843,6 +843,7 @@ li { margin: 4px 0; }
     <thead><tr><th>Pos</th><th>ID</th><th>Tap</th><th>Hold</th><th>Double</th><th>Why</th></tr></thead>
     <tbody>
       <tr><td>T</td><td>TD(45)</td><td><code>|</code></td><td><code> | </code> (spaced)</td><td>—</td><td>Most-frequent shell operator on the strongest left finger; hold-variant is the formatting habit.</td></tr>
+      <tr><td>C</td><td>TD(58)</td><td><code>`</code></td><td><code>`</code> + Spc (M19)</td><td><code>```</code> + Spc (M3)</td><td>Backtick TD added in v1.12.3 — three semantic variants for code typing on one key. Tap = dead-key backtick (composes with following vowel for ̀ accents). Hold = backtick committed by trailing space (use before another backtick or a vowel where dead-key composition is unwanted). Double = Markdown code-fence opener (three commit-pairs).</td></tr>
       <tr><td>N</td><td>TD(29)</td><td><code>/</code></td><td><code>~/</code></td><td><code>../</code></td><td>Path navigation. Three semantic variants on the strongest right finger.</td></tr>
       <tr><td>E</td><td>TD(30)</td><td><code>$()</code></td><td><code>${}</code></td><td>—</td><td>Shell expansion pair. Cursor lands inside the parens for both.</td></tr>
       <tr><td>I</td><td>TD(31)</td><td><code>!=</code></td><td><code>==</code></td><td>—</td><td>Comparison pair.</td></tr>
@@ -863,13 +864,12 @@ li { margin: 4px 0; }
 
   <h4 class="layer-section">Direct keycodes on this layer</h4>
   <ul>
-    <li><strong>C</strong> — <code>`</code> (backtick literal — Markdown code-fences, JS template literals)</li>
     <li><strong>D</strong> — <code>\</code> (backslash, escape character)</li>
     <li><strong>,</strong> — <code>~</code> (tilde, also home-dir reference distinct from N's <code>~/</code> Tap Dance hold)</li>
     <li><strong>Spc-thumb</strong> — <code>'</code> (single quote)</li>
     <li><strong>Tab-thumb</strong> — <code>"</code> (double quote)</li>
     <li><strong>Ent-thumb</strong> — Tab (shell autocomplete)</li>
-    <li><strong>Bsp-thumb</strong> — <code>`</code> (backtick redundant)</li>
+    <li><strong>Bsp-thumb</strong> — <code>`</code> (backtick — simple dead-key access; TD(58) on C carries the richer variants)</li>
   </ul>
 
   <h4 class="layer-section">Known limitations &amp; open questions</h4>
@@ -1029,7 +1029,7 @@ li { margin: 4px 0; }
 
 <h2 id="td-ref">Appendix A — Tap Dance reference</h2>
 
-<p>All 51 used Tap Dance slots in v1.12.2, sorted by ID. Use this as the authoritative numerical lookup; the per-layer tables above are the conceptual view. Cleared slot TD(51) is shown for completeness.</p>
+<p>All 52 used Tap Dance slots in v1.12.3, sorted by ID. Use this as the authoritative numerical lookup; the per-layer tables above are the conceptual view. Cleared slot TD(51) is shown for completeness.</p>
 
 <table>
   <thead><tr><th>ID</th><th>Tap</th><th>Hold</th><th>Double</th><th>Tap-Hold</th><th>Term</th><th>Used in</th></tr></thead>
@@ -1062,7 +1062,7 @@ li { margin: 4px 0; }
     <tr><td>TD(31)</td><td><code>!=</code></td><td><code>==</code></td><td>—</td><td>—</td><td>200 ms</td><td>L7 I (comparison)</td></tr>
     <tr><td>TD(32)</td><td><code>=&gt;</code></td><td><code>-&gt;</code></td><td>—</td><td>—</td><td>200 ms</td><td>L7 O (arrows)</td></tr>
     <tr><td>TD(33)</td><td><code>"</code></td><td>M4 (" + Spc)</td><td>—</td><td>—</td><td>200 ms</td><td>L1 T, N (" dead key)</td></tr>
-    <tr><td>TD(34)</td><td><code>'</code></td><td>M2 (' + Spc)</td><td>—</td><td>M3 (''' )</td><td>200 ms</td><td>L1 D, H (' dead key)</td></tr>
+    <tr><td>TD(34)</td><td><code>'</code></td><td>M2 (' + Spc)</td><td>—</td><td>—</td><td>200 ms</td><td>L1 D, H (' dead key)</td></tr>
     <tr><td>TD(35)–TD(43)</td><td>⌘+1 to ⌘+9</td><td>⌘⇧+1 to ⌘⇧+9</td><td>—</td><td>—</td><td>200 ms</td><td>L8 WS1–9</td></tr>
     <tr><td>TD(44)</td><td>⌘+0</td><td>⌘⇧+0</td><td>—</td><td>—</td><td>200 ms</td><td>L8 WS10 (Spc-thumb)</td></tr>
     <tr><td>TD(45)</td><td><code>|</code></td><td>M5 ( | spaced)</td><td>—</td><td>—</td><td>200 ms</td><td>L7 T (pipe)</td></tr>
@@ -1074,14 +1074,15 @@ li { margin: 4px 0; }
     <tr style="opacity:0.55"><td>TD(51)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>cleared in v1.12.0</td></tr>
     <tr><td>TD(52)</td><td><code>*</code></td><td><code>@</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 T</td></tr>
     <tr><td>TD(53)</td><td><code>,</code></td><td><code>(</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 N</td></tr>
-    <tr><td>TD(54)</td><td><code>.</code></td><td><code>}</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 E</td></tr>
+    <tr><td>TD(54)</td><td><code>.</code></td><td><code>)</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 E</td></tr>
     <tr><td>TD(55)</td><td><code>/</code></td><td><code>\</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 D</td></tr>
     <tr><td>TD(56)</td><td><code>!</code></td><td><code>&amp;</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 S</td></tr>
     <tr><td>TD(57)</td><td><code>'</code></td><td><code>^</code></td><td>—</td><td>—</td><td>200 ms</td><td>L2 I</td></tr>
+    <tr><td>TD(58)</td><td><code>`</code></td><td>M19 (` + Spc)</td><td>M3 (```` ` ` ` ```)</td><td>—</td><td>200 ms</td><td>L7 C (backtick TD)</td></tr>
   </tbody>
 </table>
 
-<p>Slots TD(4), TD(5), TD(16)–TD(19), TD(51) are unused (cleared or reserved). The next available IDs for new TDs are TD(58)–TD(63).</p>
+<p>Slots TD(4), TD(5), TD(16)–TD(19), TD(51) are unused (cleared or reserved). The next available IDs for new TDs are TD(59)–TD(63).</p>
 
 <!-- ============================================================
      APPENDIX B — MACRO REFERENCE
@@ -1089,7 +1090,7 @@ li { margin: 4px 0; }
 
 <h2 id="macro-ref">Appendix B — Macro reference</h2>
 
-<p>All 19 used macro slots in v1.12.2.</p>
+<p>All 20 used macro slots in v1.12.3.</p>
 
 <h3>Shell helpers</h3>
 <table>
@@ -1135,12 +1136,22 @@ li { margin: 4px 0; }
   <thead><tr><th>Macro</th><th>Output</th><th>Used in</th></tr></thead>
   <tbody>
     <tr><td>M2</td><td><code>' </code> (apostrophe + space)</td><td>L1 (TD(34) hold component)</td></tr>
-    <tr><td>M3</td><td><code>' ' ' </code></td><td>L1 (TD(34) tap-hold component) — Markdown italic dance</td></tr>
     <tr><td>M4</td><td><code>" </code> (double-quote + space)</td><td>L1 (TD(33) hold component)</td></tr>
+    <tr><td>M19</td><td><code>` </code> (backtick + space)</td><td>L7 (TD(58) hold component) — added in v1.12.3</td></tr>
   </tbody>
 </table>
 
-<p>On dead-key OS layouts, pressing <code>'</code> or <code>"</code> alone produces no output until the next keystroke. These macros explicitly type the character followed by Space to commit it as a literal.</p>
+<p>On dead-key OS layouts, pressing <code>'</code>, <code>"</code>, or <code>`</code> alone produces no output until the next keystroke. These macros explicitly type the character followed by Space to commit it as a literal.</p>
+
+<h3>Markdown helpers</h3>
+<table>
+  <thead><tr><th>Macro</th><th>Output</th><th>Used in</th></tr></thead>
+  <tbody>
+    <tr><td>M3</td><td><code>` ` ` </code> (three commit-pairs)</td><td>L7 (TD(58) double-tap component) — Markdown code-fence opener</td></tr>
+  </tbody>
+</table>
+
+<p>M3 was repurposed in v1.12.3. It previously emitted three apostrophe+space pairs as a Markdown italic dance from L1's TD(34); the new sequence emits three backtick+space pairs as a code-fence opener from L7's TD(58). The slot is the same, the semantic is different.</p>
 
 <!-- ============================================================
      FIRMWARE NOTES
@@ -1150,7 +1161,7 @@ li { margin: 4px 0; }
 
 <div class="design-box">
 <h4>Vial-QMK build configuration</h4>
-<p>v1.12.2 uses 51 of 64 Tap Dance slots. The standard Vial-Sweep firmware ships with 48 entries — a custom build is required because TD(57) is occupied.</p>
+<p>v1.12.3 uses 52 of 64 Tap Dance slots. The standard Vial-Sweep firmware ships with 48 entries — a custom build is required because TD(58) is occupied.</p>
 <p>In <code>keyboards/ferris/sweep/keymaps/vial/config.h</code>:</p>
 <pre style="background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;overflow-x:auto;">#define TAP_DANCE_ENTRIES 64</pre>
 </div>
@@ -1177,7 +1188,7 @@ li { margin: 4px 0; }
   <li><a href="../ROADMAP.md">ROADMAP</a> — open items and planned work</li>
   <li><a href="../VERSIONING.md">VERSIONING</a> — semantic versioning policy</li>
   <li><a href="../CONTRIBUTING.md">CONTRIBUTING</a> — contribution guidelines</li>
-  <li><a href="../configuration/Cadence-FerrisSweep_v1_12_2.vil"><code>configuration/Cadence-FerrisSweep_v1_12_2.vil</code></a> — the authoritative layout file</li>
+  <li><a href="../configuration/Cadence-FerrisSweep_v1_12_3.vil"><code>configuration/Cadence-FerrisSweep_v1_12_3.vil</code></a> — the authoritative layout file</li>
 </ul>
 
 </div><!-- /container -->
